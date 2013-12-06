@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, user-scalable=no" />
+	<title>File Manager</title>
+	
+	<link rel="stylesheet" href="../libraries/buildingblocks/style/action_menu.css" />
+	<link rel="stylesheet" href="../libraries/buildingblocks/style/confirm.css">
+	<link rel="stylesheet" href="../libraries/buildingblocks/style/headers.css" />
+	<link rel="stylesheet" href="../libraries/buildingblocks/style/status.css" />
+	<link rel="stylesheet" href="../libraries/buildingblocks/style_unstable/lists.css" />
+	<link rel="stylesheet" href="../libraries/buildingblocks/style_unstable/scrolling.css" />
+
+	<link rel="stylesheet" href="../libraries/buildingblocks/icons/styles/action_icons.css" />
+
+	<link rel="stylesheet" href="../libraries/buildingblocks/transitions.css" />
+  
+	<link rel="stylesheet" href="../libraries/buildingblocks/util.css" />
+	<link rel="stylesheet" href="../libraries/buildingblocks/fonts.css" />
+
+	<link rel="stylesheet" href="../libraries/buildingblocks/cross_browser.css" />
+
+	<link rel="stylesheet" href="../libraries/buildingblocks/extra.css" />
+	
+	<link rel="stylesheet" href="../css/icons.css" />
+	<link rel="stylesheet" href="../css/app.css" />
+	
+	<link rel="prefetch" type="application/l10n" href="../locales/locales.ini" />
+</head>
+<body>
+	<section role="region" id="drawer" class="skin-dark">
+		<header class="fixed">
+			<a id="back" class="folder" href="#">
+				<span class="icon icon-back">back</span>
+			</a>
+			<button id="close">
+				<span class="icon icon-close">close</span>
+			</button>
+			<menu type="toolbar">
+				<button name="done" data-l10n-id="done">Done</button>
+			</menu>
+			<h1 id="folder">File Manager</h1>
+		</header>
+	</section>
+	
+	<section id="index" data-position="current" class="left-to-current">
+		<section role="region" class="skin-dark">
+			<article class="content scrollable header">
+				<section data-type="list">
+					<ul class="files"></ul>
+				</section>
+			</article>
+		</section>
+	</section>
+  
+	<section role="region" name="side" data-position="right" data-skin="dark">
+		<article class="content scrollable header">
+			<section data-type="list">
+				<ul class="files"></ul>
+			</section>
+		</article>
+	</section>
+  
+	<section role="region" name="side" data-position="right" data-skin="dark">
+		<article class="content scrollable header">
+			<section data-type="list">
+				<ul class="files"></ul>
+			</section>
+		</article>
+	</section>
+
+	<script type="text/javascript" defer src="../libraries/l10n.js"></script>
+	<script type="text/javascript" defer src="../libraries/buildingblocks/js/status.js"></script>
+	<script type="text/javascript" defer src="../js/mime.js"></script>
+	<script type="text/javascript" defer src="../js/files.js"></script>
+	<script type="text/javascript" defer src="../js/storage.js"></script>
+	<script type="text/javascript" defer src="../js/folder.js"></script>
+</body>
+</html>
+

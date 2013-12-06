@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no" />
+	<title>Text Viewer</title>
+  
+	<link rel="stylesheet" href="../libraries/buildingblocks/style/headers.css" />
+	<link rel="stylesheet" href="../libraries/buildingblocks/style_unstable/toolbars.css" />
+
+	<link rel="stylesheet" href="../libraries/buildingblocks/icons/styles/action_icons.css" />
+  
+	<link rel="stylesheet" href="../libraries/buildingblocks/util.css" />
+	<link rel="stylesheet" href="../libraries/buildingblocks/fonts.css" />
+
+	<link rel="stylesheet" href="../libraries/buildingblocks/cross_browser.css">
+
+	<link rel="stylesheet" href="../libraries/buildingblocks/extra.css">
+	<link rel="stylesheet" href="../css/text.css">
+	
+	<link rel="prefetch" type="application/l10n" href="../locales/locales.ini" />
+</head>
+<body>	
+	<section id="index" data-position="current" class="left-to-current">
+		<section id="drawer" role="region" class="skin-dark">
+			<header>
+				<button id="close"><span class="icon icon-close">close</span></button>
+				<menu type="toolbar"><button id="save" data-l10n-id="save">Save</button></menu>
+				<h1 id="name"></h1>
+			</header>
+			<article class="editor-container">
+				<section class="content editor">
+					<textarea></textarea>
+				</section>
+				<div role="toolbar">
+					<ul>
+						<li><button class="action-icon calendar-agendaview" id="adjust">Adjust</button></li>
+					</ul>
+					<ul>
+						<li><button class="action-icon new" id="more">Plus</button></li>
+						<li><button class="action-icon minus" id="less">Minus</button></li>
+					</ul>
+				</div>
+			</article>
+		</section>
+  </section>
+  
+  
+	<script type="text/javascript" defer src="../libraries/l10n.js"></script>
+	
+	<script type="text/javascript" defer src="../js/storage.js"></script>
+	<script type="text/javascript" defer src="../js/text.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,46 @@
+{
+	"name": "File Manager",
+	"description": "App to manage, copy, move, delete, share and rename files and folders in the SDCard. It also allows you to view PDF documents, play multimedia files, create and edit plain text documents. Uses Building Blocks (http://buildingfirefoxos.com/) and icons from FileTypeIcons (http://iconbug.com/).",
+	"launch_path": "/index.html",
+	"icons": {
+		"128": "/images/icon-128.png",
+		"64": "/images/icon-64.png",
+		"60": "/images/icon-60.png"
+	},
+	"version": "beta-1.0",
+	"developer": {
+		"name": "Jhon Klever",
+		"url": "https://github.com/elfoxero"
+	},
+	"default_locale": "en",
+	"permissions": {
+		"device-storage:sdcard": {
+			"description" : "To access files from the SDCard",
+			"access": "readwrite"
+		}
+	},
+	"activities": {
+		"open": {
+			"filters": {
+				"type": ["text/plain", "text/javascript", "text/css", "text/html", "application/x-web-app-manifest+json"]
+			},
+			"disposition": "inline",
+			"returnValue": true,
+			"href": "/elements/text.html"
+		},
+		"pick-folder": {
+			"disposition": "inline",
+			"returnValue": true,
+			"href": "/elements/folder.html"
+		}
+	},
+	"locales": {
+		"es": {
+			"description": "Aplicación para gestionar los archivos y carpetas de la tarjeta SD. Copiar, mover, eliminar, compartir y cambiar de nombre a los archivos. También permite ver los documentos PDF, reproducir archivos multimedia, crear y editar documentos de texto plano. Utiliza la interfaz de Building Blocks (http://buildingfirefoxos.com/) y los iconos de FileTypeIcons (http://iconbug.com/)."
+		},
+		"pt": {
+			"description": "Aplicação para gerenciar arquivos e pastas do SDCard. Copiar, mover, excluir, compartilhar e renomear arquivos. Também é possível visualizar documentos em PDF, reproduzir arquivos multimídia, criar e editar documentos de texto simples. Usa a interface Building Blocks (http://buildingfirefoxos.com/) e os ícones FileTypeIcons (http://iconbug.com/)."
+		}
+	},
+	"type": "privileged"
+}

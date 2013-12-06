@@ -1,0 +1,71 @@
+.file-icon {
+	background: url(../images/icons.png) no-repeat;
+	background-size: 6rem 90rem;
+	content: '';
+	display: block;
+	height: 6rem;
+	position: relative;
+	width: 6rem;
+	z-index: 1;
+}
+
+.folder {
+	background-position: 0 0;
+}
+
+.image {
+	background-position: 0 -60px;
+}
+
+.audio {
+	background-position: 0 -120px;
+}
+
+.video {
+	background-position: 0 -180px;
+}
+
+.pdf {
+	background-position: 0 -240px;
+}
+
+.zip {
+	background-position: 0 -300px;
+}
+
+.text {
+	background-position: 0 -360px;
+}
+
+.developer {
+	background-position: 0 -420px;
+}
+
+.html {
+	background-position: 0 -480px;
+}
+
+.css {
+	background-position: 0 -540px;
+}
+
+.word {
+	background-position: 0 -600px;
+}
+
+.excel {
+	background-position: 0 -660px;
+
+}
+
+.powerpoint {
+	background-position: 0 -720px;
+}
+
+.unknown {
+	background-position: 0 -780px;
+}
+
+.card {
+	background-position: 0 -840px;
+}

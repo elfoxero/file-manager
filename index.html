@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, user-scalable=no" />
+	<title>File Manager</title>
+	
+	<link rel="stylesheet" href="libraries/buildingblocks/style/action_menu.css" />
+	<link rel="stylesheet" href="libraries/buildingblocks/style/confirm.css" />
+	<link rel="stylesheet" href="libraries/buildingblocks/style/headers.css" />
+	<link rel="stylesheet" href="libraries/buildingblocks/style/status.css" />
+	<link rel="stylesheet" href="libraries/buildingblocks/style_unstable/lists.css" />
+	<link rel="stylesheet" href="libraries/buildingblocks/style_unstable/scrolling.css" />
+
+	<link rel="stylesheet" href="libraries/buildingblocks/icons/styles/action_icons.css" />
+
+	<link rel="stylesheet" href="libraries/buildingblocks/transitions.css" />
+  
+	<link rel="stylesheet" href="libraries/buildingblocks/util.css" />
+	<link rel="stylesheet" href="libraries/buildingblocks/fonts.css" />
+
+	<link rel="stylesheet" href="libraries/buildingblocks/cross_browser.css" />
+
+	<link rel="stylesheet" href="libraries/buildingblocks/extra.css" />
+	
+	<link rel="stylesheet" href="css/sidebar.css" />
+	<link rel="stylesheet" href="css/icons.css" />
+	<link rel="stylesheet" href="css/app.css" />
+	
+	<link rel="prefetch" type="application/l10n" href="locales/locales.ini" />
+</head>
+<body>
+	<section data-type="sidebar">
+		<header>
+			<h1></h1>
+		</header>
+		<nav>
+			<ul>
+				<li><a href="#" id="new-folder" data-l10n-id="new-folder">New folder</a></li>
+				<li><a href="#" id="new-file" data-l10n-id="new-file">New file</a></li>
+			</ul>
+		</nav>
+	</section>
+	
+	<section role="region" id="drawer">
+		<header class="fixed">
+			<menu type="toolbar">
+				<a href="#" id="refresh"><span class="icon action-icon email-sync">refresh</span></a>
+				<a data-action="hide" href="#"><span class="icon icon-menu">hide sidebar</span></a>
+				<a data-action="show" href="#drawer"><span class="icon icon-menu">show sidebar</span></a>
+			</menu>
+			<a id="back" href="#">
+				<span class="icon icon-back">back</span>
+			</a>
+			<h1 id="folder">File Manager</h1>
+		</header>
+	</section>
+	
+	<section id="index" role="region" data-position="current" class="left-to-current">
+		<section role="region">
+			<article class="content scrollable header">
+				<section data-type="list">
+					<ul class="files"></ul>
+				</section>
+			</article>
+		</section>
+	</section>
+  
+	<section role="region" name="side" data-position="right">
+		<article class="content scrollable header">
+			<section data-type="list">
+				<ul class="files"></ul>
+			</section>
+		</article>
+	</section>
+  
+	<section role="region" name="side" data-position="right">
+		<article class="content scrollable header">
+			<section data-type="list">
+				<ul class="files"></ul>
+			</section>
+		</article>
+	</section>
+
+	<section id="file-action" data-position="back" class="fullscreen">
+		<form role="dialog" data-type="action">
+			<header></header>
+			<menu>
+				<button data-action="V" data-l10n-id="view">View</button>
+				<button data-action="O" data-l10n-id="open">Open</button>
+				<button data-action="D" data-l10n-id="details">Details</button>
+				<button data-action="R" data-l10n-id="rename">Rename</button>
+				<button data-action="C" data-l10n-id="copy">Copy</button>
+				<button data-action="M" data-l10n-id="move">Move</button>
+				<button data-action="X" data-l10n-id="delete">Delete</button>
+				<button data-action="S" data-l10n-id="share">Share</button>
+				<button data-l10n-id="cancel">Cancel</button>
+			</menu>
+		</form>
+	</section>
+  
+	<section id="details" data-position="back" class="fullscreen">
+		<form role="dialog" data-type="confirm">
+			<section>
+				<h1 id="file-name"></h1>
+				<p>
+					<span data-l10n-id="size">Size</span>: <span id="file-size"></span><br />
+					<span data-l10n-id="last-updated">Last updated</span>: <span id="file-modified"></span><br />
+					<span data-l10n-id="type">Type</span>: <span id="file-type"></span>
+				</p>
+			</section>
+			<menu>
+				<button type="button" data-l10n-id="close">Close</button>
+			</menu>
+		</form>
+	</section>
+
+	<script type="text/javascript" defer src="libraries/l10n.js"></script>
+	<script type="text/javascript" defer src="libraries/buildingblocks/js/status.js"></script>
+	<script type="text/javascript" defer src="js/mime.js"></script>
+	<script type="text/javascript" defer src="js/files.js"></script>
+	<script type="text/javascript" defer src="js/app.js"></script>
+	<script type="text/javascript" defer src="js/storage.js"></script>
+</body>
+</html>
+

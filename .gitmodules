@@ -1,0 +1,3 @@
+[submodule "libraries/pdfjs"]
+	path = libraries/pdfjs
+	url = git@github.com:elfoxero/pdf.js.git

@@ -23,5 +23,6 @@ section[role="status"] p {
 }
 
 section[role="status"] p strong {
-  font-weight: 500;
+  color: #0995b0;
+  font-weight: normal;
 }

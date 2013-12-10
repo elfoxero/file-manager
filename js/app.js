@@ -146,9 +146,9 @@
 		files.call(function (curFile, curDir, curItem) {
 			if (confirm(_('sure-delete') + curFile.name + '?')) {
 				files.task('delete', {}, {}, function () {
-					utils.status.show(curFile.name + _('deleted'));
+					utils.status.show('{{' + curFile.name + '}} ' + _('deleted'));
 				}, function () {
-					utils.status.show(_('unable-delete') + curFile.name);
+					utils.status.show(_('unable-delete') + ' {{' + curFile.name + '}}');
 				});
 			}
 		});
@@ -159,7 +159,7 @@
 			var newName = prompt(_('new-filename'), curFile.name) || '';
 			newName = newName.trim();
 		
-			if (newName.length > 0 && newName.toLowerCase() != curFile.blob.name.toLowerCase()) {
+			if (newName.length > 0 && newName.toLowerCase() !== curFile.name.toLowerCase()) {
 				var oldName = curFile.blob.name;
 				
 				files.task('rename', {}, {'name': newName}, function () {

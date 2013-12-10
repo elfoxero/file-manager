@@ -364,11 +364,22 @@ var files = (function () {
 			}
 			
 			foldersFound.sort(function (a, b) {
-				return a.localeCompare(b);
+				if (a.toLowerCase() < b.toLowerCase())
+					return -1;
+					
+				if (a.toLowerCase() > b.toLowerCase())
+					return 1;
+				
+				return 0;
 			});
-			
 			filesFound.sort(function (a, b) {
-				return a.name.localeCompare(b.name);
+				if (a.name.toLowerCase() < b.name.toLowerCase())
+					return -1;
+					
+				if (a.name.toLowerCase() > b.name.toLowerCase())
+					return 1;
+				
+				return 0;
 			});
 			
 			var liElem, asideElem, divElem, aElem, p1Elem, p2Elem;
@@ -543,7 +554,7 @@ var files = (function () {
 				} (allCards[j].name);
 				
 				p1Elem.appendChild(document.createTextNode(allCards[j].name));
-				p2Elem.appendChild(document.createTextNode(utils.files.size(allCards[j].space) + _('of-free-space')));
+				p2Elem.appendChild(document.createTextNode(utils.files.size(allCards[j].space) + ' ' + _('of-free-space')));
 				aElem.appendChild(p1Elem);
 				aElem.appendChild(p2Elem);
 				
@@ -567,7 +578,11 @@ var files = (function () {
 		
 		if (strDir !== undefined) {
 			if (!hasFiles(strDir)) {
-				storage.create(new Blob(['']), '/' + strDir + '/.empty');
+				var fileName = '/' + strDir + '/.empty';
+				var fileBlob = new Blob(['']);
+				storage.create(fileBlob, fileName, function () {
+					pushFile({'name': fileName, 'blob': fileBlob, 'preview': false});
+				});
 			}
 		}
 	}

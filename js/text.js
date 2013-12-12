@@ -78,7 +78,7 @@
 		}
 		
 		storage.delete(file, function () {
-			var blob = new Blob([document.querySelector('textarea').value.replace(/\n/g, String.fromCharCode(13))]);
+			var blob = new Blob([document.querySelector('textarea').value]);
 			
 			storage.create(blob, file, function () {
 				activity.postResult({'saved': true, 'file': file, 'blob': blob});

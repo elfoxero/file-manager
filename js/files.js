@@ -100,13 +100,13 @@ var files = (function () {
 				break;
 			case 'rename':
 				var filename = '/' + source.dir + '/' + target.name;
-				
+
 				replaceFile(source.file.blob.name, {
 					'name': filename,
 					'type': utils.files.type(filename),
 					'size': source.file.blob.size
 				}, filename, true);
-				
+
 				showFileList();
 				break;
 			case 'copy':
@@ -119,14 +119,14 @@ var files = (function () {
 						'size': source.file.blob.size
 					}, 'preview': true});
 				}
-				
+
 				if (target.dir === curDir) {
 					showFileList();
 				}
 				break;
 			case 'move':
 				deleteFile(source.file.blob.name, source.item, source.dir);
-				
+
 				if (target.replace) {
 					replaceFile(target.name, source.file.blob, false, true);
 				} else {
@@ -138,9 +138,9 @@ var files = (function () {
 				}
 				break;
 		}
-		
+
 		tasks.push({'action': action, 'source': source, 'target': target, 'onsuccess': onsuccess, 'onerror': onerror})
-		
+
 		this.isExecuting = true;
 	}
 	
@@ -323,11 +323,18 @@ var files = (function () {
 	}
 	
 	function setFileList(arrList) {
+		allFiles.length = 0;
 		allFiles = arrList;
 	}
 	
 	function clearFileList() {
 		allFiles.length = 0;
+	}
+	
+	function getFolderName(dir) {
+		dir = dir || curDir;
+		
+		return dir.split('/').pop();
 	}
 	
 	function showFileList() {
@@ -721,11 +728,12 @@ var files = (function () {
 		'delete': deleteFile,
 		'isFile': isFile,
 		'hasFiles': hasFiles,
+		'folder': getFolderName,
 		'push': pushFile,
 		'replace': replaceFile,
 		'reset': clearFileList,
 		'set': setFileList,
 		'show': showFileList,
-		'task': addTask,
+		'task': addTask
 	};
 })();

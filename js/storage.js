@@ -15,8 +15,11 @@ var storage = (function () {
 			files.path = curStorage.storageName;
 		}
 	} else if (storages.length > 1) {
-		files.path = '';
 		curStorage = null;
+		
+		if (files) {
+			files.path = '';
+		}		
 	}
 	
 	loadFiles();
@@ -122,6 +125,6 @@ var storage = (function () {
 		'delete': deleteFile,
 		'load': loadFiles,
 		'get': getFile,
-		'set': setStorage,
+		'set': setStorage
 	};
 })();

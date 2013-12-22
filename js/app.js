@@ -13,7 +13,7 @@
 			switch (curFile.mime) {
 				case 'application/pdf':
 					var reader = new FileReader();
-					
+                                        
 					reader.onload = function (event) {
 						var activity = new MozActivity({
 							name: 'view',
@@ -29,7 +29,7 @@
 
 						activity.onsuccess = function(e) {
 							//
-						}
+						};
 					};
 					
 					reader.onerror = function () {
@@ -57,7 +57,7 @@
 
 					activity.onsuccess = function(e) {
 						//
-					}
+					};
 					
 					break;
 				
@@ -78,7 +78,7 @@
 
 					activity.onsuccess = function(e) {
 						//
-					}
+					};
 					
 					break;
 				
@@ -98,7 +98,7 @@
 
 					activity.onsuccess = function(e) {
 						//
-					}
+					};
 					
 					break;
 				
@@ -132,7 +132,7 @@
 							utils.status.show(_('file-saved'));
 							files.replace(activity.result.file, activity.result.blob);
 						}
-					}
+					};
 					
 					break;
 				
@@ -234,7 +234,7 @@
 						utils.status.show(_('unable-copy'));
 					});
 				}
-			}
+			};
 		});
 	});
 	
@@ -275,7 +275,7 @@
 						});
 					}
 				}
-			}
+			};
 		});
 	});
 	
@@ -298,7 +298,7 @@
 
 			activity.onsuccess = function(e) {
 				//
-			}
+			};
 		});
 	});
 	
@@ -363,9 +363,21 @@
 						} else {
 							utils.status.show(_('unable-create-file'));
 						}
-					}						
+					};						
 				}, function (e) {
 					utils.status.show(_('unable-create-file'));
+				});
+			}
+		});
+	});
+	
+	document.querySelector('#delete-folder').addEventListener('click', function (e) {
+		files.call(function (curFile, curDir) {
+			if (confirm(_('sure-delete-folder'))) {
+				files.task('delete', {type: 'folder'}, {}, function () {
+					utils.status.show(_('folder-deleted'));
+				}, function () {
+					utils.status.show(_('unable-delete'));
 				});
 			}
 		});

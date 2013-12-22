@@ -90,13 +90,19 @@ var files = (function () {
 	var tasks = [];
 	
 	function addTask(action, source, target, onsuccess, onerror) {
+		source.type = source.type || 'file';
 		source.dir = source.dir || curDir;
 		source.file = source.file || curFile;
 		source.item = source.item || curItem;
 		
 		switch (action) {
 			case 'delete':
-				deleteFile(source.file.blob.name, source.item, source.dir);
+				if (source.type === 'file') {
+					deleteFile(source.file.blob.name, source.item, source.dir);
+				} else if (source.type === 'folder') {
+					source.type = 'files';
+					source.files = deleteFolder(source.dir);
+				}
 				break;
 			case 'rename':
 				var filename = '/' + source.dir + '/' + target.name;
@@ -139,7 +145,7 @@ var files = (function () {
 				break;
 		}
 
-		tasks.push({'action': action, 'source': source, 'target': target, 'onsuccess': onsuccess, 'onerror': onerror})
+		tasks.push({'action': action, 'source': source, 'target': target, 'onsuccess': onsuccess, 'onerror': onerror});
 
 		this.isExecuting = true;
 	}
@@ -150,164 +156,184 @@ var files = (function () {
 			var action = task.action;
 			var source = task.source;
 			var target = task.target;
-			var onsuccess = task.onsuccess || null;
-			var onerror = task.onerror || null;
+			var onsuccess = task.onsuccess || false;
+			var onerror = task.onerror || false;
 			
-			source.file = source.file || curFile;
+			source.type = source.type || 'file';
 			source.dir = source.dir || curDir;
 			
-			switch (action) {
-				case 'delete':
-					storage.delete(source.file.blob.name, function () {
-						source.file.blob = null;
-						source.file = null;
-						onsuccess();
-						executeTasks();
-					}, function () {
-						onerror();
-						executeTasks();
-					});
-					break;
-				case 'rename':
-					var filename = '/' + source.dir + '/' + target.name;
-					
-					storage.create(source.file.blob, filename, function () {
+			if (source.type === 'file') {
+				source.file = source.file || curFile;
+				
+				switch (action) {
+					case 'delete':
 						storage.delete(source.file.blob.name, function () {
-							storage.get(filename, function (e) {
-								source.file.blob = null;
-								source.file = null;
-								
-								replaceFile(filename, e.target.result);
-								
-								if (source.dir === curDir) {
-									showFileList();
-								}
-								
-								onsuccess();
-								executeTasks();
-							}, function () {
-								onerror();
-								executeTasks();
-							});
+							source.file.blob = null;
+							source.file = null;
+							if (onsuccess) onsuccess();
+							executeTasks();
 						}, function () {
-							onerror();
+							if (onerror) onerror();
 							executeTasks();
 						});
-					}, function () {
-						onerror();
-						executeTasks();
-					});
-					break;
-				case 'copy':
-					var filename = target.name;
-					
-					if (target.replace) {
-						storage.delete(filename, function () {
-							storage.create(source.file.blob, filename, function () {
-								storage.get(filename, function (e) {								
+						break;
+					case 'rename':
+						var filename = '/' + source.dir + '/' + target.name;
+
+						storage.create(source.file.blob, filename, function () {
+							storage.delete(source.file.blob.name, function () {
+								storage.get(filename, function (e) {
+									source.file.blob = null;
+									source.file = null;
+
 									replaceFile(filename, e.target.result);
-									
-									if (target.dir === curDir) {
+
+									if (source.dir === curDir) {
 										showFileList();
 									}
-									
-									onsuccess();
+
+									if (onsuccess) onsuccess();
 									executeTasks();
 								}, function () {
-									onerror();
+									if (onerror) onerror();
 									executeTasks();
 								});
 							}, function () {
-								onerror();
+								if (onerror) onerror();
 								executeTasks();
 							});
 						}, function () {
-							onerror();
+							if (onerror) onerror();
 							executeTasks();
 						});
-					} else {
-						storage.create(source.file.blob, filename, function () {
-							storage.get(filename, function (e) {
-								replaceFile(filename, e.target.result);
-									
-								if (target.dir === curDir) {
-									showFileList();
-								}
-								
-								onsuccess();
-								executeTasks();
-							}, function () {
-								onerror();
-								executeTasks();
-							});
-						}, function () {
-							onerror();
-							executeTasks();
-						});
-					}
-					break;
-				case 'move':
-					var filename = target.name;
-					
-					if (target.replace) {
-						storage.delete(filename, function () {
-							storage.create(source.file.blob, filename, function () {
-								storage.get(filename, function (e) {
-									var result = e.target.result;
-									
-									storage.delete(source.file.blob.name, function () {
-										replaceFile(filename, result);
-									
+						break;
+					case 'copy':
+						var filename = target.name;
+
+						if (target.replace) {
+							storage.delete(filename, function () {
+								storage.create(source.file.blob, filename, function () {
+									storage.get(filename, function (e) {								
+										replaceFile(filename, e.target.result);
+
 										if (target.dir === curDir) {
 											showFileList();
 										}
-										
-										onsuccess();
+
+										if (onsuccess) onsuccess();
 										executeTasks();
 									}, function () {
-										onerror();
+										if (onerror) onerror();
 										executeTasks();
 									});
 								}, function () {
-									onerror();
+									if (onerror) onerror();
 									executeTasks();
 								});
 							}, function () {
-								onerror();
+								if (onerror) onerror();
 								executeTasks();
 							});
-						}, function () {
-							onerror();
-							executeTasks();
-						});
-					} else {
-						storage.create(source.file.blob, filename, function () {
-							storage.get(filename, function (e) {
-								var result = this.result;
-								
-								storage.delete(source.file.blob.name, function () {
-									replaceFile(filename, result);
-									
+						} else {
+							storage.create(source.file.blob, filename, function () {
+								storage.get(filename, function (e) {
+									replaceFile(filename, e.target.result);
+
 									if (target.dir === curDir) {
 										showFileList();
 									}
-									
-									onsuccess();
+
+									if (onsuccess) onsuccess();
 									executeTasks();
 								}, function () {
-									onerror();
+									if (onerror) onerror();
 									executeTasks();
 								});
 							}, function () {
-								onerror();
+								if (onerror) onerror();
 								executeTasks();
 							});
-						}, function () {
-							onerror();
-							executeTasks();
-						});
+						}
+						break;
+					case 'move':
+						var filename = target.name;
+
+						if (target.replace) {
+							storage.delete(filename, function () {
+								storage.create(source.file.blob, filename, function () {
+									storage.get(filename, function (e) {
+										var result = e.target.result;
+
+										storage.delete(source.file.blob.name, function () {
+											replaceFile(filename, result);
+
+											if (target.dir === curDir) {
+												showFileList();
+											}
+
+											if (onsuccess) onsuccess();
+											executeTasks();
+										}, function () {
+											if (onerror) onerror();
+											executeTasks();
+										});
+									}, function () {
+										if (onerror) onerror();
+										executeTasks();
+									});
+								}, function () {
+									if (onerror) onerror();
+									executeTasks();
+								});
+							}, function () {
+								if (onerror) onerror();
+								executeTasks();
+							});
+						} else {
+							storage.create(source.file.blob, filename, function () {
+								storage.get(filename, function (e) {
+									var result = this.result;
+
+									storage.delete(source.file.blob.name, function () {
+										replaceFile(filename, result);
+
+										if (target.dir === curDir) {
+											showFileList();
+										}
+
+										if (onsuccess) onsuccess();
+										executeTasks();
+									}, function () {
+										if (onerror) onerror();
+										executeTasks();
+									});
+								}, function () {
+									if (onerror) onerror();
+									executeTasks();
+								});
+							}, function () {
+								if (onerror) onerror();
+								executeTasks();
+							});
+						}
+						break;
+				}
+			} else if (source.type === 'files') {
+				for (var j = source.files.length - 1; j > -1; j--) {
+					var fileSource = {
+						'type': 'file',
+						'file': source.files[j],
+						'dir': source.dir
+					};
+					
+					if (j === source.files.length - 1) {
+						tasks.unshift({'action': action, 'source': fileSource, 'target': target, 'onsuccess': onsuccess, 'onerror': onerror});
+					} else {
+						tasks.unshift({'action': action, 'source': fileSource, 'target': target});
 					}
-					break;
+				}
+				
+				executeTasks();
 			}
 		} else {
 			files.isExecuting = false;
@@ -621,6 +647,26 @@ var files = (function () {
 	
 	function callBack(funCallback) {
 		funCallback(curFile, curDir, curItem);
+	}
+	
+	function deleteFolder(strDir, htmlItem) {
+		var deletedFiles = [];
+		
+		for (var i = allFiles.length - 1; i > -1; i--) {
+			if (allFiles[i].name.indexOf('/' + strDir + '/') === 0) {
+				deletedFiles.push(allFiles.splice(i, 1)[0]);
+			}
+		}
+		
+		if (htmlItem === undefined) {
+			if (strDir === curDir) {
+				document.getElementById('back').click();
+			}
+		} else {
+			htmlItem.parentNode.removeChild(htmlItem);
+		}
+		
+		return deletedFiles;
 	}
 	
 	function isFile(strName) {

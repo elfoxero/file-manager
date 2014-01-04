@@ -165,7 +165,7 @@
 				files.task('rename', {}, {'name': newName}, function () {
 					utils.status.show(_('filename-changed'));
 				}, function () {
-					utils.status.show(_('unable-filename'));
+					utils.status.show(_('unable-rename'));
 				});
 			}
 		});
@@ -315,7 +315,7 @@
 				var filename = '/' + curDir + '/' + folderName + '/.empty';
 				
 				storage.create(blob, filename, function (e) {
-					files.push({'name': '.empty', 'blob': blob});
+					files.push({'name': filename, 'blob': blob, 'disabled': false});
 					files.show();
 					
 					utils.status.show(_('folder-created'));
@@ -335,7 +335,7 @@
 				var name = '/' + curDir + '/' + filename;
 				
 				storage.create(blob, name, function (e) {
-					files.push({'name': filename, 'blob': blob, 'preview': false});
+					files.push({'name': filename, 'blob': blob, 'disabled': false});
 					
 					var activity = new MozActivity({
 						name: 'open',
@@ -366,6 +366,23 @@
 					};						
 				}, function (e) {
 					utils.status.show(_('unable-create-file'));
+				});
+			}
+		});
+	});
+	
+	document.querySelector('#rename-folder').addEventListener('click', function (e) {
+		files.call(function (curFile, curDir) {
+			var curName = document.getElementById('folder').textContent;
+			var newName = prompt(_('new-name'), curName) || '';
+			
+			newName = newName.trim();
+		
+			if (newName.length > 0 && newName.toLowerCase() !== curName.toLowerCase()) {				
+				files.task('rename', {type: 'folder'}, {'name': newName}, function () {
+					utils.status.show(_('name-changed'));
+				}, function () {
+					utils.status.show(_('unable-rename'));
 				});
 			}
 		});

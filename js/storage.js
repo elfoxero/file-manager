@@ -35,7 +35,7 @@ var storage = (function () {
 			cursor.onsuccess = function () {
 				if (this.result) {
 					if (files) {
-						files.push({'name': this.result.name, 'blob': this.result, 'preview': false});
+						files.push({'name': this.result.name, 'blob': this.result, 'disabled': false});
 					}
 
 					this.continue();

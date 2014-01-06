@@ -247,3 +247,9 @@ form[role="dialog"][data-type="confirm"] ul li ul {
   margin: 0;
   padding: 0;
 }
+
+form[role="dialog"][data-type="confirm"] p strong {
+  color: #0995b0;
+  display: block;
+  font-weight: normal;
+}

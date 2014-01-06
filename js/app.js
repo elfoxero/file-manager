@@ -174,15 +174,12 @@
 	document.querySelector('button[data-action="D"]').addEventListener('click', function (event) {
 		files.call(function (curFile, current) {
 			var lastModified = curFile.blob.lastModifiedDate;
-			var day = lastModified.getDate();
-			var month = lastModified.getMonth() + 1;
-			var year = lastModified.getFullYear();
 			
-			document.querySelector('#file-name').innerHTML = '';
-			document.querySelector('#file-name').appendChild(document.createTextNode(curFile.name));
-			document.querySelector('#file-size').innerHTML = utils.files.size(curFile.blob.size);
-			document.querySelector('#file-modified').innerHTML = day + '/' + month + '/' + year;
-			document.querySelector('#file-type').innerHTML = curFile.blob.type;
+			document.querySelector('#file-name').textContent = curFile.name;
+			document.querySelector('#file-size').textContent = utils.files.size(curFile.blob.size);
+			document.querySelector('#file-modified').textContent = lastModified.format('dd/mm/yyyy hh:MM:ssTT');
+			document.querySelector('#file-type').textContent = curFile.blob.type;
+			document.querySelector('#absolute-path').textContent = curFile.blob.name;
 			document.querySelector('#details').className = 'fade-in';			
 		});
 	});

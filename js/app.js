@@ -177,7 +177,7 @@
 			
 			document.querySelector('#file-name').textContent = curFile.name;
 			document.querySelector('#file-size').textContent = utils.files.size(curFile.blob.size);
-			document.querySelector('#file-modified').textContent = lastModified.format('dd/mm/yyyy hh:MM:ssTT');
+			document.querySelector('#file-modified').textContent = lastModified.format(window.localStorage.dateFormat);
 			document.querySelector('#file-type').textContent = curFile.blob.type;
 			document.querySelector('#absolute-path').textContent = curFile.blob.name;
 			document.querySelector('#details').className = 'fade-in';			

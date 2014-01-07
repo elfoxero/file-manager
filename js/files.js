@@ -455,7 +455,7 @@ var files = (function () {
 							
 							curDir += '/' + folderName;
 							
-							folder.textContent = folderName;
+							window.config.title = folderName;
 							
 							showFileList();
 							
@@ -572,7 +572,7 @@ var files = (function () {
 							
 							curDir = cardName;
 							
-							folder.textContent = cardName;
+							window.config.title = cardName;
 							
 							storage.set(cardName);
 							
@@ -736,8 +736,7 @@ var files = (function () {
 
 			fileList = document.querySelector(selector + ' .files');
 
-			folder.innerHTML = '';
-			folder.appendChild(document.createTextNode(folderName));
+			window.config.title = folderName;
 
 			files.show();
 
@@ -757,7 +756,7 @@ var files = (function () {
 
 			fileList = document.querySelector('section[data-position="current"] .files');
 
-			folder.innerHTML = 'File Manager';
+			window.config.title = window.config.app;
 
 			files.show();
 		}

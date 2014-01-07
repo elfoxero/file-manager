@@ -422,4 +422,7 @@
 			'show': showList
 		};
 	})();
+	
+	window.config.app = 'Alpha';
+	
 }(window, document);

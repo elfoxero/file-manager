@@ -8,6 +8,10 @@
 		var option = activity.source;
 		var data = option.data;
 		var doneBtns = document.getElementsByName('done');
+		
+		window.setTimeout(function () {
+			window.config.app = _(data.action + '-to');
+		}, 1);
 					
 		document.querySelector('#close').onclick = function (e) {
 			activity.postError('Activity cancelled');
@@ -23,4 +27,6 @@
 			});			
 		}
 	});
+		
+	window.config.app = '';
 }(window, document);

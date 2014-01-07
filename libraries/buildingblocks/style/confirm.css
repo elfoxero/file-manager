@@ -98,10 +98,24 @@ form[role="dialog"][data-type="confirm"] menu button {
 }
 
 /* Press (default & recommend) */
-form[role="dialog"][data-type="confirm"] menu button:active,
+/*form[role="dialog"][data-type="confirm"] menu button:active,
 form[role="dialog"][data-type="confirm"] menu button.recommend:active,
 a.recommend[role="button"]:active  {
   border-color: #008aaa;
+  color: #333;
+}*/
+
+form[role="dialog"][data-type="confirm"] > menu > button:active,
+form[role="dialog"][data-type="confirm"] > menu > button:active {
+  background-color: #006f86;
+  color: #333;
+  text-shadow: 0 0.1rem 0 rgba(255, 255, 255, 0.25);
+}
+
+form[role="dialog"][data-type="confirm"] > menu > button:last-child:active,
+form[role="dialog"][data-type="confirm"] > menu > button:last-child:active {
+  border: solid 0.1rem #008aaa;
+  background: #008aaa;
   color: #333;
 }
 

@@ -44,7 +44,8 @@ var dateFormat = function () {
 			mask = mask.slice(4);
 			utc = true;
 		}
-
+		
+		var l10n = window.navigator.mozL10n.get;
 		var	_ = utc ? "getUTC" : "get",
 			d = date[_ + "Date"](),
 			D = date[_ + "Day"](),
@@ -58,12 +59,12 @@ var dateFormat = function () {
 			flags = {
 				d:    d,
 				dd:   pad(d),
-				ddd:  dF.i18n.dayNames[D],
-				dddd: dF.i18n.dayNames[D + 7],
+				ddd:  l10n(dF.i18n.dayNames[D]),
+				dddd: l10n(dF.i18n.dayNames[D + 7]),
 				m:    m + 1,
 				mm:   pad(m + 1),
-				mmm:  dF.i18n.monthNames[m],
-				mmmm: dF.i18n.monthNames[m + 12],
+				mmm:  l10n(dF.i18n.monthNames[m]),
+				mmmm: l10n(dF.i18n.monthNames[m + 12]),
 				yy:   String(y).slice(2),
 				yyyy: y,
 				h:    H % 12 || 12,
@@ -110,12 +111,12 @@ dateFormat.masks = {
 // Internationalization strings
 dateFormat.i18n = {
 	dayNames: [
-		"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat",
-		"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+		"sun", "mon", "tue", "wed", "thu", "fri", "sat",
+		"sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"
 	],
 	monthNames: [
-		"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
-		"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+		"jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec",
+		"january", "february", "march", "april", "may_", "june", "july", "august", "september", "october", "november", "december"
 	]
 };
 

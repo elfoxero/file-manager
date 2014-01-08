@@ -443,7 +443,8 @@
 				}
 			}
 			
-			document.querySelector('#file-action').className = 'fade-in';
+			document.querySelector('#file-action menu').scrollTop = 0;
+			document.getElementById('file-action').className = 'fade-in';
 		}
 		
 		function showTypes() {

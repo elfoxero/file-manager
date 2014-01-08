@@ -8,137 +8,31 @@
 		}
 	});
 	
+	document.querySelector('#file-types').addEventListener('click', function (event) {
+		if (event.target.tagName === 'BUTTON') {
+			this.className = 'fade-out';
+		}
+	});
+	
 	document.querySelector('button[data-action="O"]').addEventListener('click', function (event) {
 		files.call(function (curFile, curDir) {
-			switch (curFile.mime) {
-				case 'application/pdf':
-					var reader = new FileReader();
-                                        
-					reader.onload = function (event) {
-						var activity = new MozActivity({
-							name: 'view',
-							data: {
-								type: 'application/pdf',
-								url: reader.result
-							}
-						});
-						
-						activity.onerror = function() {
-							console.warn('View activity error: ' + activity.error.name);
-						};
-
-						activity.onsuccess = function(e) {
-							//
-						};
-					};
-					
-					reader.onerror = function () {
-						console.warn('Reader error');
-					};
-					
-					reader.readAsDataURL(curFile.blob);
-					
-					break;
-					
-				case 'video/*':
-					var activity = new MozActivity({
-						name: 'view',
-						data: {
-							type: curFile.blob.type,
-							allowSave: false,
-							blob: curFile.blob,
-							title: curFile.name
-						}
-					});
-					
-					activity.onerror = function() {
-						console.warn('Activity error: ' + activity.error.name);
-					};
-
-					activity.onsuccess = function(e) {
-						//
-					};
-					
-					break;
-				
-					
-				case 'audio/*':
-					var activity = new MozActivity({
-						name: 'open',
-						data: {
-							type: curFile.blob.type,
-							allowSave: false,
-							blob: curFile.blob
-						}
-					});
-					
-					activity.onerror = function() {
-						console.warn('Activity error: ' + activity.error.name);
-					};
-
-					activity.onsuccess = function(e) {
-						//
-					};
-					
-					break;
-				
-				case 'image/*':
-					var activity = new MozActivity({
-						name: 'open',
-						data: {
-							type: curFile.blob.type,
-							filename: curFile.name,
-							blob: curFile.blob
-						}
-					});
-					
-					activity.onerror = function(e) {
-						console.warn('Activity error: ' + activity.error.name);
-					};
-
-					activity.onsuccess = function(e) {
-						//
-					};
-					
-					break;
-				
-				case 'text/plain':
-				case 'text/javascript':
-				case 'text/html':
-				case 'text/css':
-				case 'application/x-web-app-manifest+json':
-					var type = 'text/plain';
-					
-					if (curFile.blob.type) {
-						type = curFile.blob.type;
-					}
-					
-					var activity = new MozActivity({
-						name: 'open',
-						data: {
-							'type': type,
-							'name': curFile.blob.name,
-							'filename': curFile.name,
-							'blob': curFile.blob
-						}
-					});
-					
-					activity.onerror = function () {
-						console.warnt('Activity error: ' + activity.error.name);
-					};
-
-					activity.onsuccess = function () {
-						if (activity.result.saved) {
-							utils.status.show(_('file-saved'));
-							files.replace(activity.result.file, activity.result.blob);
-						}
-					};
-					
-					break;
-				
-				default:
-					//
-			}
+			openFile(curFile.mime, curFile, curDir);
+		});
+	});
+	
+	document.querySelector('button[data-action="A"]').addEventListener('click', function () {
+		window.utils.actions.types();
+	});
+	
+	document.querySelector('button[data-filetype="T"]').addEventListener('click', function () {
+		files.call(function (curFile, curDir) {
+			openFile('text/plain', curFile, curDir);
+		});
+	});
+	
+	document.querySelector('button[data-filetype="V"]').addEventListener('click', function () {
+		files.call(function (curFile, curDir) {
+			openFile('video/*', curFile, curDir);
 		});
 	});
 	
@@ -397,19 +291,153 @@
 		});
 	});
 	
+	function openFile(mimeType, curFile, curDir) {
+		switch (mimeType) {
+			case 'application/pdf':
+				var reader = new FileReader();
+
+				reader.onload = function () {
+					var activity = new MozActivity({
+						name: 'view',
+						data: {
+							type: 'application/pdf',
+							url: reader.result
+						}
+					});
+
+					activity.onerror = function() {
+						console.warn('View activity error: ' + activity.error.name);
+					};
+
+					activity.onsuccess = function(e) {
+						//
+					};
+				};
+
+				reader.onerror = function () {
+					console.warn('Reader error');
+				};
+
+				reader.readAsDataURL(curFile.blob);
+
+				break;
+
+			case 'video/*':
+				var activity = new MozActivity({
+					name: 'view',
+					data: {
+						type: (curFile.blob.type || 'video/mp4'),
+						allowSave: false,
+						blob: curFile.blob,
+						title: curFile.name
+					}
+				});
+
+				activity.onerror = function() {
+					console.warn('Activity error: ' + activity.error.name);
+				};
+
+				activity.onsuccess = function(e) {
+					//
+				};
+
+				break;
+
+
+			case 'audio/*':
+				var activity = new MozActivity({
+					name: 'open',
+					data: {
+						type: (curFile.blob.type || 'audio/mpeg'),
+						allowSave: false,
+						blob: curFile.blob
+					}
+				});
+
+				activity.onerror = function() {
+					console.warn('Activity error: ' + activity.error.name);
+				};
+
+				activity.onsuccess = function(e) {
+					//
+				};
+
+				break;
+
+			case 'image/*':
+				var activity = new MozActivity({
+					name: 'open',
+					data: {
+						type: curFile.blob.type,
+						filename: curFile.name,
+						blob: curFile.blob
+					}
+				});
+
+				activity.onerror = function(e) {
+					console.warn('Activity error: ' + activity.error.name);
+				};
+
+				activity.onsuccess = function(e) {
+					//
+				};
+
+				break;
+
+			case 'text/plain':
+			case 'text/javascript':
+			case 'text/html':
+			case 'text/css':
+			case 'application/x-web-app-manifest+json':
+				/*var type = 'text/plain';
+
+				if (curFile.blob.type) {
+					type = curFile.blob.type;
+				}*/
+
+				var activity = new MozActivity({
+					name: 'open',
+					data: {
+						'type': (curFile.blob.type || 'text/plain'),
+						'name': curFile.blob.name,
+						'filename': curFile.name,
+						'blob': curFile.blob
+					}
+				});
+
+				activity.onerror = function () {
+					console.warnt('Activity error: ' + activity.error.name);
+				};
+
+				activity.onsuccess = function () {
+					if (activity.result.saved) {
+						utils.status.show(_('file-saved'));
+						files.replace(activity.result.file, activity.result.blob);
+					}
+				};
+
+				break;
+
+			default:
+				//
+		}
+	}
+	
 	window.utils.actions = (function () {
 		var available = ['V', 'O'];
 		
 		function showList(filename, actions) {
-			document.querySelector('#file-action header').innerHTML = '';
-			document.querySelector('#file-action header').appendChild(document.createTextNode(filename));
+			document.querySelector('#file-action header').textContent = filename;
+			document.querySelector('#file-action button[data-action="A"]').style.display = 'none';
 			
 			for (var i = 0; i < available.length; i++) {
 				var expected = available[i];
 				
 				if (actions.allowed.indexOf(expected) > -1) {
 					document.querySelector('#file-action button[data-action="' + expected + '"]').style.display = 'inline-block';
-
+				} else if (expected === 'O' && window.localStorage.openUnknown === 'true') {
+					document.querySelector('#file-action button[data-action="' + expected + '"]').style.display = 'none';
+					document.querySelector('#file-action button[data-action="A"]').style.display = 'inline-block';
 				} else {
 					document.querySelector('#file-action button[data-action="' + expected + '"]').style.display = 'none';
 				}
@@ -418,8 +446,13 @@
 			document.querySelector('#file-action').className = 'fade-in';
 		}
 		
+		function showTypes() {
+			document.querySelector('#file-types').className = 'fade-in';
+		}
+		
 		return {
-			'show': showList
+			'show': showList,
+			'types': showTypes
 		};
 	})();
 	

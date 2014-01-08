@@ -1,7 +1,7 @@
 ;+function (window, document, undefined) {
 	var localStorage = window.localStorage;
 	localStorage.dateFormat = localStorage.dateFormat || 'dd/mm/yyyy hh:MM:ss TT';
-	localStorage.openUnknown = localStorage.openUnknown || 'false';
+	localStorage.openUnknown = localStorage.openUnknown || 'true';
 	
 	window.config = (function () {
 		var titleText = '',

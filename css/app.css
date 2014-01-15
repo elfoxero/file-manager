@@ -1,3 +1,8 @@
+header.fixed *[disabled="disabled"] {
+	opacity: 0.8;
+	pointer-events: none;
+}
+
 #drawer {
 	height: 5rem ! important;
 	left: 0;
@@ -19,6 +24,16 @@
 
 #back.folder {
 	display: none;
+}
+
+#loading {
+	animation: none;
+	background-color: rgb(255,255,255);
+	opacity: 1;
+}
+
+#loaded {
+	height: 100%;
 }
 
 #close.pick {
@@ -48,13 +63,35 @@
 	transform: translateX(-80%) !important;
 }
 
+#refresh[data-state="executing"] {
+  animation: 0.9s msg-rotate infinite steps(30);
+  pointer-events: none;
+}
+
+#logo {
+	margin: auto;
+}
+
 section[role="region"] { 
 	z-index: 100 !important;
 }
 
-#refresh[data-state="executing"] {
-  animation: 0.9s msg-rotate infinite steps(30);
-  pointer-events: none;
+.loading-container {
+	margin-top: -10rem;
+	position: relative;
+	text-align: center;
+	top: 50%;
+}
+
+.loading-bar-container {
+	border: none;
+	border-radius: 2rem;
+	height: 1.5rem;
+	margin: auto;
+	max-width: 30rem;
+	overflow: hidden;
+	white-space: nowrap;
+	width: 60%;
 }
 
 @keyframes msg-rotate {

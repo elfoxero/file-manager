@@ -5,6 +5,7 @@ var storage = (function () {
 	var storages = navigator.getDeviceStorages(SDCARD);
 	var curStorage;
 	var storage = 0;
+	var preloading = true;
 	
 	var files = window.files || false;
 	
@@ -22,7 +23,18 @@ var storage = (function () {
 		}		
 	}
 	
-	loadFiles();
+	if (curStorage) {
+		var request = curStorage.usedSpace();
+		
+		request.onsuccess = function () {
+			document.getElementById('loaded').max = this.result;
+			loadFiles();
+		};
+		
+		request.onerror = function () {
+			//
+		};
+	}
 	
 	function loadFiles() {
 		if (files) {
@@ -37,11 +49,20 @@ var storage = (function () {
 					if (files) {
 						files.push({'name': this.result.name, 'blob': this.result, 'disabled': false});
 					}
+					
+					if (preloading) {
+						document.getElementById('loaded').value += this.result.size;
+					}
 
 					this.continue();
 				} else {
 					if (files) {
 						files.show();
+						
+						if (preloading) {
+							document.getElementById('loading').className = 'fade-out';
+							preloading = false;
+						}
 					}
 				}
 			};

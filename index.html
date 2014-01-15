@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="libraries/buildingblocks/style/status.css" />
 	<link rel="stylesheet" href="libraries/buildingblocks/style_unstable/lists.css" />
 	<link rel="stylesheet" href="libraries/buildingblocks/style_unstable/scrolling.css" />
+	<link rel="stylesheet" href="libraries/buildingblocks/style_unstable/progress_activity.css" />
 
 	<link rel="stylesheet" href="libraries/buildingblocks/icons/styles/action_icons.css" />
 
@@ -139,6 +140,15 @@
 				<button type="button" data-l10n-id="close">Close</button>
 			</menu>
 		</form>
+	</section>
+	
+	<section id="loading" data-position="back" class="fade-in">
+		<div class="loading-container">
+			<img id="logo" src="images/icon.png" />
+			<div class="loading-bar-container">
+				<progress id="loaded" max="100" value="0"></progress>
+			</div>
+		</div>
 	</section>
 
 	<script type="text/javascript" defer src="libraries/l10n.js"></script>

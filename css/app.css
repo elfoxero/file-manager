@@ -27,13 +27,22 @@ header.fixed *[disabled="disabled"] {
 }
 
 #loading {
-	animation: none;
 	background-color: rgb(255,255,255);
+}
+
+#loading.fade-in {
+	animation: none;
 	opacity: 1;
 }
 
 #loaded {
 	height: 100%;
+	opacity: 0;
+}
+
+#loaded.fade-in {
+  animation: fadeIn 0.7s forwards;
+  -webkit-animation: fadeIn 0.7s forwards;
 }
 
 #close.pick {

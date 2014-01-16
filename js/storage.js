@@ -27,7 +27,11 @@ var storage = (function () {
 		var request = curStorage.usedSpace();
 		
 		request.onsuccess = function () {
-			document.getElementById('loaded').max = this.result;
+			var loaded = document.getElementById('loaded'), min = 1024 * 1024;
+			loaded.max = min + this.result;
+			loaded.value = min;
+			loaded.className = 'fade-in';
+			
 			loadFiles();
 		};
 		

@@ -4,8 +4,8 @@
 	localStorage.openUnknown = localStorage.openUnknown || 'true';
 	
 	window.config = (function () {
-		var titleText = '',
-			appName = '';
+		var titleText = '';
+		var appName = '';
 		
 		return {
 			get app() {
@@ -21,7 +21,11 @@
 			set title(newTitle) {
 				titleText = newTitle;
 				document.getElementById('folder').textContent = newTitle;
-			}
+			},
+			get isActivity() {
+				return this.activity.length > 0;
+			},
+			'activity': ''
 		};
 	})();
 }(window, document);

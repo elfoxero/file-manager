@@ -1,5 +1,3 @@
-var isActivity = false;
-
 var storage = (function () {
 	var SDCARD = 'sdcard';
 	var storages = navigator.getDeviceStorages(SDCARD);

@@ -1,9 +1,9 @@
 ;+function (window, document, undefined) {
 	var _ = window.navigator.mozL10n.get;
-	window.isActivity = 'folder';
+	window.config.activity = 'folder';
 		
 	window.navigator.mozSetMessageHandler('activity', function(request) {
-		activity = request;
+		var activity = request;
 		
 		var option = activity.source;
 		var data = option.data;

@@ -87,7 +87,8 @@
 			var activity = new MozActivity({
 				name: 'pick-folder',
 				data: {
-					action: 'copy'
+					'action': 'copy',
+					'files': files.all
 				}
 			});
 			
@@ -134,7 +135,8 @@
 			var activity = new MozActivity({
 				name: 'pick-folder',
 				data: {
-					action: 'move'
+					'action': 'move',
+					'files': files.all
 				}
 			});
 			

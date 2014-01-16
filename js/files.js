@@ -499,7 +499,7 @@ var files = (function () {
 				aElem.href = '#';
 				aElem.onclick = function (fileName, fileBlob, fileExt) {
 					return function () {
-						if (!window.isActivity) {
+						if (!window.config.isActivity) {
 							var fileMime = utils.files.mime(fileExt);
 							console.log(fileMime);
 							var actions = {'allowed': fileMime.actions, 'labels': fileMime.labels};
@@ -508,7 +508,7 @@ var files = (function () {
 							curItem = this.offsetParent;
 							
 							utils.actions.show(fileName, actions);
-						} else if (window.isActivity === 'file') {
+						} else if (window.config.activity === 'file') {
 							window.activity.postResult({
 								'type': fileBlob.type,
 								'blob': fileBlob
@@ -542,7 +542,7 @@ var files = (function () {
 		} else {
 			var liElem, asideElem, divElem, aElem, p1Elem, p2Elem;
 			
-			if (!window.isActivity) {
+			if (!window.config.isActivity) {
 				document.querySelector('#drawer menu[type="toolbar"]').style.display = 'none';
 			}
 			
@@ -576,7 +576,7 @@ var files = (function () {
 							
 							storage.set(cardName);
 							
-							if (!window.isActivity) {
+							if (!window.config.isActivity) {
 								document.querySelector('#drawer menu[type="toolbar"]').style.display = 'block';
 							}
 							
@@ -586,7 +586,7 @@ var files = (function () {
 							section.className = 'current';
 							
 							if (document.querySelector('#back')) {
-								if (!document.querySelector('#back').classList.contains('folder') && !window.isActivity) {
+								if (!document.querySelector('#back').classList.contains('folder') && !window.config.isActivity) {
 									document.querySelector('#back').style.visibility = 'visible';
 								} else {
 									document.querySelector('#back').style.display = 'block';
@@ -747,7 +747,7 @@ var files = (function () {
 			document.querySelector('.current, .left-to-current').className = 'right';
 			document.querySelector('section[data-position="current"]').className = 'current';
 
-			if (!document.querySelector('#back').classList.contains('folder') && !window.isActivity) {
+			if (!document.querySelector('#back').classList.contains('folder') && !window.config.isActivity) {
 				document.querySelector('#back').style.visibility = 'hidden';
 			} else {
 				document.querySelector('#back').style.display = 'none';
@@ -786,7 +786,7 @@ var files = (function () {
 		document.querySelector('#back').addEventListener('click', goBack);
 	}
 	
-	if (window.isActivity) {
+	if (window.config.isActivity) {
 		document.querySelector('#close').onclick = function (e) {
 			if (window.activity) {
 				window.activity.postError('Activity cancelled');
@@ -796,6 +796,9 @@ var files = (function () {
 	}
 	
 	return {
+		get all() {
+			return allFiles;
+		},
 		set path(strPath) {
 			curDir = strPath;
 		},

@@ -21,23 +21,6 @@ var storage = (function () {
 		}		
 	}
 	
-	if (curStorage) {
-		var request = curStorage.usedSpace();
-		
-		request.onsuccess = function () {
-			var loaded = document.getElementById('loaded'), min = 1024 * 1024;
-			loaded.max = min + this.result;
-			loaded.value = min;
-			loaded.className = 'fade-in';
-			
-			loadFiles();
-		};
-		
-		request.onerror = function () {
-			//
-		};
-	}
-	
 	function loadFiles() {
 		if (files) {
 			files.reset();
@@ -107,6 +90,17 @@ var storage = (function () {
 		}
 	}
 	
+	function usedSpace(onsuccess, onerror) {
+		var request = curStorage.usedSpace();
+		
+		if (typeof onsuccess === 'boolean') {
+			return request;
+		} else {
+			request.onsuccess = onsuccess;
+			request.onerror = onerror;
+		}
+	}
+	
 	function deleteFile(filename, onsuccess, onerror) {
 		var request = curStorage.delete(filename);
 		
@@ -148,6 +142,7 @@ var storage = (function () {
 		'delete': deleteFile,
 		'load': loadFiles,
 		'get': getFile,
-		'set': setStorage
+		'set': setStorage,
+		'used': usedSpace
 	};
 })();

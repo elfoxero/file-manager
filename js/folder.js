@@ -1,32 +1,45 @@
-;+function (window, document, undefined) {
-	var _ = window.navigator.mozL10n.get;
-	window.config.activity = 'folder';
+;+function (win, doc, undefined) {
+	var _ = win.navigator.mozL10n.get;
+	
+	function init(data) {
+		win.files.path = data.storage;
+		win.files.set(data.files);
+		win.files.show();
 		
-	window.navigator.mozSetMessageHandler('activity', function(request) {
+		win.setTimeout(function () {
+			win.config.app = _(data.action + '-to');
+			win.utils.preload.complete();
+		}, 1);		
+	}
+	
+	win.config.activity = 'folder';
+		
+	win.navigator.mozSetMessageHandler('activity', function(request) {
 		var activity = request;
 		
 		var option = activity.source;
 		var data = option.data;
-		var doneBtns = document.getElementsByName('done');
+		var doneBtns = doc.getElementsByName('done');
 		
-		window.setTimeout(function () {
-			window.config.app = _(data.action + '-to');
-		}, 1);
-					
-		document.querySelector('#close').onclick = function (e) {
+		if ('files' in data) {
+			init(data);
+		} // Missing implementation for DeviceStorage API
+		
+		doc.querySelector('#close').onclick = function (e) {
 			activity.postError('Activity cancelled');
 			activity = null;
 		};
 		
 		for (var i = 0; i < doneBtns.length; i++) {
 			doneBtns[i].addEventListener('click', function () {
-				files.call(function (curFile, curDir) {
+				win.files.call(function (curFile, curDir) {
 					activity.postResult({path: curDir});
 					activity = null;
 				});
 			});			
 		}
 	});
-		
-	window.config.app = '';
+	
+	win.config.app = '';
+	win.utils.preload.show(false);
 }(window, document);

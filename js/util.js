@@ -28,13 +28,13 @@ window.utils.preload = (function(win, doc, undefined) {
 		}
 	}
 	
-	function showPreload(iconMode) {
-		isBarMode = iconMode;
+	function showPreload(barMode) {
+		isBarMode = barMode;
 		
 		var loading = doc.byId('loading');
 		var loadingProgress = doc.byId('loading-progress');
 		
-		if (iconMode) {
+		if (barMode) {
 			loading.dataset.mode = 'bar';
 			loadingProgress.value = 0;
 			loadingProgress.max = 1;
@@ -42,7 +42,6 @@ window.utils.preload = (function(win, doc, undefined) {
 		} else {
 			loading.dataset.mode = 'ring';
 			loadingProgress.removeAttribute('value');
-			
 		}
 		
 		loading.className = 'shown';

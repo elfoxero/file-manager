@@ -88,6 +88,7 @@
 				name: 'pick-folder',
 				data: {
 					'action': 'copy',
+					'storage': storage.name,
 					'files': files.all
 				}
 			});
@@ -136,6 +137,7 @@
 				name: 'pick-folder',
 				data: {
 					'action': 'move',
+					'storage': storage.name,
 					'files': files.all
 				}
 			});

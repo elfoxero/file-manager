@@ -28,7 +28,7 @@ window.utils.preload = (function(win, doc, undefined) {
 		}
 	}
 	
-	function showPreload(iconMode) { // Sólo muestra el cuadro, mas no la barra (si es que está en modeicon)
+	function showPreload(iconMode) {
 		isBarMode = iconMode;
 		
 		var loading = doc.byId('loading');

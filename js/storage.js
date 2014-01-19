@@ -19,35 +19,6 @@ window.storage = (function () {
 			files.path = '';
 		}		
 	}
-	/*
-	if (curStorage) {
-		var request = curStorage.usedSpace();
-		
-		request.onsuccess = function () {
-			var loaded = document.getElementById('loading-progress');
-			var loadedBar = document.getElementById('loading-bar');
-			var max = this.result;
-			var min = parseInt(max * 0.03);
-			
-			loadedBar.className = 'fade-in';
-			loaded.max = min + max;
-			
-			var icons = new Image();
-			
-			icons.onload = (function (value) {
-				return function () {
-					loaded.value = value;
-					loadFiles();
-				};				
-			})(min);
-			
-			icons.src = '../images/icons.png';
-		};
-		
-		request.onerror = function () {
-			//
-		};
-	}*/
 	
 	function loadFiles() {
 		if (files) {
@@ -63,22 +34,12 @@ window.storage = (function () {
 						files.push({'name': this.result.name, 'blob': this.result, 'disabled': false});
 					}
 					
-					//document.getElementById('loaded').value += this.result.size;
 					window.utils.preload.value += this.result.size;
 
 					this.continue();
 				} else {
 					if (files) {
 						files.show();
-						
-						/*if (preloading) {
-							window.setTimeout(function () {
-								//document.getElementById('loading').className = 'fade-out';
-								window.utils.preload.complete();
-							}, 100);
-							
-							preloading = false;
-						}*/
 					}
 				}
 			};

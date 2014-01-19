@@ -799,6 +799,9 @@ var files = (function () {
 		get all() {
 			return allFiles;
 		},
+		get path() {
+			return curDir;
+		},
 		set path(strPath) {
 			curDir = strPath;
 		},

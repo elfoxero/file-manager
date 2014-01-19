@@ -1,0 +1,52 @@
+#loading {
+	background-color: rgb(255,255,255);
+}
+
+#loading.shown {
+	opacity: 1;
+	z-index: 120;
+}
+
+#loading.fadeOut {
+	animation: fadeOutLoading 0.5s forwards;
+	z-index: 120;
+}
+
+[data-mode="bar"] #loading-bar {
+	border: 1px solid rgb(0, 142, 171);
+	border-radius: 2rem;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	height: 1.6rem;
+	margin: auto;
+	max-width: 30rem;
+	opacity: 0;
+	overflow: hidden;
+	white-space: nowrap;
+	width: 60%;
+}
+
+[data-mode="bar"] #loading-progress {
+	height: 100%;
+}
+
+[data-mode="bar"] #loading-message {
+	display: none;
+}
+
+#loading-bar.fade-in {
+	animation: fadeIn 0.5s forwards;
+}
+
+#loading-container {
+	margin-top: -10rem;
+	position: relative;
+	text-align: center;
+	top: 50%;
+}
+
+@keyframes fadeOutLoading {
+  0%   { opacity: 1; }
+  50%  { opacity: 1; }
+  100% { opacity: 0; }
+}

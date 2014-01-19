@@ -26,6 +26,7 @@
 	
 	<link rel="stylesheet" href="css/sidebar.css" />
 	<link rel="stylesheet" href="css/icons.css" />
+	<link rel="stylesheet" href="css/util.css" />
 	<link rel="stylesheet" href="css/app.css" />
 	
 	<link rel="prefetch" type="application/l10n" href="locales/locales.ini" />
@@ -142,12 +143,13 @@
 		</form>
 	</section>
 	
-	<section id="loading" data-position="back" class="fade-in">
-		<div class="loading-container">
-			<img id="logo" src="images/icon.png" />
-			<div class="loading-bar-container">
-				<progress id="loaded" max="100" value="0"></progress>
+	<section id="loading" data-position="back" class="shown">
+		<div id="loading-container">
+			<img id="loading-image" src="images/icon.png" alt="Logo" />
+			<div id="loading-bar">
+				<progress id="loading-progress" value="0"></progress>
 			</div>
+			<div id="loading-message"></div>
 		</div>
 	</section>
 
@@ -156,8 +158,9 @@
 	<script type="text/javascript" defer src="libraries/buildingblocks/js/status.js"></script>
 	<script type="text/javascript" defer src="js/config.js"></script>
 	<script type="text/javascript" defer src="js/mime.js"></script>
+	<script type="text/javascript" defer src="js/util.js"></script>
 	<script type="text/javascript" defer src="js/files.js"></script>
-	<script type="text/javascript" defer src="js/storage.test.js"></script>
+	<script type="text/javascript" defer src="js/storage.js"></script>
 	<script type="text/javascript" defer src="js/app.js"></script>
 </body>
 </html>

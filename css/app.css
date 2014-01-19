@@ -26,25 +26,6 @@ header.fixed *[disabled="disabled"] {
 	display: none;
 }
 
-#loading {
-	background-color: rgb(255,255,255);
-}
-
-#loading.fade-in {
-	animation: none;
-	opacity: 1;
-}
-
-#loaded {
-	height: 100%;
-	opacity: 0;
-}
-
-#loaded.fade-in {
-  animation: fadeIn 0.7s forwards;
-  -webkit-animation: fadeIn 0.7s forwards;
-}
-
 #close.pick {
 	display: none;
 }
@@ -83,26 +64,6 @@ header.fixed *[disabled="disabled"] {
 
 section[role="region"] { 
 	z-index: 100 !important;
-}
-
-.loading-container {
-	margin-top: -10rem;
-	position: relative;
-	text-align: center;
-	top: 50%;
-}
-
-.loading-bar-container {
-	border: 1px solid rgb(0, 142, 171);
-	border-radius: 2rem;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	height: 1.6rem;
-	margin: auto;
-	max-width: 30rem;
-	overflow: hidden;
-	white-space: nowrap;
-	width: 60%;
 }
 
 @keyframes msg-rotate {

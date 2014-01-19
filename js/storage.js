@@ -1,9 +1,8 @@
-var storage = (function () {
+window.storage = (function () {
 	var SDCARD = 'sdcard';
 	var storages = navigator.getDeviceStorages(SDCARD);
 	var curStorage;
 	var storage = 0;
-	var preloading = true;
 	
 	var files = window.files || false;
 	
@@ -20,6 +19,35 @@ var storage = (function () {
 			files.path = '';
 		}		
 	}
+	/*
+	if (curStorage) {
+		var request = curStorage.usedSpace();
+		
+		request.onsuccess = function () {
+			var loaded = document.getElementById('loading-progress');
+			var loadedBar = document.getElementById('loading-bar');
+			var max = this.result;
+			var min = parseInt(max * 0.03);
+			
+			loadedBar.className = 'fade-in';
+			loaded.max = min + max;
+			
+			var icons = new Image();
+			
+			icons.onload = (function (value) {
+				return function () {
+					loaded.value = value;
+					loadFiles();
+				};				
+			})(min);
+			
+			icons.src = '../images/icons.png';
+		};
+		
+		request.onerror = function () {
+			//
+		};
+	}*/
 	
 	function loadFiles() {
 		if (files) {
@@ -35,19 +63,22 @@ var storage = (function () {
 						files.push({'name': this.result.name, 'blob': this.result, 'disabled': false});
 					}
 					
-					if (preloading) {
-						document.getElementById('loaded').value += this.result.size;
-					}
+					//document.getElementById('loaded').value += this.result.size;
+					window.utils.preload.value += this.result.size;
 
 					this.continue();
 				} else {
 					if (files) {
 						files.show();
 						
-						if (preloading) {
-							document.getElementById('loading').className = 'fade-out';
+						/*if (preloading) {
+							window.setTimeout(function () {
+								//document.getElementById('loading').className = 'fade-out';
+								window.utils.preload.complete();
+							}, 100);
+							
 							preloading = false;
-						}
+						}*/
 					}
 				}
 			};
@@ -96,8 +127,8 @@ var storage = (function () {
 		if (typeof onsuccess === 'boolean') {
 			return request;
 		} else {
-			request.onsuccess = onsuccess;
-			request.onerror = onerror;
+			if (typeof onsuccess === 'function') request.onsuccess = onsuccess;
+			if (typeof onerror === 'function') request.onerror = onerror;
 		}
 	}
 	

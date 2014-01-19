@@ -293,6 +293,30 @@
 		});
 	});
 	
+	function init() {
+		window.utils.preload.show(true);
+		
+		if (window.files.path.length > 0) { // if reads directly a sdcard
+			window.storage.used(function (e) {			
+				var max = e.target.result;
+				var min = parseInt(max * 0.03);
+
+				window.utils.preload.max = min + max; // This triggers onstart (because max equals 1)
+
+				var icons = new Image();
+
+				icons.onload = (function (value) {
+					return function () {
+						window.utils.preload.value = value;
+						window.storage.load();
+					};				
+				})(min);
+
+				icons.src = 'images/icons.png';
+			});
+		}
+	}
+	
 	function openFile(mimeType, curFile, curDir) {
 		switch (mimeType) {
 			case 'application/pdf':
@@ -460,5 +484,5 @@
 	})();
 	
 	window.config.app = 'Alpha';
-	
+	init();
 }(window, document);

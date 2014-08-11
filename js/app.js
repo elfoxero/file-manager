@@ -102,7 +102,7 @@
 				var filename;
 				
 				if (path === curDir) {
-					var name = prompt('name-to-copy') || '';
+					var name = prompt(_('name-to-copy')) || '';
 					name = name.trim();
 					
 					if (name.length === 0) return;

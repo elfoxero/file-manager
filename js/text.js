@@ -23,6 +23,7 @@
 ;+function (window, document, undefined) {
 	var activity, size;
 	var file;
+	var password;
 	var _ = window.document.webL10n.get;
 
 	function setFontSize() {
@@ -45,6 +46,14 @@
 		window.localStorage.wrap = 'off';
 	}
 
+	function setEncryptionIcon() {
+		if (password) {
+			document.getElementById('encryption').className = 'action-icon lock';
+		} else {
+			document.getElementById('encryption').className = 'action-icon unlock';
+		}
+	}
+
 	window.navigator.mozSetMessageHandler('activity', function(request) {
 		activity = request;
 
@@ -58,7 +67,16 @@
 		document.querySelector('#name').appendChild(document.createTextNode(data.filename));
 
 		reader.onload = function (e) {
-			document.querySelector('textarea').value = e.target.result;
+			var plaintext = e.target.result;
+			// OpenSSL encrypted texts start with the base64 encoded string "Salted__"
+			if (plaintext.lastIndexOf('U2FsdGVkX1', 0) === 0) {
+				password = prompt(_('password')) || null;
+				if (password) {
+					plaintext = GibberishAES.dec(plaintext, password);
+				}
+				setEncryptionIcon();
+			}
+			document.querySelector('textarea').value = plaintext;
 		};
 
 		reader.readAsText(data.blob);
@@ -89,6 +107,15 @@
 		setWrap();
 	};
 
+	document.querySelector('#encryption').onclick = function (e) {
+		if (password) {
+			password = null;
+		} else {
+			password = prompt(_('password')) || '';
+		}
+		setEncryptionIcon();
+	}
+
 	document.querySelector('#save').addEventListener('click', function () {
 		var parts = file.split('/');
 
@@ -101,7 +128,11 @@
 		}
 
 		storage.delete(file, function () {
-			var blob = new Blob([document.querySelector('textarea').value]);
+			var plaintext = document.querySelector('textarea').value;
+			if (password) {
+				plaintext = GibberishAES.enc(plaintext, password);
+			}
+			var blob = new Blob([plaintext]);
 
 			storage.create(blob, file, function () {
 				activity.postResult({'saved': true, 'file': file, 'blob': blob});

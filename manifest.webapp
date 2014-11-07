@@ -28,7 +28,7 @@
 			"returnValue": true,
 			"href": "/elements/text.html"
 		},
-		"pick-folder": {
+		"filemanager@elfoxero:pick-folder": {
 			"disposition": "inline",
 			"returnValue": true,
 			"href": "/elements/folder.html"

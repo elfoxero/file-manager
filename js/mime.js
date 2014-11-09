@@ -35,6 +35,13 @@ var MIME = [
 		'actions': ''
 	},
 	{
+		'mime': 'application/epub+zip',
+		'pattern': '.+\/epub$',
+		'extensions': ['epub'],
+		'class': 'epub',
+		'actions': ''
+	},
+	{
 		'mime': 'application/x-web-app-manifest+json',
 		'pattern': '^application+\/.*app.manifest.*$',
 		'extensions': ['webapp'],
@@ -85,7 +92,7 @@ var MIME = [
 	},
 	{
 		'mime': 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-		'pattern': '.*officedocumentº.presentationml.*',
+		'pattern': '.*officedocumentÂº.presentationml.*',
 		'extensions': ['ppt', 'pptx'],
 		'class': 'powerpoint',
 		'actions': ''

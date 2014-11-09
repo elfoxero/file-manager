@@ -1,0 +1,28 @@
+File Manager es una aplicación para Firefox OS que permite explorar y administrar archivos de la tarjeta SD.
+
+Requisitos:
+
+Esta aplicación necesita permisos para acceder a la tarjeta de memoria.
+
+Características:
+
+- Permite copiar, mover, renombrar y eliminar archivos.
+- Permite crear, renombrar y eliminar carpetas.
+- Abre archivos de música, video, texto e imágenes.
+- Abre archivos PDF (necesita una versión de Firefox OS 1.4 o superior).
+- Abre cualquier archivo como música, video, texto o imagen.
+- Permite establecer como fondo de pantalla cualquier imagen.
+- Permite compartir cualquier archivo vía bluetooth, email y más.
+- Permite crear y editar archivos de texto plano.
+- Permite administrar una carpeta haciendo presión larga sobre la misma.
+
+Para desarrolladores:
+
+Si has desarrollado una aplicación que interactúa con los archivos de la tarjeta SD, File Manager puede usar tu aplicación para abrir esos archivos directamente. Para más información visita el repositorio de Github.
+
+Recursos:
+
+Esta aplicación es de código abierto bajo licencia GPL.
+Usa una variante de la librería Building Blocks y el paquete de iconos de Numix Circle.
+
+Esta aplicación fue probada en un dispositivo ZTE Open con Firefox OS 1.1 y simuladores para Firefox OS 1.3, 1.4 y 2.0.

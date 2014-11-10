@@ -72,6 +72,7 @@ Video       | ogv        | video/ogg
 Archiver    | zip        | application/zip
 Archiver    | 7z         | application/x-7z-compressed
 Archiver    | rar        | application/x-rar-compressed
+Ebook       | epub       | application/epub+zip
 Manifest    | webapp     | application/x-web-app-manifest+json
 Text        | txt, log   | text/plain
 Text        | htm, html  | text/html

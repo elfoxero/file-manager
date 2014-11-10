@@ -1,28 +1,28 @@
-File Manager is an app for Firefox OS to explore and manage files from SD card.
+File Manager SD txartelaren fitxategiak ikusi eta kudeatzeko balio duen Firefox OS sistemarako aplikazio bat da.
 
-Requirements:
+Eskakizunak:
 
-This app requires permissions to access to SD card.
+Aplikazio honek SD txartelara sartzeko baimena behar du.
 
-Features:
+Ezaugarriak:
 
-- Allows to copy, move, rename and delete files.
-- Allows to create, rename and delete folders.
-- Opens files of music, video, text and image types.
-- Opens PDF files (requires Firefox OS 1.4 or greater).
-- Opens any file as music, video, text or image.
-- Allows to set as wallpaper any image.
-- Allows to share any file via bluetooth, email and more.
-- Allows to create and edit text plain files.
-- Allows to manage any folder making long press on it.
+- Fitxategiak kopiatzea, mugitzea, berizendatzea eta ezabatzea gaitzen du.
+- Karpetak sortzea, berizendatzea eta ezabatzea gaitzen du.
+- Musika, bideo, testu eta irudi fitxategiak irekitzen ditu.
+- PDF fitxategiak irekitzen ditu (Firefox OS 1.4 bertsioa edo berriagoa behar du).
+- Edozein musika, bideo, testu edo irudi fitxategi irekitzen ditu.
+- Edozein irudi atzekalde bezala erabiltzeko gaitzen du.
+- Edozein fitxategi bluetooth, email... bidez partekatu ditzake.
+- Testu soileko fitxategiak sortu eta aldatzea gaitzen du.
+- Edozein karpeta kudeatzea gaitzen du beraren gainean presio luze bat eginda.
 
-For developers:
+Garatzaileentzako:
 
-If you have developed an app that interacts with files in SD card, File Manager can use your app to open files directly. For more info see the Github repository.
+SD txartelarekin interakziorik dituen aplikazioren bat garatu baduzu, File Managerrek zure aplikazioa erabili dezake fitxategi horiek irekitzeko. Informazio gehiagorako bisitatu Githubeko orrialdea.
 
-Resources:
+Baliabideak:
 
-This app is open source under GPL license.
-Uses a variant of Building Blocks library and icon theme from Numix Circle.
+GPL lizentziapean dagoen kode irekiko aplikazio bat da.
+Building Blocks liburutegiaren moldaketa bat eta Numix Circle ikono paketea erabiltzen ditu.
 
-This app was tested on ZTE Open device with Firefox OS 1.1 and simulators for Firefox OS 1.3, 1.4 and 2.0.
+Aplikazio hau Firefox OS 1.1 duen ZTE Open gailu batean eta Firefox OS 1.3, 1.4 eta 2.0 dituen simulatzailean probatu da.

@@ -1,100 +1,116 @@
-var MIME = [
+	var MIME = [
 	{
 		'mime': 'image/*',
 		'pattern': '^image\/.+',
-		'extensions': ['jpg', 'jpeg', 'png', 'gif'],
-		'class': 'image',
-		'actions': 'O'
+		'extensions': ['jpg', 'jpeg', 'png', 'gif', 'bmp'],
+		'class': 'image'
 	},
 	{
 		'mime': 'audio/*',
 		'pattern': '^audio\/.+',
-		'extensions': ['mp3', 'ogg'],
-		'class': 'audio',
-		'actions': 'O'
+		'extensions': ['mp3', 'ogg', 'opus', 'flac', 'alac', 'wav'],
+		'class': 'audio'
 	},
 	{
 		'mime': 'video/*',
 		'pattern': '^video\/.+',
 		'extensions': ['mp4', '3gp', 'ogv', 'webm'],
-		'class': 'video',
-		'actions': 'O'
+		'class': 'video'
 	},
 	{
 		'mime': 'application/pdf',
 		'pattern': '.+\/pdf$',
 		'extensions': ['pdf'],
-		'class': 'pdf',
-		'actions': 'O'
+		'class': 'pdf'
 	},
 	{
 		'mime': 'application/zip',
-		'pattern': '.+\/zip$',
+		'pattern': '.+\/(x\-)?zip',
 		'extensions': ['zip'],
-		'class': 'zip',
-		'actions': ''
+		'class': 'zip'
 	},
 	{
 		'mime': 'application/epub+zip',
-		'pattern': '.+\/epub$',
+		'pattern': '.+\/epub',
 		'extensions': ['epub'],
-		'class': 'epub',
-		'actions': ''
+		'class': 'epub'
+	},
+	{
+		'mime': 'application/x-7z-compressed',
+		'pattern': '.+\/(x\-)?7z',
+		'extensions': ['7z'],
+		'class': 'zip'
+	},
+	{
+		'mime': 'application/x-rar-compressed',
+		'pattern': '.+\/(x\-)?rar',
+		'extensions': ['rar'],
+		'class': 'zip'
 	},
 	{
 		'mime': 'application/x-web-app-manifest+json',
 		'pattern': '^application+\/.*app.manifest.*$',
 		'extensions': ['webapp'],
-		'class': 'developer',
-		'actions': 'O'
+		'class': 'developer'
 	},
 	{
 		'mime': 'text/plain',
 		'pattern': '^text\/plain$',
 		'extensions': ['txt', 'log'],
-		'class': 'text',
-		'actions': 'O'
+		'class': 'text'
 	},
 	{
 		'mime': 'text/html',
 		'pattern': '^text\/html$',
 		'extensions': ['htm', 'html'],
-		'class': 'html',
-		'actions': 'O'
+		'class': 'html'
 	},
 	{
 		'mime': 'text/javascript',
 		'pattern': 'javascript$',
 		'extensions': ['js', 'json'],
-		'class': 'developer',
-		'actions': 'O'
+		'class': 'developer'
 	},
 	{
 		'mime': 'text/css',
 		'pattern': '^text\/css$',
 		'extensions': ['css'],
-		'class': 'css',
-		'actions': 'O'
+		'class': 'css'
 	},
 	{
 		'mime': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 		'pattern': '.*officedocument\.wordprocessingml.*',
 		'extensions': ['doc', 'docx'],
-		'class': 'word',
-		'actions': ''
+		'class': 'word'
 	},
 	{
 		'mime': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
 		'pattern': '.*officedocument\.spreadsheetml.*',
 		'extensions': ['xls', 'xlsx'],
-		'class': 'excel',
-		'actions': ''
+		'class': 'excel'
 	},
 	{
 		'mime': 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-		'pattern': '.*officedocumentº.presentationml.*',
+		'pattern': '.*officedocument\.presentationml.*',
 		'extensions': ['ppt', 'pptx'],
-		'class': 'powerpoint',
-		'actions': ''
-	}
+		'class': 'powerpoint'
+	},
+	{
+		'mime': 'application/vnd.oasis.opendocument.text',
+		'pattern': '.*opendocument\.text.*',
+		'extensions': ['odt'],
+		'class': 'word'
+	},
+	{
+		'mime': 'application/vnd.oasis.opendocument.spreadsheet',
+		'pattern': '.*opendocument\.spreadsheet.*',
+		'extensions': ['ods'],
+		'class': 'excel'
+	},
+	{
+		'mime': 'application/vnd.oasis.opendocument.presentation',
+		'pattern': '.*opendocument\.presentation.*',
+		'extensions': ['odp'],
+		'class': 'powerpoint'
+	},
 ];

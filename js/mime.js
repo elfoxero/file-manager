@@ -33,7 +33,7 @@
 		'mime': 'application/epub+zip',
 		'pattern': '.+\/epub',
 		'extensions': ['epub'],
-		'class': 'epub'
+		'class': 'ebook'
 	},
 	{
 		'mime': 'application/x-7z-compressed',

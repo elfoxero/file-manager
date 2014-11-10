@@ -1,6 +1,6 @@
 .file-icon {
 	background: url(../images/icons.png) no-repeat;
-	background-size: 6rem 90rem;
+	background-size: 6rem 96rem;
 	content: '';
 	display: block;
 	height: 6rem;
@@ -68,4 +68,8 @@
 
 .card {
 	background-position: 0 -840px;
+}
+
+.ebook {
+	background-position: 0 -900px;
 }

@@ -1,0 +1,34 @@
+File Manager è un'app per Firefox OS per esplorare e gestire i file dalla SD card.
+
+Requisiti:
+
+Questa app richiede permessi per accedere alla SD card.
+
+Funzionalità:
+
+- Permette di copiare, muovere, rinominare e cancellare file.
+- Permette di creare, rinominare e cancellare cartelle.
+- Apre file musicali, video, testo e immagini. 
+- Apre file PDF (richiede Firefox Os 1.4 o superiore).
+- Apre qualsiasi file come musica, video ,testo o immagine.
+- Permette di impostare come sfondo qualsiasi immagine.
+- Permette di condividere qualsiasi file via bluetooth, email e altro.
+- Permette di creare e modificare file di testo.
+- Permette di gestire qualsiasi cartella tenendola premuta a lungo.
+
+Traduci questa app nella tua lingua:
+
+Potete aiutare a tradurre File Manager nella vostra lingua, semplicemente facendo un fork del app repository o scaricando questo file, traducendolo, e inviandomelo via email. Le nuove lingue saranno aggiunte ogni fine settimana, abbiate pazienza.
+
+Per sviluppatori:
+
+Se avete sviluppato un app che interagisce con file nella SD card, File Magager può usare la vostra app per aprire direttamente i file. Per maggiori informazioni guarda il repository Github.
+
+
+Risorse:
+
+Questa app è open source sotto licenza GPL.
+
+Utilizza una variante della libreria Building Blocks e il tema di icone di Numix Circle.
+
+Questa applicazione è stata testata su ZTE Open device con Firefox OS 1.1 e i simulatori per Firefox OS 1.3, 1.4 e 2.0.

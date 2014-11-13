@@ -18,7 +18,7 @@ This app requires permissions to access to SD card.
 - Allows to create and edit text plain files.
 - Allows to manage any folder making long press on it.
 
-**For developers: integrate your app with File Manager** (requires File Manager 1.0-beta2.1)
+**For developers: integrate your app with File Manager** (requires File Manager 1.0-beta2)
 
 If you have created an app that interacts with some files in SD card, File Manager can use your app to open these files directly.
 

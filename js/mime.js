@@ -8,13 +8,13 @@
 	{
 		'mime': 'audio/*',
 		'pattern': '^audio\/.+',
-		'extensions': ['mp3', 'ogg', 'opus', 'flac', 'alac', 'wav'],
+		'extensions': ['mp3', 'ogg', 'oga', 'webma', 'opus', 'flac', 'alac', 'wav', 'speex', 'm4a'],
 		'class': 'audio'
 	},
 	{
 		'mime': 'video/*',
 		'pattern': '^video\/.+',
-		'extensions': ['mp4', '3gp', 'ogv', 'webm'],
+		'extensions': ['mp4', '3gp', 'ogv', 'webm', 'mkv', 'avi', 'm4v'],
 		'class': 'video'
 	},
 	{
@@ -56,13 +56,13 @@
 	{
 		'mime': 'text/plain',
 		'pattern': '^text\/plain$',
-		'extensions': ['txt', 'log'],
+	    'extensions': ['txt', 'text', 'log', 'ini'],
 		'class': 'text'
 	},
 	{
 		'mime': 'text/html',
 		'pattern': '^text\/html$',
-		'extensions': ['htm', 'html'],
+		'extensions': ['htm', 'html', 'xhtml'],
 		'class': 'html'
 	},
 	{

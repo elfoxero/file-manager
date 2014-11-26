@@ -36,6 +36,30 @@
 		'class': 'ebook'
 	},
 	{
+		'mime': 'application/x-tar',
+		'pattern': '.+\/(x\-)?tar',
+		'extensions': ['tar'],
+		'class': 'zip'
+	},
+	{
+		'mime': 'application/x-bzip',
+		'pattern': '.+\/(x\-)?gz',
+		'extensions': ['bz2', 'tar.bz2', 'tbz2', 'tb2'],
+		'class': 'zip'
+	},
+	{
+		'mime': 'application/x-xz',
+		'pattern': '.+\/(x\-)?xz',
+		'extensions': ['xz'],
+		'class': 'zip'
+	},
+	{
+		'mime': 'application/x-compressed',
+		'pattern': '.+\/(x\-)?gz',
+		'extensions': ['gz', 'tar.gz', 'tgz'],
+		'class': 'zip'
+	},
+	{
 		'mime': 'application/x-7z-compressed',
 		'pattern': '.+\/(x\-)?7z',
 		'extensions': ['7z'],
@@ -72,10 +96,70 @@
 		'class': 'developer'
 	},
 	{
+		'mime': 'text/x-python',
+		'pattern': 'python$',
+		'extensions': ['py'],
+		'class': 'developer'
+	},
+	{
+		'mime': 'text/x-python',
+		'pattern': 'sh$',
+	 	'extensions': ['sh', 'bash', 'bashrc'],
+		'class': 'developer'
+	},
+	{
+		'mime': 'text/x-java-source',
+		'pattern': 'java$',
+	 	'extensions': ['java'],
+		'class': 'developer'
+	},
+	{
+		'mime': 'text/x-csrc',
+		'pattern': '^text\/x-csrc$',
+	 	'extensions': ['c'],
+		'class': 'developer'
+	},
+	{
+		'mime': 'text/x-c++src',
+		'pattern': '^text\/x-c++src',
+		'extensions': ['cc', 'cpp', 'c++'],
+		'class': 'developer'
+	},
+	{
+		'mime': 'text/x-php',
+		'pattern': 'x-php',
+		'extensions': ['php', 'php4', 'php5'],
+		'class': 'developer'
+	},
+	{
+		'mime': 'text/x-ruby',
+		'pattern': 'x-ruby',
+		'extensions': ['rb', 'ruby'],
+		'class': 'developer'
+	},
+	{
 		'mime': 'text/css',
 		'pattern': '^text\/css$',
 		'extensions': ['css'],
 		'class': 'css'
+	},
+	{
+		'mime': 'text/csv',
+		'pattern': '^text\/csv$',
+		'extensions': ['csv'],
+		'class': 'csv'
+	},
+	{
+		'mime': 'text/csv-schema',
+		'pattern': '^text\/csv-schema$',
+		'extensions': ['csv-schema'],
+		'class': 'csv-schema'
+	},
+	{
+		'mime': 'text/rtf',
+		'pattern': '^text/rtf$',
+		'extensions': ['rtf'],
+		'class': 'word'
 	},
 	{
 		'mime': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',

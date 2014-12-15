@@ -1,20 +1,50 @@
 	var MIME = [
 	{
-		'mime': 'image/*',
+		'mime': 'image/*', // Only supported natively
 		'pattern': '^image\/.+',
 		'extensions': ['jpg', 'jpeg', 'png', 'gif', 'bmp'],
 		'class': 'image'
 	},
 	{
-		'mime': 'audio/*',
+		'mime': 'audio/*', // Only supported natively
 		'pattern': '^audio\/.+',
-		'extensions': ['mp3', 'ogg', 'oga', 'webma', 'opus', 'flac', 'alac', 'wav', 'speex', 'm4a'],
+		'extensions': ['mp1', 'mp2', 'mp3', 'm4a', 'ogg', 'oga', 'opus', 'spx', 'amr'],
 		'class': 'audio'
 	},
 	{
-		'mime': 'video/*',
+		'mime': 'video/*', // Only supported natively
 		'pattern': '^video\/.+',
-		'extensions': ['mp4', '3gp', 'ogv', 'webm', 'mkv', 'avi', 'm4v'],
+		'extensions': ['mp4', 'mpg4', 'webm', '3gp', '3gpp', 'ogv'],
+		'class': 'video'
+	},
+	{
+		'mime': 'audio/x-wav',
+		'pattern': '^audio\/.*wav$',
+		'extensions': ['wav'],
+		'class': 'audio'
+	},
+	{
+		'mime': 'audio/x-flac',
+		'pattern': '\/x\-flac$',
+		'extensions': ['flac'],
+		'class': 'audio'
+	},
+	{
+		'mime': 'video/x-matroska',
+		'pattern': '\-matroska$',
+		'extensions': ['mkv'],
+		'class': 'video'
+	},
+	{
+		'mime': 'video/x-msvideo',
+		'pattern': '\-msvideo$',
+		'extensions': ['avi'],
+		'class': 'video'
+	},
+	{
+		'mime': 'video/x-m4v',
+		'pattern': '\/x\-m4v$',
+		'extensions': ['m4v'],
 		'class': 'video'
 	},
 	{
@@ -31,7 +61,7 @@
 	},
 	{
 		'mime': 'application/epub+zip',
-		'pattern': '.+\/epub',
+		'pattern': '\/epub\+',
 		'extensions': ['epub'],
 		'class': 'ebook'
 	},
@@ -44,7 +74,7 @@
 	{
 		'mime': 'application/x-bzip',
 		'pattern': '.+\/(x\-)?gz',
-		'extensions': ['bz2', 'tar.bz2', 'tbz2', 'tb2'],
+		'extensions': ['bz2', 'tbz2', 'tb2'],
 		'class': 'zip'
 	},
 	{
@@ -54,9 +84,9 @@
 		'class': 'zip'
 	},
 	{
-		'mime': 'application/x-compressed',
-		'pattern': '.+\/(x\-)?gz',
-		'extensions': ['gz', 'tar.gz', 'tgz'],
+		'mime': 'application/x-gzip',
+		'pattern': '.+\/(x\-)?gzip',
+		'extensions': ['gz', 'tgz'],
 		'class': 'zip'
 	},
 	{
@@ -67,7 +97,7 @@
 	},
 	{
 		'mime': 'application/x-rar-compressed',
-		'pattern': '.+\/(x\-)?rar',
+		'pattern': '.+\/(x\-)?rar\-',
 		'extensions': ['rar'],
 		'class': 'zip'
 	},
@@ -102,38 +132,38 @@
 		'class': 'developer'
 	},
 	{
-		'mime': 'text/x-python',
+		'mime': 'text/x-sh',
 		'pattern': 'sh$',
 	 	'extensions': ['sh', 'bash', 'bashrc'],
 		'class': 'developer'
 	},
 	{
 		'mime': 'text/x-java-source',
-		'pattern': 'java$',
+		'pattern': '.+\/(x\-)?java(\-)?',
 	 	'extensions': ['java'],
 		'class': 'developer'
 	},
 	{
 		'mime': 'text/x-csrc',
-		'pattern': '^text\/x-csrc$',
+		'pattern': '^text\/x\-csrc$',
 	 	'extensions': ['c'],
 		'class': 'developer'
 	},
 	{
 		'mime': 'text/x-c++src',
-		'pattern': '^text\/x-c++src',
+		'pattern': '^text\/x\-c.*src$',
 		'extensions': ['cc', 'cpp', 'c++'],
 		'class': 'developer'
 	},
 	{
 		'mime': 'text/x-php',
-		'pattern': 'x-php',
-		'extensions': ['php', 'php4', 'php5'],
+		'pattern': '\-php$',
+		'extensions': ['php', 'php3', 'php4', 'php5', 'phps', 'pht', 'phtm', 'phtml'],
 		'class': 'developer'
 	},
 	{
 		'mime': 'text/x-ruby',
-		'pattern': 'x-ruby',
+		'pattern': '\-ruby$',
 		'extensions': ['rb', 'ruby'],
 		'class': 'developer'
 	},
@@ -146,19 +176,13 @@
 	{
 		'mime': 'text/csv',
 		'pattern': '^text\/csv$',
-		'extensions': ['csv'],
-		'class': 'csv'
-	},
-	{
-		'mime': 'text/csv-schema',
-		'pattern': '^text\/csv-schema$',
-		'extensions': ['csv-schema'],
-		'class': 'csv-schema'
+		'extensions': ['\/csv$'],
+		'class': 'excel'
 	},
 	{
 		'mime': 'text/rtf',
 		'pattern': '^text/rtf$',
-		'extensions': ['rtf'],
+		'extensions': ['\/rtf$'],
 		'class': 'word'
 	},
 	{

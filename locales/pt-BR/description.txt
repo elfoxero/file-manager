@@ -1,28 +1,27 @@
-File Manager is an app for Firefox OS to explore and manage files from SD card.
+Gerenciador de Arquivos (File Manager) é um aplicativo para Firefox OS que permite explorar e gerenciar arquivos do cartão SD.
 
-Requirements:
+Requerimentos:
 
-This app requires permissions to access to SD card.
+Este aplicativo requer permissões para acessar o cartão SD.
 
-Features:
+Características:
 
-- Allows to copy, move, rename and delete files.
-- Allows to create, rename and delete folders.
-- Opens files of music, video, text and image types.
-- Opens PDF files (requires Firefox OS 1.4 or greater).
-- Opens any file as music, video, text or image.
-- Allows to set as wallpaper any image.
-- Allows to share any file via bluetooth, email and more.
-- Allows to create and edit text plain files.
-- Allows to manage any folder making long press on it.
+- Permite copiar, mover, renomear e excluír arquivos.
+- Permite criar, renomear e excluír pastas.
+- Abre qualquer arquivo como um arquivo de música, vídeo, texto ou imagem.
+- Abre arquivos PDF (requer Firefox OS 1.4 ou superior).
+- Permite definir qualquer imagem como papel de parede.
+- Permite compartilhar qualquer arquivo via bluetooth, email, entre outros.
+- Permite criar e editar arquivos simples.
+- Permite gerenciar qualquer pasta com um toque longo.
 
-For developers:
+Para desenvolvedores:
 
-If you have developed an app that interacts with files in SD card, File Manager can use your app to open files directly. For more info see the Github repository.
+Se você desenvolveu um aplicativo que interage com arquivos no cartão SD, o Gerenciador de Arquivos (File Manager) pode usar seu aplicativo para abrir aquivos diretamente. Para mais informações, veja o repositório do Github.
 
-Resources:
+Recursos:
 
-This app is open source under GPL license.
-Uses a variant of Building Blocks library and icon theme from Numix Circle.
+Este aplicativo é aberto sob licença GPL.
+Usa uma variante da biblioteca Building Blocks e tema de ícones de Numix Circle.
 
-This app was tested on ZTE Open device with Firefox OS 1.1 and simulators for Firefox OS 1.3, 1.4 and 2.0.
+Este aplicativo foi testado no ZTE Open, com Firefox OS 1.1, e em simuladores de Firefox OS 1.3, 1.4 e 2.0.

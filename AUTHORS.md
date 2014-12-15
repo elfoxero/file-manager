@@ -4,6 +4,8 @@
 
 **Contributors**
 
+* [Leonardo Souza](https://www.facebook.com/people/Leonardo-Souza/100000600954401)
+* [Spanti Nicola](https://github.com/RyDroid)
 * [Asier Arizkuren](https://www.github.com/aarizkuren)
 * Tonnes
 * [Arnaud Durand](http://mathix.org/linux/)

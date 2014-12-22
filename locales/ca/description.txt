@@ -1,28 +1,27 @@
-File Manager is an app for Firefox OS to explore and manage files from SD card.
+El File Manager és una aplicació per a Firefox OS que us permet explorar i gestionar els fitxers de la targeta SD.
 
-Requirements:
+Requisits:
 
-This app requires permissions to access to SD card.
+Aquesta aplicació necessita permís per accedir a la targeta de memòria.
 
-Features:
+Característiques:
 
-- Allows to copy, move, rename and delete files.
-- Allows to create, rename and delete folders.
-- Opens files of music, video, text and image types.
-- Opens PDF files (requires Firefox OS 1.4 or greater).
-- Opens any file as music, video, text or image.
-- Allows to set as wallpaper any image.
-- Allows to share any file via bluetooth, email and more.
-- Allows to create and edit text plain files.
-- Allows to manage any folder making long press on it.
+- Permet copiar, moure, reanomenar i suprimir fitxers.
+- Permet crear, reanomenar i suprimir carpetes.
+- Obre fitxers de música, vídeo, text i imatges.
+- Obre documents PDF (es necessita o més recent)
+- Permet definir qualsevol imatge com fons.
+- Permet compartir qualsevol fitxer via Bluetooth, correu electrònic i més.
+- Permet crear i editar fitxers de text senzill.
+- Permet gestionar les carpetes en mantenir-les premudes durant uns segons.
 
-For developers:
+Per a desenvolupadors:
 
-If you have developed an app that interacts with files in SD card, File Manager can use your app to open files directly. For more info see the Github repository.
+Si heu creat una aplicació que interactua amb els fitxers de la targeta SD, el File Manager pot utilitzar la vostra aplicació per obrir els fitxers directament. Consulteu el repositori en GitHub per obtenir més informació.
 
-Resources:
+Recursos:
 
-This app is open source under GPL license.
-Uses a variant of Building Blocks library and icon theme from Numix Circle.
+Aquesta aplicació és disponible sota la llicència GPL.
+Funciona amb una variant de la biblioteca Building Blocks i el tema de icones Numix Circle.
 
-This app was tested on ZTE Open device with Firefox OS 1.1 and simulators for Firefox OS 1.3, 1.4 and 2.0.
+Hem provat aquesta aplicació en un dispositiu ZTE Open amb Firefox OS 1.1 i els simuladors de Firefox OS 1.3, 1.4 i 2.0.

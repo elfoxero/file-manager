@@ -42,8 +42,9 @@ window.utils.files = (function() {
 		}
 	}
 
-	function getMIME(ext) {
-		var returned = {mime: ''};
+	function getMIME(ext, def) {
+		def = def || '';
+		var returned = {mime: def};
 
 		for (var i = 0; i < MIME.length; i++) {
 			if (MIME[i].extensions.indexOf(ext) > -1) {
@@ -592,7 +593,7 @@ var files = (function () {
 																		if (!window.config.isActivity) {
 																			var fileMime = utils.files.mime(fileExt);
 
-																			curFile = {'name': fileName, 'blob': fileBlob, 'ext': fileExt, 'mime': fileMime.mime};
+																			curFile = {'name': fileName, 'blob': fileBlob, 'ext': fileExt, 'mime': (fileMime.mime || fileBlob.type)};
 																			curItem = this.offsetParent;
 
 																			utils.actions.show(fileName, fileMime);

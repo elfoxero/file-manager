@@ -143,7 +143,7 @@
 			document.querySelector('#file-name').textContent = curFile.name;
 			document.querySelector('#file-size').textContent = utils.files.size(curFile.blob.size);
 			document.querySelector('#file-modified').textContent = lastModified.format(window.localStorage.dateFormat);
-			document.querySelector('#file-type').textContent = curFile.blob.type;
+			document.querySelector('#file-type').textContent = (curFile.blob.type || utils.files.mime(curFile.name.split('.').pop(), _('unknown')).mime);
 			document.querySelector('#absolute-path').textContent = curFile.blob.name;
 			document.querySelector('#details').className = 'fade-in';
 		});
@@ -572,6 +572,8 @@
 	function openFile(mimeType, curFile, curDir, format) {
 		switch (mimeType) {
 			case 'video/*':
+				document.getElementById('file-action').className = 'fade-out';
+
 				var activity = new Activity({
 					name: 'view',
 					data: {
@@ -586,12 +588,12 @@
 					console.warn('Activity error: ' + activity.error.name);
 				};
 
-				document.getElementById('file-action').className = 'fade-out';
-
 				break;
 
 
 				case 'audio/*':
+					document.getElementById('file-action').className = 'fade-out';
+
 					var activity = new Activity({
 						name: 'open',
 						data: {
@@ -605,11 +607,11 @@
 						console.warn('Activity error: ' + activity.error.name);
 					};
 
-					document.getElementById('file-action').className = 'fade-out';
-
 					break;
 
 					case 'image/*':
+						document.getElementById('file-action').className = 'fade-out';
+
 						var activity = new Activity({
 							name: 'open',
 							data: {
@@ -623,8 +625,6 @@
 							console.warn('Activity error: ' + activity.error.name);
 						};
 
-						document.getElementById('file-action').className = 'fade-out';
-
 						break;
 
 						case 'text/plain':
@@ -632,6 +632,8 @@
 								case 'text/html':
 									case 'text/css':
 										case 'application/x-web-app-manifest+json':
+											document.getElementById('file-action').className = 'fade-out';
+
 											var activity = new Activity({
 												name: 'open',
 												data: {
@@ -653,8 +655,6 @@
 												}
 											};
 
-											document.getElementById('file-action').className = 'fade-out';
-
 											break;
 
 											default:
@@ -674,7 +674,11 @@
 													};
 
 													activity.onerror = function () {
-														utils.actions.types();
+														if (activity.error.name === 'NO_PROVIDER') {
+															utils.actions.types();
+												    	} else {
+												    		document.getElementById('file-action').className = 'fade-out';
+												    	}
 													};
 												} else {
 													utils.actions.types();

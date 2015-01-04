@@ -38,6 +38,8 @@ Text        | php, phps, phtml | text/x-php
 Text        | rb               | text/x-ruby
 Text        | csv              | text/csv
 Text        | rtf              | text/rtf
+Web Feed    | opml             | text/x-opml
+Web Feed    | rss              | application/rss+xml
 Document    | pdf              | application/pdf
 Document    | doc, docx        | application/vnd.openxmlformats-officedocument.wordprocessingml.document
 Document    | xls, xlsx        | application/vnd.openxmlformats-officedocument.spreadsheetml.sheet

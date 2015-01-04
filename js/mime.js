@@ -198,14 +198,26 @@ var MIME = [
 	{
 		'mime': 'text/csv',
 		'pattern': '^text\/csv$',
-		'extensions': ['\/csv$'],
+		'extensions': ['csv'],
 		'class': 'excel'
 	},
 	{
 		'mime': 'text/rtf',
 		'pattern': '^text/rtf$',
-		'extensions': ['\/rtf$'],
+		'extensions': ['rtf'],
 		'class': 'word'
+	},
+	{
+		'mime': 'text/x-opml',
+		'pattern': '^text\/x\-opml$',
+		'extensions': ['opml'],
+		'class': 'rss'
+	},
+	{
+		'mime': 'application/rss+xml',
+		'pattern': '^application\/rss\+xml$',
+		'extensions': ['rss'],
+		'class': 'rss'
 	},
 	{
 		'mime': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',

@@ -36,8 +36,26 @@
 		}
 	},
 	"locales": {
+		"ca": {
+			"name": "Meves Fitxers"
+		},
 		"es": {
-			"description": "File Manager es una aplicación para gestionar, copiar, mover, eliminar, compartir y cambiar de nombre a los archivos de la tarjeta SD, así como renombrar y eliminar carpetas. También permite ver los documentos PDF (requiere Firefox OS 1.4 o una versión superior), reproducir archivos multimedia, crear y editar documentos de texto plano. Utiliza una variante de la interfaz de Building Blocks http://buildingfirefoxos.com/ y los iconos de Numix Circle Icon Theme https://github.com/numixproject/numix-icon-theme-circle"
+			"name": "Mis Archivos"
+		},
+		"eu": {
+			"name": "Nire Fitxategiak"
+		},
+		"fr": {
+			"name": "Mes Fichiers"
+		},
+		"it": {
+			"name": "File Manager"
+		},
+		"nl": {
+			"name": "Mijn Bestanden"
+		},
+		"pt-BR": {
+			"name": "Meus Arquivos"
 		}
 	},
 	"type": "privileged"

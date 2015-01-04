@@ -74,7 +74,7 @@ Video       | mkv              | video/x-matroska
 Video       | avi              | video/x-msvideo
 Video       | m4v              | video/x-m4v
 
-[View the complete list](blob/master/FILETYPES.md)
+[View the complete list](FILETYPES.md)
 
 For more information about Web Activities, please visit [https://developer.mozilla.org/en-US/docs/Web/API/Web_Activities](https://developer.mozilla.org/en-US/docs/Web/API/Web_Activities).
 

@@ -22,7 +22,7 @@
 
 .file-icon {
 	background: url(../images/icons.png) no-repeat;
-	background-size: 6rem 96rem;
+	background-size: 6rem 102rem;
 	content: '';
 	display: block;
 	height: 6rem;
@@ -88,10 +88,14 @@
 	background-position: 0 -780px;
 }
 
-.rss {
+.card {
 	background-position: 0 -840px;
 }
 
-.card {
+.ebook {
 	background-position: 0 -900px;
+}
+
+.rss {
+	background-position: 0 -960px;
 }

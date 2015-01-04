@@ -510,6 +510,11 @@
 						imgElem.alt = '';
 
 						if (contribData[2].length > 0) {
+							imgElem.onload = function () {
+    							console.error(this.parentElement);
+    							this.parentElement.style.background = 'none';
+    							this.style.transform = 'scale(1)';
+    						};
 							imgElem.src = contribData[2];
 						} else {
 							imgElem.src = '#';
@@ -524,7 +529,11 @@
 						p2Elem.textContent = contribData[1];
 
 						aElem.appendChild(p1Elem);
-						aElem.appendChild(p2Elem);
+
+						if (contribData[1] !== '#') {
+							aElem.appendChild(p2Elem);
+						}
+
 						liElem.appendChild(aElem);
 
 						list.appendChild(liElem);

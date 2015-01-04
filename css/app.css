@@ -139,14 +139,22 @@ section[role="region"] {
 	z-index: 101;
 }
 
-#about-us ul > li > aside.pack-start > img {
+#about-us ul > li > aside.pack-start {
 	background-image: url(../images/avatar.png);
-	background-repeat: none;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+#about-us ul > li > aside.pack-start > img {
 	width: 4rem;
 	height: 4rem;
 	margin: 1rem;
 }
 
+#about-us ul > li > aside.pack-start:not(.fixed-avatar) > img {
+	transform: scale(0);
+	transition: transform .2s ease-in;
+}
 
 section[role="region"].hide-to-bottom {
 	animation: hide .3s forwards;

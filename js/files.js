@@ -975,7 +975,7 @@ var files = (function () {
 																	window.clearTimeout(touchTimer);
 																	touchTimer = -1;
 
-																	e.preventDefault();
+																	e.stopPropagation();
 																}
 															});
 

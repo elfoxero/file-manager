@@ -541,7 +541,7 @@
 				});
 			};
 
-			xhr.open('GET', '.AUTHORS');
+			xhr.open('GET', 'CONTRIBUTORS');
 
 			if (xhr.overrideMimeType) {
 				xhr.overrideMimeType('text/plain; charset=utf-8');

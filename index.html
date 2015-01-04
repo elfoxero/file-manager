@@ -1,10 +1,32 @@
+<!--
+
+ Copyright (c) 2013-2015 Jhon Klever, http://github.com/elfoxero
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to
+ deal in the Software without restriction, including without limitation the
+ rights to use, copy, modify, merge, publish and distribute, subject to the
+ following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+ IN THE SOFTWARE.
+
+-->
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, user-scalable=no" />
 	<title>File Manager</title>
-	
+
 	<link rel="stylesheet" href="libraries/buildingblocks/style/action_menu.css" />
 	<link rel="stylesheet" href="libraries/buildingblocks/style/confirm.css" />
 	<link rel="stylesheet" href="libraries/buildingblocks/style/headers.css" />
@@ -12,24 +34,25 @@
 	<link rel="stylesheet" href="libraries/buildingblocks/style_unstable/lists.css" />
 	<link rel="stylesheet" href="libraries/buildingblocks/style_unstable/scrolling.css" />
 	<link rel="stylesheet" href="libraries/buildingblocks/style_unstable/progress_activity.css" />
+	<link rel="stylesheet" href="libraries/buildingblocks/style_unstable/toolbars.css" />
 
 	<link rel="stylesheet" href="libraries/buildingblocks/icons/styles/action_icons.css" />
 
 	<link rel="stylesheet" href="libraries/buildingblocks/transitions.css" />
-  
+
 	<link rel="stylesheet" href="libraries/buildingblocks/util.css" />
 	<link rel="stylesheet" href="libraries/buildingblocks/fonts.css" />
 
 	<link rel="stylesheet" href="libraries/buildingblocks/cross_browser.css" />
 
 	<link rel="stylesheet" href="libraries/buildingblocks/extra.css" />
-	
+
 	<link rel="stylesheet" href="css/sidebar.css" />
 	<link rel="stylesheet" href="css/icons.css" />
 	<link rel="stylesheet" href="css/util.css" />
 	<link rel="stylesheet" href="css/app.css" />
-	
-	<link rel="prefetch" type="application/l10n" href="locales/locales.ini" />
+
+	<link rel="resource" type="application/l10n" href="locales/locales.ini" />
 </head>
 <body>
 	<section data-type="sidebar">
@@ -38,27 +61,24 @@
 		</header>
 		<nav>
 			<ul>
-				<li><a href="#" id="new-folder" data-l10n-id="new-folder">New folder</a></li>
 				<li><a href="#" id="new-file" data-l10n-id="new-file">New file</a></li>
+				<li><a href="#" id="new-folder" data-l10n-id="new-folder">New folder</a></li>
 			</ul>
-			<h2 data-l10n-id="folder">Folder</h2>
-			<ul>
+			<h2 data-l10n-id="folder" id="folder-operations-header">Folder</h2>
+			<ul id="folder-operations">
 				<li><a href="#" id="rename-folder" data-l10n-id="rename">Rename</a></li>
-				<li><a href="#" id="copy-folder" data-l10n-id="copy">Copy</a></li>
-				<li><a href="#" id="move-folder" data-l10n-id="move">Move</a></li>
 				<li><a href="#" id="delete-folder" data-l10n-id="delete">Delete</a></li>
 			</ul>
 			<h2 data-l10n-id="system">System</h2>
 			<ul>
-				<li><a href="#" id="configuration" data-l10n-id="configuration">Configuration</a></li>
+				<li><a href="#" id="about-us-btn" data-l10n-id="about-us">About us</a></li>
 			</ul>
 		</nav>
 	</section>
-	
+
 	<section role="region" id="drawer">
 		<header class="fixed">
-			<menu type="toolbar">
-				<a href="#" id="refresh"><span class="icon action-icon email-sync">refresh</span></a>
+			<menu type="toolbar" style="display:none">
 				<a data-action="hide" href="#"><span class="icon icon-menu">hide sidebar</span></a>
 				<a data-action="show" href="#drawer"><span class="icon icon-menu">show sidebar</span></a>
 			</menu>
@@ -67,42 +87,62 @@
 			</a>
 			<h1 id="folder"></h1>
 		</header>
+        <div role="toolbar">
+          <ul>
+            <li>
+                <span class="toolbar-text">
+                    <span id="footer-label" data-l10n-id="items" data-l10n-args='{"n": "0"}'>0 items</span>
+                </span>
+            </li>
+          </ul>
+          <ul>
+            <li><button class="action-icon email-sync" id="refresh">refresh</button></li>
+          </ul>
+        </div>
 	</section>
-	
+
 	<section id="index" role="region" data-position="current" class="left-to-current">
 		<section role="region">
-			<article class="content scrollable header">
+			<article class="content scrollable scrollable-y header">
 				<section data-type="list">
 					<ul class="files"></ul>
 				</section>
+	            <div class="preloader">
+	                <progress></progress>
+	            </div>
 			</article>
 		</section>
 	</section>
-  
+
 	<section role="region" name="side" data-position="right">
-		<article class="content scrollable header">
+		<article class="content scrollable scrollable-y header">
 			<section data-type="list">
 				<ul class="files"></ul>
 			</section>
+            <div class="preloader">
+                <progress></progress>
+            </div>
 		</article>
 	</section>
-  
+
 	<section role="region" name="side" data-position="right">
-		<article class="content scrollable header">
+		<article class="content scrollable scrollable-y header">
 			<section data-type="list">
 				<ul class="files"></ul>
 			</section>
+            <div class="preloader">
+                <progress></progress>
+            </div>
 		</article>
 	</section>
 
 	<section id="file-action" data-position="back" class="fullscreen">
 		<form role="dialog" data-type="action">
 			<header></header>
-			<menu>
-				<button data-action="V" data-l10n-id="view">View</button>
-				<button data-action="O" data-l10n-id="open">Open</button>
-				<button data-action="A" data-l10n-id="open-as">Open as...</button>
+			<menu class="center-menu">
+				<button data-action="O" data-l10n-id="open" data-not-close>Open</button>
 				<button data-action="D" data-l10n-id="details">Details</button>
+				<button data-action="W" data-l10n-id="set-wallpaper">Set as wallpaper</button>
 				<button data-action="R" data-l10n-id="rename">Rename</button>
 				<button data-action="C" data-l10n-id="copy">Copy</button>
 				<button data-action="M" data-l10n-id="move">Move</button>
@@ -110,22 +150,32 @@
 				<button data-action="S" data-l10n-id="share">Share</button>
 				<button data-l10n-id="cancel">Cancel</button>
 			</menu>
+			<menu class="right-menu" data-not-last>
+				<button data-filetype="T" data-l10n-id="text">Text</button>
+				<button data-filetype="I" data-l10n-id="image">Imagen</button>
+				<button data-filetype="A" data-l10n-id="music">Music</button>
+				<button data-filetype="V" data-l10n-id="video">Video</button>
+			</menu>
+			<menu class="right-menu" data-not-last>
+				<button data-fileformat></button>
+				<button data-fileformat></button>
+				<button data-fileformat></button>
+				<button data-fileformat></button>
+			</menu>
 		</form>
 	</section>
 
-	<section id="file-types" data-position="back" class="fullscreen">
+	<section id="folder-action" data-position="back" class="fullscreen">
 		<form role="dialog" data-type="action">
-			<header data-l10n-id="type">Type</header>
+			<header></header>
 			<menu>
-				<button data-filetype="T" data-l10n-id="text">Text</button>
-				<button data-filetype="A" data-l10n-id="music">Music</button>
-				<button data-filetype="V" data-l10n-id="video">Video</button>
-				<button data-filetype="P">PDF</button>
+				<button data-action="R" data-l10n-id="rename">Rename</button>
+				<button data-action="D" data-l10n-id="delete">Delete</button>
 				<button data-l10n-id="cancel">Cancel</button>
 			</menu>
 		</form>
 	</section>
-  
+
 	<section id="details" data-position="back" class="fullscreen">
 		<form role="dialog" data-type="confirm">
 			<section>
@@ -142,26 +192,67 @@
 			</menu>
 		</form>
 	</section>
-	
-	<section id="loading" data-position="back" class="shown">
+
+	<section id="loading" data-position="back" class="shown" data-mode="ring">
 		<div id="loading-container">
 			<img id="loading-image" src="images/icon.png" alt="Logo" />
 			<div id="loading-bar">
-				<progress id="loading-progress" value="0"></progress>
+				<progress id="loading-progress"></progress>
 			</div>
 			<div id="loading-message"></div>
 		</div>
 	</section>
 
-	<script type="text/javascript" defer src="libraries/l10n.js"></script>
-	<script type="text/javascript" defer src="libraries/date.format.js"></script>
-	<script type="text/javascript" defer src="libraries/buildingblocks/js/status.js"></script>
-	<script type="text/javascript" defer src="js/config.js"></script>
-	<script type="text/javascript" defer src="js/mime.js"></script>
-	<script type="text/javascript" defer src="js/util.js"></script>
-	<script type="text/javascript" defer src="js/files.js"></script>
-	<script type="text/javascript" defer src="js/storage.js"></script>
-	<script type="text/javascript" defer src="js/app.js"></script>
+	<section role="region" id="about-us" class="skin-dark" data-loaded="false">
+		<header class="fixed">
+			<button id="about-us-close">
+				<span class="icon icon-close">close</span>
+			</button>
+			<h1 id="folder" data-l10n-id="about-us">About us</h1>
+		</header>
+
+		<article class="content scrollable">
+			<div data-type="list">
+				<header data-l10n-id="version">Version</header>
+				<ul>
+					<li>
+						<a>
+							<p id="about-version-label" data-l10n-id="loading">Loading...</p>
+						</a>
+					</li>
+				</ul>
+				<header data-l10n-id="author">Author</header>
+				<ul>
+					<li>
+						<aside class="pack-start">
+							<img src="http://www.gravatar.com/avatar/637215d1b639571f19dd8f2f9024e7d8?s=40" alt="">
+						</aside>
+						<a href="http://github.com/elfoxero" target="_blank">
+							<p>Jhon Klever</p>
+							<p>@elfoxero</p>
+						</a>
+					</li>
+				</ul>
+				<header data-l10n-id="contributors">Contributors</header>
+				<ul id="about-contributors-list">
+					<li>
+						<a>
+							<p data-l10n-id="loading">Loading...</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</article>
+	</section>
+
+	<script defer src="libraries/l10n.js"></script>
+	<script defer src="libraries/date.format.js"></script>
+	<script defer src="libraries/buildingblocks/js/status.js"></script>
+	<script defer src="js/config.js"></script>
+	<script defer src="js/mime.js"></script>
+	<script defer src="js/util.js"></script>
+	<script defer src="js/files.js"></script>
+	<script defer src="js/storage.js"></script>
+	<script defer src="js/app.js"></script>
 </body>
 </html>
-

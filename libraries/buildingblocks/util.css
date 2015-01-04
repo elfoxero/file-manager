@@ -39,8 +39,19 @@ section[role="region"] > header.fixed:first-child {
   position: relative;
 }
 
+.scrollable-x {
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.scrollable-y {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
 .scrollable.header {
   border-top: transparent solid 5rem;
+  border-bottom: transparent solid 4rem;
 }
 
 /* Setting proper paddings and margins */
@@ -84,7 +95,7 @@ section[role="region"] > .content [data-type="list"] li > a > aside:not(.pack-en
 }
 
 [aria-disabled="true"] {
-  pointer-events: none;  
+  pointer-events: none;
 }
 
 /* Fonts */

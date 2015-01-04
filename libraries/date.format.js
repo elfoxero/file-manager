@@ -45,7 +45,7 @@ var dateFormat = function () {
 			utc = true;
 		}
 		
-		var l10n = window.navigator.mozL10n.get;
+		var l10n = window.document.webL10n.get;
 		var	_ = utc ? "getUTC" : "get",
 			d = date[_ + "Date"](),
 			D = date[_ + "Day"](),

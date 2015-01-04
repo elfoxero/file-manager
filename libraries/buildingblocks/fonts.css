@@ -1,4 +1,7 @@
-* { font-family: 'FiraSans'; }
+* {
+/*    font-family: 'FiraSans';*/
+    font-family: sans-serif;
+}
 
 @font-face {
   font-family: 'FiraSans';

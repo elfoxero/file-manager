@@ -1,13 +1,14 @@
 {
 	"name": "File Manager",
-	"description": "An app for Firefox OS to manage files in SD card",
+	"description": "File Manager is an app to manage, copy, move, delete, share and rename files in the SD card. It also allows you to rename and delete folders, view PDF documents (requires Firefox OS 1.4 or greater), play multimedia files, create and edit plain text documents. Uses a variant of Building Blocks http://buildingfirefoxos.com/ and icons from Numix Circle Icon Theme https://github.com/numixproject/numix-icon-theme-circle",
 	"launch_path": "/index.html",
 	"icons": {
+		"512": "/images/icon-512.png",
 		"128": "/images/icon-128.png",
 		"64": "/images/icon-64.png",
 		"60": "/images/icon-60.png"
 	},
-	"version": "1.0-beta2.1",
+	"version": "1.0-beta2",
 	"developer": {
 		"name": "Jhon Klever",
 		"url": "https://github.com/elfoxero"
@@ -15,7 +16,7 @@
 	"default_locale": "en",
 	"permissions": {
 		"device-storage:sdcard": {
-			"description" : "To access files from the SDCard",
+			"description": "To access files from the SD card",
 			"access": "readwrite"
 		}
 	},
@@ -32,6 +33,11 @@
 			"disposition": "inline",
 			"returnValue": true,
 			"href": "/elements/folder.html"
+		}
+	},
+	"locales": {
+		"es": {
+			"description": "File Manager es una aplicación para gestionar, copiar, mover, eliminar, compartir y cambiar de nombre a los archivos de la tarjeta SD, así como renombrar y eliminar carpetas. También permite ver los documentos PDF (requiere Firefox OS 1.4 o una versión superior), reproducir archivos multimedia, crear y editar documentos de texto plano. Utiliza una variante de la interfaz de Building Blocks http://buildingfirefoxos.com/ y los iconos de Numix Circle Icon Theme https://github.com/numixproject/numix-icon-theme-circle"
 		}
 	},
 	"type": "privileged"

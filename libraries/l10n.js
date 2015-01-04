@@ -1,15 +1,31 @@
-/* -*- Mode: js; js-indent-level: 2; indent-tabs-mode: nil -*- */
-/* vim: set shiftwidth=2 tabstop=2 autoindent cindent expandtab: */
-
-'use strict';
-
 /**
- * This library exposes a `navigator.mozL10n' object to handle client-side
- * application localization. See: https://github.com/fabi1cazenave/webL10n
+ * Copyright (c) 2011-2013 Fabien Cazenave, Mozilla.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to
+ * deal in the Software without restriction, including without limitation the
+ * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+ * sell copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+ * IN THE SOFTWARE.
  */
 
-(function(window) {
+/*jshint browser: true, devel: true, es5: true, globalstrict: true */
+'use strict';
+
+document.webL10n = (function(window, document, undefined) {
   var gL10nData = {};
+  var gTextData = '';
   var gTextProp = 'textContent';
   var gLanguage = '';
   var gMacros = {};
@@ -17,26 +33,27 @@
 
 
   /**
-	 * Synchronously loading l10n resources significantly minimizes flickering
-	 * from displaying the app with non-localized strings and then updating the
-	 * strings. Although this will block all script execution on this page, we
-	 * expect that the l10n resources are available locally on flash-storage.
-	 * 
-	 * As synchronous XHR is generally considered as a bad idea, we're still
-	 * loading l10n resources asynchronously -- but we keep this in a setting,
-	 * just in case... and applications using this library should hide their
-	 * content until the `localized' event happens.
-	 */
+   * Synchronously loading l10n resources significantly minimizes flickering
+   * from displaying the app with non-localized strings and then updating the
+   * strings. Although this will block all script execution on this page, we
+   * expect that the l10n resources are available locally on flash-storage.
+   *
+   * As synchronous XHR is generally considered as a bad idea, we're still
+   * loading l10n resources asynchronously -- but we keep this in a setting,
+   * just in case... and applications using this library should hide their
+   * content until the `localized' event happens.
+   */
 
   var gAsyncResourceLoading = true; // read-only
 
 
   /**
-	 * Debug helpers
-	 * 
-	 * gDEBUG == 0: don't display any console message gDEBUG == 1: display only
-	 * warnings, not logs gDEBUG == 2: display all console messages
-	 */
+   * Debug helpers
+   *
+   *   gDEBUG == 0: don't display any console message
+   *   gDEBUG == 1: display only warnings, not logs
+   *   gDEBUG == 2: display all console messages
+   */
 
   var gDEBUG = 1;
 
@@ -54,11 +71,11 @@
 
 
   /**
-	 * DOM helpers for the so-called "HTML API".
-	 * 
-	 * These functions are written for modern browsers. For old versions of IE,
-	 * they're overridden in the 'startup' section at the end of this file.
-	 */
+   * DOM helpers for the so-called "HTML API".
+   *
+   * These functions are written for modern browsers. For old versions of IE,
+   * they're overridden in the 'startup' section at the end of this file.
+   */
 
   function getL10nResourceLinks() {
     return document.querySelectorAll('link[type="application/l10n"]');
@@ -91,38 +108,71 @@
     return { id: l10nId, args: args };
   }
 
-  function fireL10nReadyEvent() {
+  function fireL10nReadyEvent(lang) {
     var evtObject = document.createEvent('Event');
-    evtObject.initEvent('localized', false, false);
-    evtObject.language = gLanguage;
-    window.dispatchEvent(evtObject);
+    evtObject.initEvent('localized', true, false);
+    evtObject.language = lang;
+    document.dispatchEvent(evtObject);
+  }
+
+  function xhrLoadText(url, onSuccess, onFailure, asynchronous) {
+    onSuccess = onSuccess || function _onSuccess(data) {};
+    onFailure = onFailure || function _onFailure() {
+      consoleWarn(url + ' not found.');
+    };
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, asynchronous);
+    if (xhr.overrideMimeType) {
+      xhr.overrideMimeType('text/plain; charset=utf-8');
+    }
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4) {
+        if (xhr.status == 200 || xhr.status === 0) {
+          onSuccess(xhr.responseText);
+        } else {
+          onFailure();
+        }
+      }
+    };
+    xhr.onerror = onFailure;
+    xhr.ontimeout = onFailure;
+
+    // in Firefox OS with the app:// protocol, trying to XHR a non-existing
+    // URL will raise an exception here -- hence this ugly try...catch.
+    try {
+      xhr.send(null);
+    } catch (e) {
+      onFailure();
+    }
   }
 
 
   /**
-	 * l10n resource parser: - reads (async XHR) the l10n resource matching
-	 * `lang'; - imports linked resources (synchronously) when specified; -
-	 * parses the text data (fills `gL10nData'); - triggers success/failure
-	 * callbacks when done.
-	 * 
-	 * @param {string}
-	 *            href URL of the l10n resource to parse.
-	 * 
-	 * @param {string}
-	 *            lang locale (language) to parse.
-	 * 
-	 * @param {Function}
-	 *            successCallback triggered when the l10n resource has been
-	 *            successully parsed.
-	 * 
-	 * @param {Function}
-	 *            failureCallback triggered when the an error has occured.
-	 * 
-	 * @return {void} uses the following global variables: gL10nData, gTextProp.
-	 */
+   * l10n resource parser:
+   *  - reads (async XHR) the l10n resource matching `lang';
+   *  - imports linked resources (synchronously) when specified;
+   *  - parses the text data (fills `gL10nData' and `gTextData');
+   *  - triggers success/failure callbacks when done.
+   *
+   * @param {string} href
+   *    URL of the l10n resource to parse.
+   *
+   * @param {string} lang
+   *    locale (language) to parse.
+   *
+   * @param {Function} successCallback
+   *    triggered when the l10n resource has been successully parsed.
+   *
+   * @param {Function} failureCallback
+   *    triggered when the an error has occured.
+   *
+   * @return {void}
+   *    uses the following global variables: gL10nData, gTextData, gTextProp.
+   */
 
   function parseResource(href, lang, successCallback, failureCallback) {
-    var baseURL = href.replace(/\/[^\/]*$/, '/');
+    var baseURL = href.replace(/[^\/]*$/, '') || './';
 
     // handle escaped characters (backslashes) in a string
     function evalString(text) {
@@ -179,8 +229,7 @@
             }
             if (reImport.test(line)) { // @import rule?
               match = reImport.exec(line);
-              loadImport(baseURL + match[1]); // load the resource
-												// synchronously
+              loadImport(baseURL + match[1]); // load the resource synchronously
             }
           }
 
@@ -194,7 +243,7 @@
 
       // import another *.properties file
       function loadImport(url) {
-        loadResource(url, function(content) {
+        xhrLoadText(url, function(content) {
           parseRawLines(content, false); // don't allow recursive imports
         }, null, false); // load synchronously
       }
@@ -204,41 +253,10 @@
       return dictionary;
     }
 
-    // load the specified resource file
-    function loadResource(url, onSuccess, onFailure, asynchronous) {
-      onSuccess = onSuccess || function _onSuccess(data) {};
-      onFailure = onFailure || function _onFailure() {
-        consoleWarn(url + ' not found.');
-      };
-
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', url, asynchronous);
-      if (xhr.overrideMimeType) {
-        xhr.overrideMimeType('text/plain; charset=utf-8');
-      }
-      xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4) {
-          if (xhr.status == 200 || xhr.status === 0) {
-            onSuccess(xhr.responseText);
-          } else {
-            onFailure();
-          }
-        }
-      };
-      xhr.onerror = onFailure;
-      xhr.ontimeout = onFailure;
-
-      // in Firefox OS with the app:// protocol, trying to XHR a non-existing
-      // URL will raise an exception here -- hence this ugly try...catch.
-      try {
-        xhr.send(null);
-      } catch (e) {
-        onFailure();
-      }
-    }
-
     // load and parse l10n data (warning: global variables are used here)
-    loadResource(href, function(response) {
+    xhrLoadText(href, function(response) {
+      gTextData += response; // mostly for debug
+
       // parse *.properties text data into an l10n dictionary
       var data = parseProperties(response);
 
@@ -331,6 +349,7 @@
   // clear all l10n data
   function clear() {
     gL10nData = {};
+    gTextData = '';
     gLanguage = '';
     // TODO: clear all non predefined macros.
     // There's no such macro /yet/ but we're planning to have some...
@@ -338,17 +357,20 @@
 
 
   /**
-	 * Get rules for plural forms (shared with JetPack), see:
-	 * http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html
-	 * https://github.com/mozilla/addon-sdk/blob/master/python-lib/plural-rules-generator.p
-	 * 
-	 * @param {string}
-	 *            lang locale (language) used.
-	 * 
-	 * @return {Function} returns a function that gives the plural form name for
-	 *         a given integer: var fun = getPluralRules('en'); fun(1) -> 'one'
-	 *         fun(0) -> 'other' fun(1000) -> 'other'.
-	 */
+   * Get rules for plural forms (shared with JetPack), see:
+   * http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html
+   * https://github.com/mozilla/addon-sdk/blob/master/python-lib/plural-rules-generator.p
+   *
+   * @param {string} lang
+   *    locale (language) used.
+   *
+   * @return {Function}
+   *    returns a function that gives the plural form name for a given integer:
+   *       var fun = getPluralRules('en');
+   *       fun(1)    -> 'one'
+   *       fun(0)    -> 'other'
+   *       fun(1000) -> 'other'.
+   */
 
   function getPluralRules(lang) {
     var locales2rules = {
@@ -779,8 +801,8 @@
 
 
   /**
-	 * l10n dictionary functions
-	 */
+   * l10n dictionary functions
+   */
 
   // fetch an l10n object, warn if not found, apply `args' if possible
   function getL10nData(key, args) {
@@ -789,12 +811,11 @@
       consoleWarn('#' + key + ' is undefined.');
     }
 
-    /**
-	 * This is where l10n expressions should be processed. The plan is to
-	 * support C-style expressions from the l20n project; until then, only two
-	 * kinds of simple expressions are supported: {[ index ]} and {{ arguments
-	 * }}.
-	 */
+    /** This is where l10n expressions should be processed.
+      * The plan is to support C-style expressions from the l20n project;
+      * until then, only two kinds of simple expressions are supported:
+      *   {[ index ]} and {{ arguments }}.
+      */
     var rv = {};
     for (var prop in data) {
       var str = data[prop];
@@ -860,9 +881,8 @@
   // translate an HTML element
   function translateElement(element) {
     var l10n = getL10nAttributes(element);
-    if (!l10n.id) {
-        return;
-    }
+    if (!l10n.id)
+      return;
 
     // get the related l10n object
     var data = getL10nData(l10n.id, l10n.args);
@@ -873,7 +893,7 @@
 
     // translate element (TODO: security checks?)
     if (data[gTextProp]) { // XXX
-      if (element.children.length === 0) {
+      if (getChildElementCount(element) === 0) {
         element[gTextProp] = data[gTextProp];
       } else {
         // this element has element children: replace the content of the first
@@ -905,6 +925,21 @@
     }
   }
 
+  // webkit browsers don't currently support 'children' on SVG elements...
+  function getChildElementCount(element) {
+    if (element.children) {
+      return element.children.length;
+    }
+    if (typeof element.childElementCount !== 'undefined') {
+      return element.childElementCount;
+    }
+    var count = 0;
+    for (var i = 0; i < element.childNodes.length; i++) {
+      count += element.nodeType === 1 ? 1 : 0;
+    }
+    return count;
+  }
+
   // translate an HTML subtree
   function translateFragment(element) {
     element = element || document.documentElement;
@@ -922,94 +957,201 @@
 
 
   /**
-	 * Startup & Public API
-	 * 
-	 * This section is quite specific to the B2G project: old browsers are not
-	 * supported and the API is slightly different from the standard webl10n
-	 * one.
-	 */
+   * Startup & Public API
+   *
+   * Warning: this part of the code contains browser-specific chunks --
+   * that's where obsolete browsers, namely IE8 and earlier, are handled.
+   *
+   * Unlike the rest of the lib, this section is not shared with FirefoxOS/Gaia.
+   */
 
   // load the default locale on startup
   function l10nStartup() {
     gReadyState = 'interactive';
-    consoleLog('loading [' + navigator.language + '] resources, ' +
+
+    // most browsers expose the UI language as `navigator.language'
+    // but IE uses `navigator.userLanguage' instead
+    var userLocale = navigator.language || navigator.userLanguage;
+    consoleLog('loading [' + userLocale + '] resources, ' +
         (gAsyncResourceLoading ? 'asynchronously.' : 'synchronously.'));
 
     // load the default locale and translate the document if required
-    if (document.documentElement.lang === navigator.language) {
-      loadLocale(navigator.language);
+    if (document.documentElement.lang === userLocale) {
+      loadLocale(userLocale);
     } else {
-      loadLocale(navigator.language, translateFragment);
+      loadLocale(userLocale, translateFragment);
     }
   }
 
-  // the B2G build system doesn't expose any `document'...
-  if (typeof(document) !== 'undefined') {
-    if (document.readyState === 'complete' ||
-      document.readyState === 'interactive') {
-      window.setTimeout(l10nStartup);
-    } else {
+  // browser-specific startup
+  if (document.addEventListener) { // modern browsers and IE9+
+    if (document.readyState === 'loading') {
+      // the document is not fully loaded yet: wait for DOMContentLoaded.
       document.addEventListener('DOMContentLoaded', l10nStartup);
+    } else {
+      // l10n.js is being loaded with <script defer> or <script async>,
+      // the DOM is ready for parsing.
+      window.setTimeout(l10nStartup);
     }
-  }
+  } else if (window.attachEvent) { // IE8 and before (= oldIE)
+    // TODO: check if jQuery is loaded (CSS selector + JSON + events)
 
-  // load the appropriate locale if the language setting has changed
-  if ('mozSettings' in navigator && navigator.mozSettings) {
-    navigator.mozSettings.addObserver('language.current', function(event) {
-      loadLocale(event.settingValue, translateFragment);
+    // dummy `console.log' and `console.warn' functions
+    if (!window.console) {
+      consoleLog = function(message) {}; // just ignore console.log calls
+      consoleWarn = function(message) {
+        if (gDEBUG) {
+          alert('[l10n] ' + message); // vintage debugging, baby!
+        }
+      };
+    }
+
+    // XMLHttpRequest for IE6
+    if (!window.XMLHttpRequest) {
+      xhrLoadText = function(url, onSuccess, onFailure, asynchronous) {
+        onSuccess = onSuccess || function _onSuccess(data) {};
+        onFailure = onFailure || function _onFailure() {
+          consoleWarn(url + ' not found.');
+        };
+        var xhr = new ActiveXObject('Microsoft.XMLHTTP');
+        xhr.open('GET', url, asynchronous);
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+              onSuccess(xhr.responseText);
+            } else {
+              onFailure();
+            }
+          }
+        };
+        xhr.send(null);
+      }
+    }
+
+    // worst hack ever for IE6 and IE7
+    if (!window.JSON) {
+      getL10nAttributes = function(element) {
+        if (!element)
+          return {};
+        var l10nId = element.getAttribute('data-l10n-id'),
+            l10nArgs = element.getAttribute('data-l10n-args'),
+            args = {};
+        if (l10nArgs) try {
+          args = eval(l10nArgs); // XXX yeah, I know...
+        } catch (e) {
+          consoleWarn('could not parse arguments for #' + l10nId);
+        }
+        return { id: l10nId, args: args };
+      };
+    }
+
+    // override `getTranslatableChildren' and `getL10nResourceLinks'
+    if (!document.querySelectorAll) {
+      getTranslatableChildren = function(element) {
+        if (!element)
+          return [];
+        var nodes = element.getElementsByTagName('*'),
+            l10nElements = [],
+            n = nodes.length;
+        for (var i = 0; i < n; i++) {
+          if (nodes[i].getAttribute('data-l10n-id'))
+            l10nElements.push(nodes[i]);
+        }
+        return l10nElements;
+      };
+      getL10nResourceLinks = function() {
+        var links = document.getElementsByTagName('link'),
+            l10nLinks = [],
+            n = links.length;
+        for (var i = 0; i < n; i++) {
+          if (links[i].type == 'application/l10n')
+            l10nLinks.push(links[i]);
+        }
+        return l10nLinks;
+      };
+    }
+
+    // override `getL10nDictionary'
+    if (!window.JSON || !document.querySelectorAll) {
+      getL10nDictionary = function() {
+        var scripts = document.getElementsByName('script');
+        for (var i = 0; i < scripts.length; i++) {
+          if (scripts[i].type == 'application/l10n') {
+            return eval(scripts[i].innerHTML);
+          }
+        }
+        return null;
+      };
+    }
+
+    // fire non-standard `localized' DOM events
+    if (document.createEventObject && !document.createEvent) {
+      fireL10nReadyEvent = function(lang) {
+        // hack to simulate a custom event in IE:
+        // to catch this event, add an event handler to `onpropertychange'
+        document.documentElement.localized = 1;
+      };
+    }
+
+    // startup for IE<9
+    window.attachEvent('onload', function() {
+      gTextProp = document.body.textContent ? 'textContent' : 'innerText';
+      l10nStartup();
     });
   }
 
-  // public API
-  navigator.mozL10n = {
+  // cross-browser API (sorry, oldIE doesn't support getters & setters)
+  return {
     // get a localized string
-    get: function l10n_get(key, args, fallback) {
+    get: function(key, args, fallback) {
       var data = getL10nData(key, args) || fallback;
-      if (data) {
-        return 'textContent' in data ? data.textContent : '';
+      if (data) { // XXX double-check this
+        return gTextProp in data ? data[gTextProp] : '';
       }
       return '{{' + key + '}}';
     },
 
-    // get|set the document language and direction
-    get language() {
-      return {
-        // get|set the document language (ISO-639-1)
-        get code() { return gLanguage; },
-        set code(lang) { loadLocale(lang, translateFragment); },
+    // debug
+    getData: function() { return gL10nData; },
+    getText: function() { return gTextData; },
 
-        // get the direction (ltr|rtl) of the current language
-        get direction() {
-          // http://www.w3.org/International/questions/qa-scripts
-          // Arabic, Hebrew, Farsi, Pashto, Urdu
-          var rtlList = ['ar', 'he', 'fa', 'ps', 'ur'];
-          return (rtlList.indexOf(gLanguage) >= 0) ? 'rtl' : 'ltr';
-        }
-      };
+    // get|set the document language
+    getLanguage: function() { return gLanguage; },
+    setLanguage: function(lang) { loadLocale(lang, translateFragment); },
+
+    // get the direction (ltr|rtl) of the current language
+    getDirection: function() {
+      // http://www.w3.org/International/questions/qa-scripts
+      // Arabic, Hebrew, Farsi, Pashto, Urdu
+      var rtlList = ['ar', 'he', 'fa', 'ps', 'ur'];
+      return (rtlList.indexOf(gLanguage) >= 0) ? 'rtl' : 'ltr';
     },
 
     // translate an element or document fragment
     translate: translateFragment,
 
-    // get (a clone of) the dictionary for the current locale
-    get dictionary() { return JSON.parse(JSON.stringify(gL10nData)); },
-
     // this can be used to prevent race conditions
-    get readyState() { return gReadyState; },
-    ready: function l10n_ready(callback) {
+    getReadyState: function() { return gReadyState; },
+    ready: function(callback) {
       if (!callback) {
         return;
       } else if (gReadyState == 'complete' || gReadyState == 'interactive') {
         window.setTimeout(callback);
-      } else {
-        window.addEventListener('localized', callback);
+      } else if (document.addEventListener) {
+        document.addEventListener('localized', callback);
+      } else if (document.attachEvent) {
+        document.documentElement.attachEvent('onpropertychange', function(e) {
+          if (e.propertyName === 'localized') {
+            callback();
+          }
+        });
       }
     }
   };
+}) (window, document);
 
-  consoleLog('library loaded.');
-})(this);
-
+// gettext-like shortcut for document.webL10n.get
 if (window._ === undefined) {
-	  var _ = navigator.mozL10n.get;
+  var _ = document.webL10n.get;
 }
+

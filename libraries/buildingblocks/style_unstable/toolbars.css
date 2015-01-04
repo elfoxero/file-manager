@@ -3,13 +3,14 @@
 * ---------------------------------- */
 
 [role="toolbar"] {
+  color: #fff;
   height: 4rem;
   width: 100%;
   position: fixed;
   bottom: 0;
   left: 0;
   z-index: 100;
-  background: rgba(0,0,0, 0.85);
+  background-color: rgba(0,0,0,.85);
 }
 
 [role="toolbar"] ul {

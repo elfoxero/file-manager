@@ -5,9 +5,7 @@
 /* Main dialog setup */
 form[role="dialog"][data-type="action"],
 form[role="dialog"][data-type="object"] {
-  background:
-    url(action_menu/images/ui/pattern.png) repeat left top,
-    url(action_menu/images/ui/gradient.png) no-repeat left top / 100% 100%;
+  background-color: #2D2D2D;
   overflow: hidden;
   position: fixed;
   z-index: 100;
@@ -54,10 +52,12 @@ form[role="dialog"][data-type="object"] > header {
   overflow: hidden;
   font-weight: normal;
   padding: 0 3rem;
+  border-bottom: 0.1rem solid #616262;
 }
 
 form[role="dialog"][data-type="action"] > header:after,
 form[role="dialog"][data-type="object"] > header:after {
+/*
   content: '';
   position: absolute;
   background: #222323;
@@ -66,6 +66,7 @@ form[role="dialog"][data-type="object"] > header:after {
   right: 0;
   bottom: 0;
   border-top: 0.1rem solid #616262;
+*/
 }
 
 form[role="dialog"][data-type="action"] > header h1,
@@ -252,8 +253,10 @@ form[role="dialog"][data-type="object"] > menu {
   background: none;
   position: absolute;
   left: 0;
-  right: 0;
+  width: 100%;
   bottom: 7rem;
+  transition: left .2s ease;
+  -moz-transition: left .2s ease;
 }
 
 form[role="dialog"][data-type="action"] > menu > button,
@@ -268,40 +271,41 @@ form[role="dialog"][data-type="object"] > menu > button {
   font-weight: normal;
   line-height: 4rem;
   outline: none;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   color: #fff;
   text-shadow: none;
   text-align: left;
   padding: 0 1rem;
   margin: 0 1.5rem 1rem 1.5rem;
-  background: #5f5f5f padding-box;
-  border-radius: 0.2rem;
+  background-color: rgba(87, 87, 87, 0.8);
+  background-image: none;
+  border-radius: 0;
   border: none;
   position: relative;
   bottom: 0;
+  font-style: italic;
 }
 
-form[role="dialog"][data-type="action"] > menu > button:last-child,
-form[role="dialog"][data-type="object"] > menu > button:last-child {
+form[role="dialog"][data-type="action"] > menu:not([data-not-last]) > button:last-child,
+form[role="dialog"][data-type="object"] > menu:not([data-not-last]) > button:last-child {
   position: fixed;
   bottom: 0;
   left: 0;
-  text-shadow: 0.1rem 0.1rem 0 rgba(255,255,255,0.3);
   color: #333;
-  font-weight: 500;
-  background: #fafafa url(buttons/images/ui/default.png) repeat-x left bottom / auto 100%;
-  border: solid 0.1rem #a6a6a6;
+  font-weight: normal;
+  background: #D8D8D8;
+  border-radius: 2rem;
   text-align: center;
   font-size: 1.6rem;
   margin-bottom: 1.5rem;
 }
 
-form[role="dialog"][data-type="action"] > menu > button:last-child:before,
-form[role="dialog"][data-type="object"] > menu > button:last-child:before {
+form[role="dialog"][data-type="action"] > menu:not([data-not-last]) > button:last-child:before,
+form[role="dialog"][data-type="object"] > menu:not([data-not-last]) > button:last-child:before {
   content: '';
   position: fixed;
   width: 100%;
-  background: url(action_menu/images/ui/pattern.png) repeat scroll left top #2D2D2D;
+  background-color: #2D2D2D;
   height: 7rem;
   left: 0;
   bottom: 0;
@@ -309,24 +313,22 @@ form[role="dialog"][data-type="object"] > menu > button:last-child:before {
   border-top: 0.1rem solid rgba(255, 255, 255, 0.1);
 }
 
-form[role="dialog"][data-type="action"] > menu > button:nth-last-child(2),
-form[role="dialog"][data-type="object"] > menu > button:nth-last-child(2) {
+form[role="dialog"][data-type="action"] > menu:not([data-not-last]) > button:nth-last-child(2),
+form[role="dialog"][data-type="object"] > menu:not([data-not-last]) > button:nth-last-child(2) {
   margin-bottom: 1.5rem;
 }
 
 /* Press state */
 form[role="dialog"][data-type="action"] > menu > button:active,
 form[role="dialog"][data-type="object"] > menu > button:active {
-  background-color: #006f86;
-  color: #333;
-  text-shadow: 0 0.1rem 0 rgba(255, 255, 255, 0.25);
+  background-color: #0AC;
+  color: #FFF;
 }
 
 form[role="dialog"][data-type="action"] > menu > button:last-child:active,
 form[role="dialog"][data-type="object"] > menu > button:last-child:active {
-  border: solid 0.1rem #008aaa;
-  background: #008aaa;
-  color: #333;
+  background: #0AC;
+  color: #FFF;
 }
 
 /* Disabled */

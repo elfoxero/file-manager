@@ -50,8 +50,11 @@ section[role="region"] > header.fixed:first-child {
 }
 
 .scrollable.header {
-  border-top: transparent solid 5rem;
-  border-bottom: transparent solid 4rem;
+    border: none;
+    height: -moz-calc(100% - 9rem);
+    height: -webkit-calc(100% - 9rem);
+    height: calc(100% - 9rem);
+    top: 5rem;
 }
 
 /* Setting proper paddings and margins */

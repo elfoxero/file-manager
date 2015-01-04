@@ -99,7 +99,7 @@
 		}
 
 		storage.delete(file, function () {
-			var blob = new Blob([document.querySelector('textarea').value]);
+			var blob = new Blob(["\ufeff", document.querySelector('textarea').value], {encoding: "UTF-8", type: "text/plain;charset=UTF-8"});
 
 			storage.create(blob, file, function () {
 				activity.postResult({'saved': true, 'file': file, 'blob': blob});

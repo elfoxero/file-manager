@@ -36,6 +36,9 @@
 		}
 	},
 	"locales": {
+		"ca": {
+			"name": "Els meus fitxers"
+		},
 		"es": {
 			"name": "Mis Archivos"
 		},

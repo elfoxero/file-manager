@@ -36,14 +36,11 @@
 		}
 	},
 	"locales": {
-		"ca": {
-			"name": "Meves Fitxers"
-		},
 		"es": {
 			"name": "Mis Archivos"
 		},
 		"eu": {
-			"name": "Nire Fitxategiak"
+			"name": "Nire fitxategiak"
 		},
 		"fr": {
 			"name": "Mes Fichiers"
@@ -52,7 +49,7 @@
 			"name": "File Manager"
 		},
 		"nl": {
-			"name": "Mijn Bestanden"
+			"name": "Bestandsbeheer"
 		},
 		"pt-BR": {
 			"name": "Meus Arquivos"

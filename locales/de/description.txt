@@ -1,28 +1,28 @@
-File Manager is an app for Firefox OS to explore and manage files from SD card.
+File Manager ist eine Anwendung für Firefox OS zum Untersuchen und Verwalten von Dateien auf der SD-Karte.
 
-Requirements:
+Anforderungen:
 
-This app requires permissions to access to SD card.
+Diese Anwendung benötigt die Berechtigung zum Zugriff auf die SD-Karte.
 
 Features:
 
-- Allows to copy, move, rename and delete files.
-- Allows to create, rename and delete folders.
-- Opens files of music, video, text and image types.
-- Opens PDF files (requires Firefox OS 1.4 or greater).
-- Opens any file as music, video, text or image.
-- Allows to set as wallpaper any image.
-- Allows to share any file via bluetooth, email and more.
-- Allows to create and edit text plain files.
-- Allows to manage any folder making long press on it.
+- Ermöglicht das Kopieren, Verschieben, Umbenennen und Löschen von Dateien.
+- Ermöglicht das Erstellen, Umbenennen und Löschen von Ordnern.
+- Öffnet Musik-, Video-, Text- und Bilddateien.
+- Öffnet PDF-Dateien (benötigt Firefox OS 1.4 oder höher).
+- Öffnet eine beliebige Datei als Musik, Video, Text oder Bild.
+- Ermöglicht es, ein beliebiges Bild als Hintergrund zu setzen.
+- Ermöglicht das Teilen einer beliebigen Datei über Bluetooth, Email oder mehr.
+- Ermöglicht das Erstellen und Bearbeiten von einfachen Textdateien.
+- Ermöglicht das Verwalten eines Orders durch langen Druck.
 
-For developers:
+Für Entwickler:
 
-If you have developed an app that interacts with files in SD card, File Manager can use your app to open files directly. For more info see the Github repository.
+Wenn Sie selbst eine Anwendung entwickelt haben, die mit Dateien auf der SD-Karte interagiert, dann kann File Manager die Dateien direkt mir Ihrer Anwendung öffnen. Mehr Informationen dazu finden sich im Github-Repository.
 
-Resources:
+Ressourcen:
 
-This app is open source under GPL license.
-Uses a variant of Building Blocks library and icon theme from Numix Circle.
+Diese Anwendung ist Open Source und steht under der GPL.
+Verwendet eine Variante der Bibliothek Building Blocks und das Icon Theme von Numix Circle.
 
-This app was tested on ZTE Open device with Firefox OS 1.1 and simulators for Firefox OS 1.3, 1.4 and 2.0.
+Diese Anwendung wurde auf einem ZTE Open mit Firefox OS 1.1 sowie Simulatoren für Firefox OS 1.3, 1.4 und 2.0 getestet.

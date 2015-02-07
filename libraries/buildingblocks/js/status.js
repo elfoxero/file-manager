@@ -45,14 +45,7 @@ utils.status = (function() {
     content.innerHTML = '';
 
     if (typeof message === 'string') {
-	  if (message.indexOf('{{') < 0) {
-		content.textContent = message;
-	  } else {
-		var node = document.createElement('span');
-		node.textContent = message;
-		content.innerHTML = node.innerHTML.replace('{{', '<strong>').replace('}}', '</strong>');
-		node = null;
-	  }
+      content.textContent = message;
     } else {
       try {
         // Here we should have a DOMFragment

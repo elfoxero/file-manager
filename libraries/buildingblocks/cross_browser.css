@@ -5,14 +5,14 @@
 /* ----------------------------------------------------------------- */
 
 /* Action menu */
-/*form[role="dialog"][data-type="action"],
+form[role="dialog"][data-type="action"],
 form[role="dialog"][data-type="object"],
 form[role="dialog"][data-type="confirm"] {
   background:
     url(style/action_menu/images/ui/pattern.png) repeat left top,
     url(style/action_menu/images/ui/gradient.png) no-repeat left top;
   background-size: auto, 100%;
-}*/
+}
 
 form[role="dialog"][data-type="action"] > header:first-child,
 form[role="dialog"][data-type="object"] > header:first-child {
@@ -51,8 +51,7 @@ form[role="dialog"][data-type="edit"] menu button {
 form[role="dialog"][data-type="confirm"] menu button:last-child,
 form[role="dialog"][data-type="edit"] menu button:last-child {
   float: right;
-/*  margin-left: 0;*/
-  margin-left: 1rem;
+  margin-left: 0;
 }
 
 form[role="dialog"][data-type="confirm"] menu button:first-child:last-child,
@@ -79,21 +78,9 @@ section[role="region"] > header:first-child menu[type="toolbar"] button {
   -webkit-box-sizing: border-box;
 }
 
-section[role="region"] > header:first-child menu[type="toolbar"] a:last-child,
-section[role="region"] > header:first-child menu[type="toolbar"] button:last-child {
-  /*background: url(style/headers/images/ui/separator.png) no-repeat left center;*/
-  background-size: auto 4.8rem;
-}
-
 section[role="region"] > header:first-child form button[type="reset"] {
   background: url(style/headers/images/icons/clear.png) no-repeat center center;
   background-size: 1.7rem auto;
-}
-
-section[role="region"] > header:first-child > button:after,
-section[role="region"] > header:first-child > a:after {
-  /*background: url(style/headers/images/ui/separator.png) no-repeat right center;*/
-  background-size: 0.2rem 4.8rem;
 }
 
 section[role="region"] > header:first-child .icon {
@@ -165,13 +152,13 @@ section[data-type="sidebar"] > header menu[type="toolbar"] button {
 }
 
 section[data-type="sidebar"] > header {
-  background: url(style_unstable/drawer/images/ui/header.png) repeat-x left bottom;
+  background: url(style/drawer/images/ui/header.png) repeat-x left bottom;
   background-size: 100% auto;
 }
 
 section[data-type="sidebar"] > header menu[type="toolbar"] a:last-child,
 section[data-type="sidebar"] > header menu[type="toolbar"] button:last-child {
-  background: url(style_unstable/drawer/images/ui/separator.png) no-repeat left center;
+  background: url(style/drawer/images/ui/separator.png) no-repeat left center;
   background-size: auto 3.1rem;
 }
 
@@ -207,7 +194,7 @@ progress[value]::-webkit-progress-value {
 }
 
 progress[value].pack-activity::-webkit-progress-bar {
-  background-image: url(style_unstable/progress_activity/images/ui/activity.png);
+  background-image: url(style/progress_activity/images/ui/activity.png);
   -webkit-animation: 0.5s move infinite steps(15);
 }
 
@@ -239,7 +226,7 @@ div[role="slider"] progress::-webkit-progress-value {
 div[role="slider"] button {
   -moz-transition: border 0.15s ease;
   -webkit-transition: border 0.15s ease;
-  background: url(style_unstable/seekbars/images/ui/handler.png) no-repeat center;
+  background: url(style/seekbars/images/ui/handler.png) no-repeat center;
   background-size: 2.8rem auto;
 }
 
@@ -265,12 +252,6 @@ div[role="slider"] > label:first-of-type {
 [role="tablist"].bottom  > [role="tab"] > a {
   margin-top: -4rem;
   top: 100%;
-}
-
-/* Filters */
-[role="tablist"][data-type="filter"] > [role="tab"] {
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
 }
 
 /* Collision: This should be added to Gaia */

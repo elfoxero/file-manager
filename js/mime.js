@@ -220,6 +220,12 @@ var MIME = [
 		'class': 'rss'
 	},
 	{
+		'mime': 'application/atom+xml',
+		'pattern': '^application\/atom\+xml$',
+		'extensions': ['atom'],
+		'class': 'atom'
+	},
+	{
 		'mime': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 		'pattern': '.*officedocument\.wordprocessingml.*',
 		'extensions': ['doc', 'docx'],

@@ -24,7 +24,7 @@ If you have created an app that interacts with some files in SD card, File Manag
 You just need to add an activity to your manifest file, specifying the file type that your app supports. For example if you want to create a simple SVG image viewer:
 
 
-```
+```js
 {
 	"activities": {
 		"open": {
@@ -41,7 +41,7 @@ You just need to add an activity to your manifest file, specifying the file type
 
 File Manager will send to your app the following data:
 
-```
+```js
 {
 	"type": "image/svg+xml",
 	"filename": "/sdcard/image.svg", // For example

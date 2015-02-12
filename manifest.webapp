@@ -3,10 +3,10 @@
 	"description": "File Manager is an app to manage, copy, move, delete, share and rename files in the SD card. It also allows you to rename and delete folders, view PDF documents (requires Firefox OS 1.4 or greater), play multimedia files, create and edit plain text documents. Uses a variant of Building Blocks http://buildingfirefoxos.com/ and icons from Numix Circle Icon Theme https://github.com/numixproject/numix-icon-theme-circle",
 	"launch_path": "/index.html",
 	"icons": {
-		"512": "/images/icon-512.png",
-		"128": "/images/icon-128.png",
-		"64": "/images/icon-64.png",
-		"60": "/images/icon-60.png"
+		"512": "/img/icon-512.png",
+		"128": "/img/icon-128.png",
+		"64": "/img/icon-64.png",
+		"60": "/img/icon-60.png"
 	},
 	"version": "1.0-beta2",
 	"developer": {

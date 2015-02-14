@@ -96,7 +96,7 @@ section[role="region"] .preloader {
 [role="toolbar"] .toolbar-text {
 	font-size: 1.6rem;
 	line-height: 4rem;
-	padding-right: 10rem;
+	padding-right: 12rem;
 }
 
 @keyframes fadeOutLoading {

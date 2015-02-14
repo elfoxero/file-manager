@@ -10,7 +10,7 @@
   bottom: 0;
   left: 0;
   z-index: 100;
-  background-color: rgba(64,64,64,128);
+  background-color: rgba(64,64,64,0.5);
 }
 
 [role="toolbar"] ul {

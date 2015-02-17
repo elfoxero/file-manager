@@ -125,7 +125,7 @@ section[role="region"] header h2 {
 
 section[role="region"] > header:first-child {
   color: #fff;
-  background-color: #f97c17;
+  background-color: #ff9500;
 }
 
 section[role="region"] > header:first-child h1 {

@@ -23,7 +23,8 @@
 section[data-type="sidebar"] {
     position: absolute;
     width: 80%;
-    background: url(../libraries/buildingblocks/style_unstable/drawer/images/ui/pattern.png) repeat;
+    color: #5f5f5f;
+    background-color: #e5e5e5;
     height: 100%;
     top: 0;
     left: 20%;
@@ -36,17 +37,15 @@ section[data-type="sidebar"] > header {
     z-index: 1;
     height: 5rem;
     color: #fff;
-    background: url(../libraries/buildingblocks/style_unstable/drawer/images/ui/header.png) repeat-x left bottom / 100% auto;
+    background-color: #ffaa10;
 }
 
 section[data-type="sidebar"] > header:after {
     content: "";
-    height: 0.3rem;
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
-    background: url(../libraries/buildingblocks/style_unstable/drawer/images/ui/shadow_header.png) repeat-x left top;
     background-size: auto 100%;
 }
 
@@ -87,7 +86,7 @@ section[data-type="sidebar"] > header menu[type="toolbar"] button {
 
 section[data-type="sidebar"] > header menu[type="toolbar"] a:last-child,
 section[data-type="sidebar"] > header menu[type="toolbar"] button:last-child {
-    background: url(../libraries/buildingblocks/style_unstable/drawer/images/ui/separator.png) no-repeat left center / auto 3.1rem;
+    background-color: #e5e5e5;
 }
 
 section[data-type="sidebar"] > header menu[type="toolbar"] {
@@ -104,7 +103,7 @@ section[data-type="sidebar"] > header button {
     font-weight: 600;
     font-size: 1.4rem;
     line-height: 1.1em;
-    color: #fff;
+    color: #5f5f5f;
 }
 
 section[data-type="sidebar"] > header a:first-letter,
@@ -124,17 +123,6 @@ section[data-type="sidebar"] > header .icon {
     height: 4.9rem;
 }
 
-section[data-type="sidebar"]:before {
-    content: "";
-    width: 1rem;
-    background: url(../images/shadow.png) left top repeat-y;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 5;
-}
-
 section[data-type="sidebar"] > nav {
     overflow-y: auto;
     max-height: 100%;
@@ -146,9 +134,9 @@ section[data-type="sidebar"] > nav > h2 {
     font-size: 1.4rem;
     line-height: 3.3rem;
     text-indent: 3rem;
-    color: #fff;
-    background: url(../libraries/buildingblocks/style_unstable/drawer/images/ui/pattern_subheader.png) repeat left top;
-    border-bottom: 0.1rem solid #596068;
+    color: #5f5f5f;
+    background-color: #e5e5e5;
+    border-bottom: 0.1rem solid #dddddd;
     margin: 0;
     padding-right: 0.8rem;
 }
@@ -164,21 +152,21 @@ section[data-type="sidebar"] > nav > ul {
 }
 
 section[data-type="sidebar"] > nav > ul > li {
-    color: #fff;
+    color: #5f5f5f;
     list-style: none;
     transition: background 0.2s ease;
 }
 
 section[data-type="sidebar"] > nav > ul > li:active {
-    background: #00ABCC;
+    background-color: #00caf2;
 }
 
 section[data-type="sidebar"] > nav > ul > li > a {
     text-decoration: none;
-    color: #fff;
+    color: #5f5f5f;
     font-size: 1.6rem;
     line-height: 4.35rem;
-    border-bottom: 0.1rem solid #596068;
+    border-bottom: 0.1rem solid #dddddd;
     text-indent: 3rem;
     padding-right: 0.8rem;
     width: 100%;

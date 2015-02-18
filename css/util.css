@@ -21,7 +21,7 @@
 */
 
 #loading {
-	background-color: rgba(255,255,255,0.95);
+	background-color: rgb(255,255,255);
 }
 
 #loading.shown {

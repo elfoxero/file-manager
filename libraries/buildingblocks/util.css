@@ -1,349 +1,141 @@
-/* -------------------------------------------------------------------
-  HEADERS: layout
-  Form factor or Skin dependent styles should NOT be defined here.
-------------------------------------------------------------------- */
+/* Feel free to add any useful code */
+/* This will help you scroll just the content of your app. Eg:
+  <header class="fixed">
+  ...
+  <article class="scrollable header">
+*/
 
-section[role="region"] > header:first-child {
-  position: relative;
-  display: block;
-  z-index: 10;
-  padding: 0;
-  height: 5rem;
-  border: none;
+html {
+  height: 100%;
+  font-size: 62.5%; /* Setting base font to 10px and define all your units in rem. 1rem = 10px */
 }
 
-section[role="region"] > header:first-child h1 {
-  font-size: 2.3rem;
-  line-height: 5rem;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+body {
+  margin: 0;
+  height: 100%;
   display: block;
   overflow: hidden;
-  margin: 0;
-  padding: 0 1rem;
+  font-family: sans-serif;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+section[role="region"] {
   height: 100%;
-  font-weight: 300;
-  font-style: italic;
-  text-align: center;
+  background: #fff;
 }
 
-section[role="region"] > header:first-child h1 em {
-  font-weight: 400;
-  font-size: 1.5rem;
-  line-height: 1em;
-  font-style: normal;
+section[role="region"] > header.fixed:first-child {
+  position: absolute;
+  width: 100%;
+  background: #ff9500;
 }
 
-section[role="region"] > header:first-child menu {
+.scrollable {
+  overflow: auto;
   height: 100%;
-  float: right;
-  padding: 0;
-  margin: 0;
-}
-
-/* ----------------------------------
-  Buttons
----------------------------------- */
-
-section[role="region"] > header:first-child a,
-section[role="region"] > header:first-child button {
   box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   position: relative;
-  display: block;
-  overflow: hidden;
-  float: left;
-  min-width: 5rem;
-  width: auto;
-  height: 5rem;
-  border: none;
-  background: none;
-  padding: 0 1rem;
-  margin: 0;
-  font-weight: 400;
-  font-size: 1.5rem;
-  line-height: 5rem;
-  border-radius: 0;
-  text-decoration: none;
+}
+
+.scrollable.header {
+  height: calc(100% - 9rem);
+  top: 5rem;
+}
+
+/* Setting proper paddings and margins */
+.content {
+  padding: 1.5rem;
+}
+
+section[role="region"] .content header {
+  margin: 1.5rem -1.5rem;
+}
+
+section[role="region"] .content header:first-child {
+  margin-top: -1.5rem;
+}
+
+.content [data-type="list"] {
+  margin: -1.5rem;
+}
+
+.center {
   text-align: center;
-  text-shadow: none;
-  font-style: italic;
 }
 
-/* Pressed state */
-section[role="region"] > header:first-child a:focus {
-  outline: none;
-}
-
-section[role="region"] > header:first-child button::-moz-focus-inner {
-  outline: none;
-  border: none;
-  margin-top: -0.2rem; /* To fix line-height bug (697451) */
+[data-type="list"] {
   padding: 0;
 }
 
-/* Disabled state */
-section[role="region"] > header:first-child a[aria-disabled="true"],
-section[role="region"] > header:first-child button[disabled] {
-  opacity: 0.3;
-  pointer-events: none;
+[data-type="list"] ul {
+  padding: 0 1.5rem;
+  overflow: auto;
 }
 
-/* ----------------------------------
-  Icons
----------------------------------- */
-
-section[role="region"] > header:first-child .icon {
-  display: block;
-  width: 3rem;
-  height: 5rem;
-  background: transparent no-repeat center / 3rem auto;
-  font-size: 0;
+section[role="region"] .content [data-type="list"] header {
+  margin: 0 1.5rem;
 }
 
-/* ----------------------------------
-  Subheader
----------------------------------- */
-
-section[role="region"] > header {
-  z-index: 0;
-  height: auto;
+[data-type="list"] li p,
+[data-type="list"] li p:first-of-type {
+  padding-left: 1.5rem;
 }
 
-section[role="region"] header h2 {
-  margin: 0;
-  padding: 0.8rem 3rem;
-  font-weight: 400;
+
+/* Fonts */
+h1 { /* Main header */
+  font-size: 2.5rem;
+  font-weight: normal;
+}
+
+h2 { /* Subheader, Dialog title */
+  font-size: 1.6rem;
+  font-weight: normal;
+}
+
+p {
+  font-size: 1.9rem;
+  font-weight: normal;
+  line-height: 2.5rem;
+}
+
+p.large { /* Dialog body */
+  font-size: 2.3rem;
+  font-weight: 300;
+  line-height: 3rem;
+}
+
+p.alt { /* Body medium, Buttons */
+  font-size: 1.7rem;
+  font-weight: 500;
+  line-height: 2.2rem;
+}
+
+p.small { /* Status bar */
   font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+p.mini { /* Fine print */
+  font-size: 1.4rem;
+  line-height: 1.9rem;
+}
+
+p.micro { /* App icon label */
+  font-size: 1.3rem;
   line-height: 1.8rem;
 }
 
-/* -----------------------------------------------------------------
-  HEADER SKIN: default
-  Default values in case we are not overriding them using
-  class="skin-*"
------------------------------------------------------------------ */
-
-section[role="region"] > header:first-child {
-  color: #fff;
-  background-color: #f97c17;
-}
-
-section[role="region"] > header:first-child h1 {
-  color: #fff;
-}
-
-section[role="region"] > header:first-child a,
-section[role="region"] > header:first-child button {
-  color: rgba(0,0,0,0.6);
-}
-
-section[role="region"] > header:first-child a:active,
-section[role="region"] > header:first-child button:active,
-section[role="region"] > header:first-child a:hover,
-section[role="region"] > header:first-child button:hover {
-  background-color: rgba(0,0,0,0.07);
-}
-
-section[role="region"] > header:first-child a:focus,
-section[role="region"] > header:first-child button:focus {
-  background-color: transparent;
-}
-
-/* ----------------------------------
-  Icons
----------------------------------- */
-
-section[role="region"] > header:first-child .icon.icon-add {
-  background-image: url(headers/images/icons/add.png);
-}
-
-section[role="region"] > header:first-child .icon.icon-compose {
-  background-image: url(headers/images/icons/compose.png);
-}
-
-section[role="region"] > header:first-child .icon.icon-edit {
-  background-image: url(headers/images/icons/edit.png);
-}
-
-section[role="region"] > header:first-child .icon.icon-send {
-  background-image: url(headers/images/icons/send.png);
-}
-
-section[role="region"] > header:first-child .icon.icon-close {
-  background-image: url(headers/images/icons/close.png);
-}
-
-section[role="region"] > header:first-child .icon.icon-back {
-  background-image: url(headers/images/icons/back.png);
-}
-
-section[role="region"] > header:first-child .icon.icon-menu {
-  background-image: url(headers/images/icons/menu.png);
-}
-
-section[role="region"] > header:first-child .icon.icon-user {
-  background-image: url(headers/images/icons/user.png);
-}
-
-section[role="region"] > header:first-child .icon.icon-up {
-  background-image: url(headers/images/icons/up.png);
-}
-
-section[role="region"] > header:first-child .icon.icon-down {
-  background-image: url(headers/images/icons/down.png);
-}
-
-section[role="region"] > header:first-child .icon.icon-options {
-  background-image: url(headers/images/icons/options.png);
-}
-
-/* ----------------------------------
-  Subheader
----------------------------------- */
-
-section[role="region"] header h2 {
-  color: #424242;
-  border-bottom: solid 0.1rem #e6e6e6;
-}
-
-/* -----------------------------------------------------------------
-  HEADER SKIN: comms
-  .skin-comms will override default values
------------------------------------------------------------------ */
-
-.skin-comms section[role="region"] > header:first-child,
-section[role="region"].skin-comms > header:first-child {
-  background-color: #00adad;
-}
-
-.skin-comms section[role="region"] > header:first-child a,
-.skin-comms section[role="region"] > header:first-child button,
-section[role="region"].skin-comms > header:first-child a,
-section[role="region"].skin-comms > header:first-child button {
-  color: rgba(0,0,0,0.5);
-}
-
-.skin-comms section[role="region"] > header:first-child a:active,
-.skin-comms section[role="region"] > header:first-child button:active,
-.skin-comms section[role="region"] > header:first-child a:hover,
-.skin-comms section[role="region"] > header:first-child button:hover,
-section[role="region"].skin-comms > header:first-child a:active,
-section[role="region"].skin-comms > header:first-child button:active,
-section[role="region"].skin-comms > header:first-child a:hover,
-section[role="region"].skin-comms > header:first-child button:hover {
-  background-color: rgba(0,0,0,0.1);
-}
-
-.skin-comms section[role="region"] > header:first-child a:focus,
-.skin-comms section[role="region"] > header:first-child button:focus,
-section[role="region"].skin-comms > header:first-child a:focus,
-section[role="region"].skin-comms > header:first-child button:focus {
-  background-color: transparent;
-}
-
-/* -----------------------------------------------------------------
-  HEADER SKIN: dark
-  .skin-dark will override default values
------------------------------------------------------------------ */
-
-section[role="region"].skin-dark > header:first-child,
-.skin-dark > section[role="region"] > header:first-child {
-  background-color: #242d33;
-}
-
-.skin-dark section[role="region"] > header:first-child a,
-.skin-dark section[role="region"] > header:first-child button,
-section[role="region"].skin-dark > header:first-child a,
-section[role="region"].skin-dark > header:first-child button {
-  color: #00aac5;
-}
-
-.skin-dark section[role="region"] > header:first-child a:active,
-.skin-dark section[role="region"] > header:first-child button:active,
-.skin-dark section[role="region"] > header:first-child a:hover,
-.skin-dark section[role="region"] > header:first-child button:hover,
-section[role="region"].skin-dark > header:first-child a:active,
-section[role="region"].skin-dark > header:first-child button:active,
-section[role="region"].skin-dark > header:first-child a:hover,
-section[role="region"].skin-dark > header:first-child button:hover {
-  background-color: rgba(0,0,0,0.4);
-}
-
-.skin-dark section[role="region"] > header:first-child a:focus,
-.skin-dark section[role="region"] > header:first-child button:focus,
-section[role="region"].skin-dark > header:first-child a:focus,
-section[role="region"].skin-dark > header:first-child button:focus {
-  background-color: transparent;
-}
-
-section[role="region"].skin-dark header h2,
-.skin-dark > section[role="region"] header h2 {
-  background-color: #2c353b;
-  color: #fff;
-  border: none;
-}
-
-/* -----------------------------------------------------------------
-  HEADER SKIN: organic
-  .skin-organic will override default values
------------------------------------------------------------------ */
-
-section[role="region"].skin-organic > header:first-child,
-.skin-organic section[role="region"] > header:first-child {
-  color: #868692;
-  background-color: #f4f4f4;
-}
-
-section[role="region"].skin-organic > header:first-child h1,
-.skin-organic section[role="region"] > header:first-child h1 {
-  color: #868692;
-}
-
-section[role="region"].skin-organic > header:first-child a,
-section[role="region"].skin-organic > header:first-child button,
-.skin-organic section[role="region"] > header:first-child a,
-.skin-organic section[role="region"] > header:first-child button {
-  color: #00aac5;
-}
-
-section[role="region"].skin-organic > header:first-child a:focus,
-section[role="region"].skin-organic > header:first-child button:focus,
-.skin-organic section[role="region"] > header:first-child a:focus,
-.skin-organic section[role="region"] > header:first-child button:focus {
-  background-color: transparent;
-}
-
-/* ----------------------------------
-  Icons
----------------------------------- */
-
-section[role="region"].skin-organic > header:first-child .icon-back,
-.skin-organic section[role="region"] > header:first-child .icon-back {
-  background-image: url(headers/images/icons/organic/back.png);
-}
-
-section[role="region"].skin-organic > header:first-child .icon-close,
-.skin-organic section[role="region"] > header:first-child .icon-close {
-  background-image: url(headers/images/icons/organic/close.png);
-}
-
-section[role="region"].skin-organic > header:first-child .icon-add,
-.skin-organic section[role="region"] > header:first-child .icon-add {
-  background-image: url(headers/images/icons/organic/add.png);
-}
-
-section[role="region"].skin-organic > header:first-child .icon-edit,
-.skin-organic section[role="region"] > header:first-child .icon-edit {
-  background-image: url(headers/images/icons/organic/edit.png);
-}
-
-/* ----------------------------------
-  Subheader
----------------------------------- */
-
-section[role="region"].skin-organic header h2,
-.skin-organic section[role="region"] header h2 {
-  background-color: #e7e7e7;
-  color: #4d4d4d;
-  border: none;
+ul, ol, li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 1.9rem;
+  font-weight: normal;
+  line-height: 2.5rem;
 }

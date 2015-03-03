@@ -8,9 +8,9 @@
 form[role="dialog"][data-type="action"],
 form[role="dialog"][data-type="object"],
 form[role="dialog"][data-type="confirm"] {
-  background:
+  /*background:
     url(style/action_menu/images/ui/pattern.png) repeat left top,
-    url(style/action_menu/images/ui/gradient.png) no-repeat left top;
+    url(style/action_menu/images/ui/gradient.png) no-repeat left top;*/
   background-size: auto, 100%;
 }
 

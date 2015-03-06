@@ -92,7 +92,9 @@
 	document.querySelector('#save').addEventListener('click', function () {
 		var parts = file.split('/');
 
-		if (parts.length > 1) {
+		if (navigator.getDeviceStorages('sdcard').length == 1 && !navigator.getDeviceStorages('sdcard')[0].storageName.length) {
+			storage.set('sdcard');
+		} else if (parts.length > 1) {
 			storage.set(parts[1]);
 		} else {
 			alert(_('storage-not-found'));

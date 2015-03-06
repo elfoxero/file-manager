@@ -165,9 +165,9 @@
 
 					if (name.length === 0) return;
 
-					filename = '/' + path + '/' + name;
+					filename = window.config.baseDir(path) + name;
 				} else {
-					filename = '/' + path + '/' + curFile.name;
+					filename = window.config.baseDir(path) + curFile.name;
 				}
 
 				if (files.isFile(filename)) {
@@ -219,7 +219,7 @@
 		files.call(function (curFile, curDir) {
 			var onsuccess = function(e) {
 				var path = e.target.result.path;
-				var newName = '/' + path + '/' + curFile.name;
+				var newName = window.config.baseDir(path) + curFile.name;
 				var oldName = curFile.blob.name;
 
 				if (path === curDir) {
@@ -329,7 +329,7 @@
 
 			if (folderName.length > 0) {
 				var blob = new Blob(['']);
-				var filename = '/' + curDir + '/' + folderName + '/.empty';
+				var filename = config.baseDir(curDir) + folderName + '/.empty';
 
 				storage.create(blob, filename, function (e) {
 					files.push({'name': filename, 'blob': blob, 'disabled': false});
@@ -350,7 +350,7 @@
 
 			if (filename.length > 0) {
 				var blob = new Blob(['']);
-				var name = '/' + curDir + '/' + filename;
+				var name = config.baseDir(curDir) + filename;
 
 				storage.create(blob, name, function (e) {
 					files.push({'name': filename, 'blob': blob, 'disabled': false});
@@ -403,7 +403,7 @@
 			newName = newName.trim();
 
 			if (folderName) {
-				source.dir = curDir + '/' + folderName;
+				source.dir = config.baseDir(curDir, true) + folderName;
 			}
 
 			if (newName.length > 0 && newName.toLowerCase() !== curName.toLowerCase()) {
@@ -425,7 +425,7 @@
 			var source = {type: 'folder'};
 
 			if (folderName) {
-				source.dir = curDir + '/' + folderName;
+				source.dir = config.baseDir(curDir, true) + folderName;
 			}
 
 			if (confirm(_('sure-delete-folder'))) {

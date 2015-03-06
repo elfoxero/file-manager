@@ -24,6 +24,7 @@ window.storage = (function () {
 	var SDCARD = 'sdcard';
 	var storages = navigator.getDeviceStorages(SDCARD);
 	var curStorage;
+	var isSimulator = navigator.getDeviceStorages('sdcard').length === 1 && !navigator.getDeviceStorages('sdcard')[0].storageName.length;
 
 	var files = window.files || false;
 
@@ -53,7 +54,13 @@ window.storage = (function () {
 		}
 	});
 
-	if (storages.length === 1) {
+	if (isSimulator) {
+		curStorage = storages[0];
+
+		if (files) {
+			files.path = '';
+		}
+	} else if (storages.length === 1) {
 		curStorage = storages[0];
 
 		if (files) {
@@ -102,7 +109,7 @@ window.storage = (function () {
 	}
 
 	function refreshFiles(callback) {
-		if (files.path.length > 0) {
+		if (files.path.length > 0 || isSimulator) {
 			var cursor = curStorage.enumerate('');
 
 			cursor.onsuccess = function () {
@@ -174,11 +181,19 @@ window.storage = (function () {
 			request.onsuccess = function () {
 				if (this.result === 'available') {
 					storage.freeSpace().onsuccess = function (e) {
-						callback.call(storage, iStorage, e.target.result);
+						if (typeof callback === 'function') {
+							callback.call(storage, iStorage, e.target.result);
+						} else {
+							console.log('callback', callback);
+						}
+
 						refreshStorage(iStorage + 1, callback);
 					};
 				} else {
-					callback.call(storage, iStorage, this.result);
+					if (typeof callback === 'function') {
+						callback.call(storage, iStorage, this.result);
+					}
+					
 					refreshStorage(iStorage + 1, callback);
 				}
 
@@ -197,6 +212,8 @@ window.storage = (function () {
 				break;
 			}
 		}
+        
+		!curStorage && (curStorage = navigator.getDeviceStorage(name));
 	}
 
 	function isStorageLoaded(name) {

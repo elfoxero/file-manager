@@ -140,7 +140,7 @@ var files = (function () {
 				break;
 				case 'rename':
 					if (source.type === 'file') {
-						var filename = '/' + source.dir + '/' + target.name;
+						var filename = window.config.baseDir(source.dir) + target.name;
 
 						replaceFile(source.file.blob.name, {
 							'name': filename,
@@ -223,10 +223,10 @@ var files = (function () {
 										case 'rename':
 											var filename;
 
-											if (target.name.indexOf('/') === 0) {
+											if (target.name.indexOf('/') >= 0) {
 												filename = target.name;
 											} else {
-												filename = '/' + source.dir + '/' + target.name;
+												filename = window.config.baseDir(source.dir) + target.name;
 											}
 
 											storage.create(source.file.blob, filename, function () {
@@ -453,7 +453,7 @@ var files = (function () {
 									function showFileList() {
 										fileList.innerHTML = '';
 
-										if (curDir.length > 0) {
+										if (curDir.length > 0 || window.config.isSimulator) {
 											var filesFound = [];
 											var foldersFound = [];
 
@@ -463,9 +463,10 @@ var files = (function () {
 
 											for (var i = 0; i < allFiles.length; i++) {
 												var file = allFiles[i];
+												var baseCurDir = window.config.baseDir(curDir);
 
-												if (file.name.indexOf('/' + curDir + '/') === 0) {
-													var parts = file.name.replace('/' + curDir + '/', '').split('/');
+												if (file.name.indexOf(baseCurDir) === 0) {
+													var parts = file.name.replace(baseCurDir, '').split('/');
 
 													if (parts.length > 1) {
 														if (foldersFound.indexOf(parts[0]) < 0) {
@@ -531,7 +532,11 @@ var files = (function () {
 																			var folder = document.querySelector('#folder');
 																			fileList = document.querySelector(selector + ' .files');
 
-																			curDir += '/' + folderName;
+																			if (window.config.isSimulator && !curDir.length) {
+																				curDir = folderName;
+																			} else {
+																				curDir += '/' + folderName;
+																			}
 
 																			window.config.title = folderName;
 
@@ -629,7 +634,7 @@ var files = (function () {
 															}
 
 															if (!window.config.isActivity) {
-																if (curDir.indexOf('/') < 0) {
+																if ((!window.config.isSimulator && curDir.indexOf('/') < 0) || (window.config.isSimulator && !curDir.length)) {
 																	document.querySelector('#folder-operations-header').style.display = 'none';
 																	document.querySelector('#folder-operations').style.display = 'none';
 																} else {
@@ -748,7 +753,7 @@ var files = (function () {
 
 																if (strDir !== undefined) {
 																	if (!hasFiles(strDir)) {
-																		var fileName = '/' + strDir + '/.empty';
+																		var fileName = window.config.baseDir(strDir) + '.empty';
 																		var fileBlob = new Blob(['']);
 																		storage.create(fileBlob, fileName, function () {
 																			pushFile({'name': fileName, 'blob': fileBlob, 'disabled': false});
@@ -798,7 +803,7 @@ var files = (function () {
 																var deletedFiles = [];
 
 																for (var i = allFiles.length - 1; i > -1; i--) {
-																	if (allFiles[i].name.indexOf('/' + strDir + '/') === 0) {
+																	if (allFiles[i].name.indexOf(window.config.baseDir(strDir)) === 0) {
 																		deletedFiles.push(allFiles.splice(i, 1)[0]);
 																	}
 																}
@@ -832,14 +837,14 @@ var files = (function () {
 																	disabled = disabled || false;
 
 																	for (var i = 0; i < allFiles.length; i++) {
-																		if (allFiles[i].name.indexOf('/' + strDir + '/') === 0) {
+																		if (allFiles[i].name.indexOf(window.config.baseDir(strDir)) === 0) {
 																			replacedFiles.push({
 																				'name': allFiles[i].name,
 																				'blob': allFiles[i].blob,
 																				'disabled': allFiles[i].disabled
 																			});
 
-																			var newFilename = '/' + parts.join('/') + '/' + allFiles[i].name.split('/').pop();
+																			var newFilename = window.config.baseDir(parts.join('/')) + allFiles[i].name.split('/').pop();
 
 																			addedFiles.push(newFilename);
 																			allFiles[i].name = newFilename;
@@ -884,7 +889,7 @@ var files = (function () {
 																	folderName = parts.length > 0 ? parts[parts.length - 1] : '';
 																}
 
-																if ((allCards.length === 0 && parts.length > 1) || (allCards.length > 0 && parts.length > 0)) {
+																if ((window.config.isSimulator && parts.length) || (allCards.length === 0 && parts.length > 1) || (allCards.length > 0 && parts.length > 0)) {
 																	var selector = '[name="side"]:not(.current):not(.left-to-current)';
 
 																	section = document.querySelector(selector);
@@ -901,7 +906,7 @@ var files = (function () {
 																		callback();
 																	}
 
-																} else if((allCards.length === 0 && parts.length === 1) || (allCards.length > 0 && parts.length === 0)) {
+																} else if((window.config.isSimulator && !parts.length) || (allCards.length === 0 && parts.length === 1) || (allCards.length > 0 && parts.length === 0)) {
 																	section = document.querySelector('section[data-position="current"]');
 
 																	document.querySelector('.current, .left-to-current').className = 'right';
@@ -925,7 +930,7 @@ var files = (function () {
 																	files.show();
 																}
 
-																if (curDir.length > 0) {
+																if (curDir.length > 0 || window.config.isSimulator) {
 																	window.config.toolbar = [section.querySelector('ul.files').childNodes.length, 'items'];
 																} else {
 																	window.config.toolbar = [section.querySelector('ul.files').childNodes.length, 'devices'];
@@ -944,7 +949,7 @@ var files = (function () {
 
 															function hasFiles(strPath) {
 																for (var i = 0; i < allFiles.length; i++) {
-																	if (allFiles[i].name.indexOf('/' + strPath + '/') === 0) {
+																	if (allFiles[i].name.indexOf(window.config.baseDir(strPath)) === 0) {
 																		return true;
 																	}
 																}

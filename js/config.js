@@ -29,6 +29,8 @@
 		window.config.toolbar = [container.querySelector('ul.files').childNodes.length, 'items'];
 	}
 
+	var isSimulator = navigator.getDeviceStorages('sdcard').length === 1 && !navigator.getDeviceStorages('sdcard')[0].storageName.length;
+
 	window.config = (function () {
 		var titleText = '';
 		var appName = '';
@@ -63,7 +65,19 @@
 				return this.activity.length > 0;
 			},
 			'activity': '',
-			'refreshToolbar': refreshToolbar
+			'refreshToolbar': refreshToolbar,
+			'isSimulator': isSimulator,
+			'baseDir': function (dir, excludePre) {
+				if (isSimulator) {
+					if (dir.length) {
+						return dir + '/';
+					}
+				} else {
+					return (!excludePre ? '/' : '') + dir + '/';
+				}
+
+				return '';
+			}
 		};
 	})();
 }(window, document);

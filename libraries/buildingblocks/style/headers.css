@@ -153,47 +153,47 @@ section[role="region"] > header:first-child button:focus {
   Icons
 ---------------------------------- */
 
-section[role="region"] > header:first-child .icon-add {
+section[role="region"] > header:first-child .icon.icon-add {
   background-image: url(headers/images/icons/add.png);
 }
 
-section[role="region"] > header:first-child .icon-compose {
+section[role="region"] > header:first-child .icon.icon-compose {
   background-image: url(headers/images/icons/compose.png);
 }
 
-section[role="region"] > header:first-child .icon-edit {
+section[role="region"] > header:first-child .icon.icon-edit {
   background-image: url(headers/images/icons/edit.png);
 }
 
-section[role="region"] > header:first-child .icon-send {
+section[role="region"] > header:first-child .icon.icon-send {
   background-image: url(headers/images/icons/send.png);
 }
 
-section[role="region"] > header:first-child .icon-close {
+section[role="region"] > header:first-child .icon.icon-close {
   background-image: url(headers/images/icons/close.png);
 }
 
-section[role="region"] > header:first-child .icon-back {
+section[role="region"] > header:first-child .icon.icon-back {
   background-image: url(headers/images/icons/back.png);
 }
 
-section[role="region"] > header:first-child .icon-menu {
+section[role="region"] > header:first-child .icon.icon-menu {
   background-image: url(headers/images/icons/menu.png);
 }
 
-section[role="region"] > header:first-child .icon-user {
+section[role="region"] > header:first-child .icon.icon-user {
   background-image: url(headers/images/icons/user.png);
 }
 
-section[role="region"] > header:first-child .icon-up {
+section[role="region"] > header:first-child .icon.icon-up {
   background-image: url(headers/images/icons/up.png);
 }
 
-section[role="region"] > header:first-child .icon-down {
+section[role="region"] > header:first-child .icon.icon-down {
   background-image: url(headers/images/icons/down.png);
 }
 
-section[role="region"] > header:first-child .icon-options {
+section[role="region"] > header:first-child .icon.icon-options {
   background-image: url(headers/images/icons/options.png);
 }
 

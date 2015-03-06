@@ -1,10 +1,11 @@
-/* ----------------------------------
+//* ----------------------------------
  * Action menu
  * ---------------------------------- */
 
 /* Main dialog setup */
-[role="dialog"][data-type="action"] {
-  background: #2d2d2d;
+form[role="dialog"][data-type="action"],
+form[role="dialog"][data-type="object"] {
+  background-color: #2D2D2D;
   overflow: hidden;
   position: fixed;
   z-index: 100;
@@ -21,7 +22,8 @@
   color: #fff;
 }
 
-[role="dialog"][data-type="action"]:before {
+form[role="dialog"][data-type="action"]:before,
+form[role="dialog"][data-type="object"]:before {
   content: '';
   display: inline-block;
   vertical-align: top;
@@ -30,15 +32,18 @@
   margin-left: -0.1rem;
 }
 
-[role="dialog"][data-type="action"] > header {
+form[role="dialog"][data-type="action"] > header,
+form[role="dialog"][data-type="object"] > header {
   -moz-box-sizing: border-box;
   font-size: 1.6rem;
+  background: url(action_menu/images/ui/alpha.png) repeat 0 0;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   z-index: 10;
   height: 5rem;
+  color: #fff;
   line-height: 4.9rem;
   color: #fff;
   white-space: nowrap;
@@ -50,7 +55,22 @@
   border-bottom: 0.1rem solid #616262;
 }
 
-[role="dialog"][data-type="action"] > header h1 {
+form[role="dialog"][data-type="action"] > header:after,
+form[role="dialog"][data-type="object"] > header:after {
+/*
+  content: '';
+  position: absolute;
+  background: #222323;
+  height: 0.1rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-top: 0.1rem solid #616262;
+*/
+}
+
+form[role="dialog"][data-type="action"] > header h1,
+form[role="dialog"][data-type="object"] > header h1 {
   font-size: 1.6rem;
   line-height: 4.9rem;
   text-align: left;
@@ -65,15 +85,15 @@
 }
 
 /* Generic set of actions in toolbar */
-[role="dialog"][data-type="action"] > header menu[type="toolbar"] {
+form[role="dialog"][data-type="action"] > header menu[type="toolbar"] {
   height: 100%;
   float: right;
   margin: 0 -3rem 0 1rem;
   padding: 0;
 }
 
-[role="dialog"][data-type="action"] > header menu[type="toolbar"] a,
-[role="dialog"][data-type="action"] > header menu[type="toolbar"] button {
+form[role="dialog"][data-type="action"] > header menu[type="toolbar"] a,
+form[role="dialog"][data-type="action"] > header menu[type="toolbar"] button {
   -moz-box-sizing: border-box;
   position: relative;
   float: left;
@@ -90,8 +110,15 @@
   z-index: 5;
 }
 
-[role="dialog"][data-type="action"] > header a,
-[role="dialog"][data-type="action"] > header button {
+form[role="dialog"][data-type="action"] > header menu[type="toolbar"] a:last-child,
+form[role="dialog"][data-type="action"] > header menu[type="toolbar"] button:last-child {
+  background: url(action_menu/images/ui/separator.png) no-repeat left center / auto 4.8rem;
+  margin-left: -0.1rem;
+  z-index: 1;
+}
+
+form[role="dialog"][data-type="action"] > header a,
+form[role="dialog"][data-type="action"] > header button {
   border: none;
   padding: 0;
   overflow: hidden;
@@ -103,28 +130,33 @@
   text-decoration: none;
 }
 
-[role="dialog"][data-type="action"] button::-moz-focus-inner {
-  outline: none;
-  border: none;
+/* Pressed state */
+form[role="dialog"][data-type="action"] > header a::-moz-focus-inner,
+form[role="dialog"][data-type="action"] > header button::-moz-focus-inner,
+form[role="dialog"][data-type="action"] > header a:active,
+form[role="dialog"][data-type="action"] > header button:active,
+form[role="dialog"][data-type="action"] > header a:focus,
+form[role="dialog"][data-type="action"][data-type="action"] > header button:focus {
+  outline: none !important;
+  border: none !important;
 }
 
-/* Pressed state */
-[role="dialog"][data-type="action"] > header a:active .icon:after,
-[role="dialog"][data-type="action"] > header button:active .icon:after,
-[role="dialog"][data-type="action"] > header menu[type="toolbar"] a:active,
-[role="dialog"][data-type="action"] > header menu[type="toolbar"] button:active  {
+form[role="dialog"][data-type="action"] > header a:active .icon:after,
+form[role="dialog"][data-type="action"] > header button:active .icon:after,
+form[role="dialog"][data-type="action"] > header menu[type="toolbar"] a:active,
+form[role="dialog"][data-type="action"] > header menu[type="toolbar"] button:active  {
   background: #008aaa !important;
 }
 
 /* Disabled state */
-[role="dialog"][data-type="action"] > header menu[type="toolbar"] a[aria-disabled="true"],
-[role="dialog"][data-type="action"] > header menu[type="toolbar"] button[disabled]  {
+form[role="dialog"][data-type="action"] > header menu[type="toolbar"] a[aria-disabled="true"],
+form[role="dialog"][data-type="action"] > header menu[type="toolbar"] button[disabled]  {
   opacity: 0.5;
   pointer-events: none;
 }
 
 /* Icon definitions */
-[role="dialog"][data-type="action"] > header .icon {
+form[role="dialog"][data-type="action"] > header .icon {
   position: relative;
   float: none;
   display: inline-block;
@@ -137,17 +169,17 @@
   overflow: hidden;
 }
 
-[role="dialog"][data-type="action"] > header .icon.icon-close {
+form[role="dialog"][data-type="action"] > header .icon.icon-close {
   background-image: url(action_menu/images/icons/close.png);
 }
 
-[role="dialog"][data-type="action"] > header .icon.icon-back {
+form[role="dialog"][data-type="action"] > header .icon.icon-back {
   background-image: url(action_menu/images/icons/back.png);
 }
 
 /* Navigation links (back, cancel, etc) */
-[role="dialog"][data-type="action"] > header > button,
-[role="dialog"][data-type="action"] > header > a {
+form[role="dialog"][data-type="action"] > header > button,
+form[role="dialog"][data-type="action"] > header > a {
   float: left;
   width: 5rem;
   height: 4.9rem;
@@ -157,13 +189,24 @@
   position: relative;
 }
 
-[role="dialog"][data-type="action"] > header > button::-moz-focus-inner {
+form[role="dialog"][data-type="action"] > header > button:after,
+form[role="dialog"][data-type="action"] > header > a:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top:0;
+  width: 3.2rem;
+  height: 4.9rem;
+  background: url(action_menu/images/ui/separator.png) no-repeat 3rem top / 0.1rem 4.8rem;
+}
+
+form[role="dialog"][data-type="action"] > header > button::-moz-focus-inner {
   border: 0;
   padding: 0;
 }
 
-[role="dialog"][data-type="action"] > header > button .icon,
-[role="dialog"][data-type="action"] > header > a .icon {
+form[role="dialog"][data-type="action"] > header > button .icon,
+form[role="dialog"][data-type="action"] > header > a .icon {
   position: static;
   display: block;
   width: 3rem;
@@ -173,8 +216,8 @@
   font-size: 0;
 }
 
-[role="dialog"][data-type="action"] > header > button .icon:after,
-[role="dialog"][data-type="action"] > header > a .icon:after {
+form[role="dialog"][data-type="action"] > header > button .icon:after,
+form[role="dialog"][data-type="action"] > header > a .icon:after {
   content: "";
   position: absolute;
   left: 0;
@@ -185,7 +228,8 @@
 }
 
 /* Content */
-[role="dialog"][data-type="action"] > section {
+form[role="dialog"][data-type="action"] > section,
+form[role="dialog"][data-type="object"] > section {
   color: #fff;
   position: absolute;
   top: 7rem;
@@ -197,11 +241,11 @@
 }
 
 /* Specific component code */
-[role="dialog"][data-type="action"] > menu {
+form[role="dialog"][data-type="action"] > menu,
+form[role="dialog"][data-type="object"] > menu {
   margin: 0;
   padding: 0;
   max-height: calc(100% - 13.5rem); /*header(5rem) + footer(7rem) + padding(1.5rem)*/
-  height: auto;
   padding-top: 1.5rem;
   overflow: auto;
   width: auto;
@@ -209,11 +253,14 @@
   background: none;
   position: absolute;
   left: 0;
-  right: 0;
+  width: 100%;
   bottom: 7rem;
+  transition: left .2s ease;
+  -moz-transition: left .2s ease;
 }
 
-[role="dialog"][data-type="action"] > menu > button {
+form[role="dialog"][data-type="action"] > menu > button,
+form[role="dialog"][data-type="object"] > menu > button {
   width: calc(100% - 3rem);
   height: 4rem;
   -moz-box-sizing: border-box;
@@ -225,124 +272,71 @@
   line-height: 4rem;
   outline: none;
   font-size: 1.6rem;
-  text-shadow: none;
-  text-align: start;
-  padding: 0 1.2rem;
-  margin: 0 1.5rem 1rem 1.5rem;
-  background: rgba(87, 87, 87, 0.8);
-  border: none;
-  border-radius: 0;
-  position: relative;
   color: #fff;
-  font-family: sans-serif;
+  text-shadow: none;
+  text-align: left;
+  padding: 0 1rem;
+  margin: 0 1.5rem 1rem 1.5rem;
+  background-color: rgba(87, 87, 87, 0.8);
+  background-image: none;
+  border-radius: 0;
+  border: none;
+  position: relative;
+  bottom: 0;
   font-style: italic;
 }
 
-[role="dialog"][data-type="action"] > menu > button:last-child {
+form[role="dialog"][data-type="action"] > menu:not([data-not-last]) > button:last-child,
+form[role="dialog"][data-type="object"] > menu:not([data-not-last]) > button:last-child {
   position: fixed;
   bottom: 0;
   left: 0;
   color: #333;
-  background: #d8d8d8;
-  text-align: center;
-  border: none;
-  margin-bottom: 1.5rem;
+  font-weight: normal;
+  background: #D8D8D8;
   border-radius: 2rem;
+  text-align: center;
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
 }
 
-[role="dialog"][data-type="action"] > menu > button:last-child:before {
+form[role="dialog"][data-type="action"] > menu:not([data-not-last]) > button:last-child:before,
+form[role="dialog"][data-type="object"] > menu:not([data-not-last]) > button:last-child:before {
   content: '';
   position: fixed;
   width: 100%;
-  background-color: #4d4d4d;
+  background-color: #2D2D2D;
   height: 7rem;
   left: 0;
   bottom: 0;
   z-index: -1;
+  border-top: 0.1rem solid rgba(255, 255, 255, 0.1);
 }
 
-[role="dialog"][data-type="action"] > menu > button:nth-last-child(2) {
+form[role="dialog"][data-type="action"] > menu:not([data-not-last]) > button:nth-last-child(2),
+form[role="dialog"][data-type="object"] > menu:not([data-not-last]) > button:nth-last-child(2) {
   margin-bottom: 1.5rem;
 }
 
 /* Press state */
-[role="dialog"][data-type="action"] > menu > button:active {
-  background: #00aacc;
-  color: #fff;
+form[role="dialog"][data-type="action"] > menu > button:active,
+form[role="dialog"][data-type="object"] > menu > button:active {
+  background-color: #0AC;
+  color: #FFF;
+}
+
+form[role="dialog"][data-type="action"] > menu > button:last-child:active,
+form[role="dialog"][data-type="object"] > menu > button:last-child:active {
+  background: #0AC;
+  color: #FFF;
 }
 
 /* Disabled */
-[role="dialog"][data-type="action"] > menu > button[disabled] {
-  background-color: rgba(87, 87, 87, 0.8);
-  color: rgba(255, 255, 255, 0.4);
-  opacity: 0.5;
+form[role="dialog"][data-type="action"] > menu > button[disabled],
+form[role="dialog"][data-type="object"] > menu > button[disabled] {
+  background: #4d4d4d;
+  color: #333;
+  text-shadow: none;
+  border: none;
   pointer-events: none;
 }
-
-[role="dialog"][data-type="action"] > menu > button[disabled]:last-child {
-  background-color: #e7e7e7;
-  color: #a6a6a6;
-  opacity: 1;
-}
-
-/*
- * Right to Left view
- */
-
-html[dir="rtl"] [role="dialog"][data-type="action"]:before {
-  margin-left: auto;
-  margin-right: -0.1rem;
-}
-
-html[dir="rtl"] [role="dialog"][data-type="action"] > header h1 {
-  text-align: right;
-}
-
-html[dir="rtl"] [role="dialog"][data-type="action"] > header menu[type="toolbar"] {
-  float: left;
-  margin-left: -3rem;
-  margin-right: 1rem;
-}
-
-html[dir="rtl"] [role="dialog"][data-type="action"] > header menu[type="toolbar"] a,
-html[dir="rtl"] [role="dialog"][data-type="action"] > header menu[type="toolbar"] button {
-  float: right;
-}
-
-html[dir="rtl"] [role="dialog"][data-type="action"] > header menu[type="toolbar"] a:last-child,
-html[dir="rtl"] [role="dialog"][data-type="action"] > header menu[type="toolbar"] button:last-child {
-  background-position: right center;
-  margin-left: auto;
-  margin-right: -0.1rem;
-}
-
-html[dir="rtl"] [role="dialog"][data-type="action"] > header > button,
-html[dir="rtl"] [role="dialog"][data-type="action"] > header > a {
-  float: right;
-  margin-left: -1rem;
-  margin-right: -3rem;
-}
-
-html[dir="rtl"] [role="dialog"][data-type="action"] > header > button:after,
-html[dir="rtl"] [role="dialog"][data-type="action"] > header > a:after {
-  left: auto;
-  right: 0;
-  background-position: 0 top;
-}
-
-html[dir="rtl"] [role="dialog"][data-type="action"] > header > button .icon:after,
-html[dir="rtl"] [role="dialog"][data-type="action"] > header > a .icon:after {
-  left: auto;
-  right: 0;
-}
-
-html[dir="rtl"] [role="dialog"][data-type="action"] > menu > button:last-child {
-  left: auto;
-  right: 0;
-}
-
-html[dir="rtl"] [role="dialog"][data-type="action"] > menu > button:last-child:before {
-  left: auto;
-  right: 0;
-}
-

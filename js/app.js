@@ -600,189 +600,189 @@
 				break;
 
 
-				case 'audio/*':
-					document.getElementById('file-action').className = 'fade-out';
+            case 'audio/*':
+				document.getElementById('file-action').className = 'fade-out';
+                
+				var activity = new Activity({
+					name: 'open',
+					data: {
+						type: (curFile.blob.type || format),
+						allowSave: false,
+						blob: curFile.blob
+					}
+				});
 
-					var activity = new Activity({
-						name: 'open',
-						data: {
-							type: (curFile.blob.type || format),
-							allowSave: false,
-							blob: curFile.blob
-						}
-					});
+				activity.onerror = function() {
+					console.warn('Activity error: ' + activity.error.name);
+				};
 
-					activity.onerror = function() {
-						console.warn('Activity error: ' + activity.error.name);
-					};
+				break;
 
-					break;
+            case 'image/*':
+				document.getElementById('file-action').className = 'fade-out';
 
-					case 'image/*':
-						document.getElementById('file-action').className = 'fade-out';
+				var activity = new Activity({
+					name: 'open',
+					data: {
+						type: (curFile.blob.type || format),
+						filename: curFile.name,
+						blob: curFile.blob
+					}
+				});
 
-						var activity = new Activity({
-							name: 'open',
-							data: {
-								type: (curFile.blob.type || format),
-								filename: curFile.name,
-								blob: curFile.blob
-							}
-						});
+				activity.onerror = function(e) {
+					console.warn('Activity error: ' + activity.error.name);
+				};
 
-						activity.onerror = function(e) {
-							console.warn('Activity error: ' + activity.error.name);
-						};
+				break;
 
-						break;
+			case 'text/plain':
+			case 'text/javascript':
+			case 'text/html':
+			case 'text/css':
+			case 'application/x-web-app-manifest+json':
+				document.getElementById('file-action').className = 'fade-out';
 
-						case 'text/plain':
-							case 'text/javascript':
-								case 'text/html':
-									case 'text/css':
-										case 'application/x-web-app-manifest+json':
-											document.getElementById('file-action').className = 'fade-out';
+                var activity = new Activity({
+				    name: 'open',
+					data: {
+                        'type': (curFile.blob.type || 'text/plain'),
+                        'name': curFile.blob.name,
+                        'filename': curFile.name,
+                        'blob': curFile.blob
+                    }
+                });
 
-											var activity = new Activity({
-												name: 'open',
-												data: {
-													'type': (curFile.blob.type || 'text/plain'),
-													'name': curFile.blob.name,
-													'filename': curFile.name,
-													'blob': curFile.blob
-												}
-											});
+                activity.onerror = function () {
+                    console.warnt('Activity error: ' + activity.error.name);
+                };
 
-											activity.onerror = function () {
-												console.warnt('Activity error: ' + activity.error.name);
-											};
+                activity.onsuccess = function () {
+                    if (activity.result.saved) {
+                        utils.status.show(_('file-saved'));
+                        files.replace(activity.result.file, activity.result.blob);
+                    }
+                };
 
-											activity.onsuccess = function () {
-												if (activity.result.saved) {
-													utils.status.show(_('file-saved'));
-													files.replace(activity.result.file, activity.result.blob);
-												}
-											};
+                break;
 
-											break;
+            default:
+                if (mimeType.length > 0) {
+                    var activity = new Activity({
+                        name: 'open',
+                        data: {
+                            type: mimeType,
+                            filename: curFile.name,
+                            blob: curFile.blob,
+                            allowSave: false
+                        }
+                    });
 
-											default:
-												if (mimeType.length > 0) {
-													var activity = new Activity({
-														name: 'open',
-														data: {
-															type: mimeType,
-															filename: curFile.name,
-															blob: curFile.blob,
-															allowSave: false
-														}
-													});
+                    activity.onsuccess = function () {
+                        document.getElementById('file-action').className = 'fade-out';
+                    };
 
-													activity.onsuccess = function () {
-														document.getElementById('file-action').className = 'fade-out';
-													};
+                    activity.onerror = function () {
+                        if (activity.error.name === 'NO_PROVIDER') {
+                            utils.actions.types();
+                        } else {
+                            document.getElementById('file-action').className = 'fade-out';
+                        }
+                    };
+                } else {
+                    utils.actions.types();
+                }
+        }
+    }
 
-													activity.onerror = function () {
-														if (activity.error.name === 'NO_PROVIDER') {
-															utils.actions.types();
-												    	} else {
-												    		document.getElementById('file-action').className = 'fade-out';
-												    	}
-													};
-												} else {
-													utils.actions.types();
-												}
-											}
-										}
+    window.utils.actions = (function () {
+        function showList(filename, mime) {
+            document.querySelector('#file-action header').textContent = filename;
+            document.querySelector('#file-action button[data-action="W"]').style.display = (mime.class === 'image' ? 'block' : 'none');
 
-										window.utils.actions = (function () {
-											function showList(filename, mime) {
-												document.querySelector('#file-action header').textContent = filename;
-												document.querySelector('#file-action button[data-action="W"]').style.display = (mime.class === 'image' ? 'block' : 'none');
+            var firstMenu = document.querySelector('#file-action menu:first-of-type');
 
-												var firstMenu = document.querySelector('#file-action menu:first-of-type');
+            firstMenu.scrollTop = 0;
 
-												firstMenu.scrollTop = 0;
+            if (firstMenu.className !== 'center-menu') {
+                firstMenu.addEventListener('transitionend', function _transitionend() {
+                    document.getElementById('file-action').className = 'fade-in';
+                    this.removeEventListener('transitionend', _transitionend);
+                });
+                firstMenu.className = 'center-menu';
+            } else {
+                document.getElementById('file-action').className = 'fade-in';
+            }
 
-												if (firstMenu.className !== 'center-menu') {
-													firstMenu.addEventListener('transitionend', function _transitionend() {
-														document.getElementById('file-action').className = 'fade-in';
-														this.removeEventListener('transitionend', _transitionend);
-													});
-													firstMenu.className = 'center-menu';
-												} else {
-													document.getElementById('file-action').className = 'fade-in';
-												}
+            document.querySelector('#file-action menu:nth-of-type(even)').className = 'right-menu';
+            document.querySelector('#file-action menu:last-of-type').className = 'right-menu';
+        }
 
-												document.querySelector('#file-action menu:nth-of-type(even)').className = 'right-menu';
-												document.querySelector('#file-action menu:last-of-type').className = 'right-menu';
-											}
+        function showTypes() {
+            document.querySelector('#file-action header').textContent = _('open-as');
+            document.querySelector('#file-action menu:first-of-type').className = 'left-menu';
+            document.querySelector('#file-action menu:nth-of-type(even)').className = 'center-menu';
+        }
 
-											function showTypes() {
-												document.querySelector('#file-action header').textContent = _('open-as');
-												document.querySelector('#file-action menu:first-of-type').className = 'left-menu';
-												document.querySelector('#file-action menu:nth-of-type(even)').className = 'center-menu';
-											}
+        function showFormats(term) {
+            var type, types = {
+                'V': ['video/mp4', 'video/webm', 'video/3gpp', 'video/ogg'],
+                'A': ['audio/mpeg', 'audio/ogg', 'audio/mp4', 'audio/amr'],
+                'I': ['image/png', 'image/jpeg', 'image/gif', 'image/bmp']
+            };
 
-											function showFormats(term) {
-												var type, types = {
-													'V': ['video/mp4', 'video/webm', 'video/3gpp', 'video/ogg'],
-													'A': ['audio/mpeg', 'audio/ogg', 'audio/mp4', 'audio/amr'],
-													'I': ['image/png', 'image/jpeg', 'image/gif', 'image/bmp']
-												};
+            switch (term) {
+                case 'V':
+                    type = 'video';
+                    break;
+                case 'A':
+                    type = 'audio';
+                    break;
+                case 'I':
+                    type = 'image';
+                    break;
+            }
 
-												switch (term) {
-													case 'V':
-														type = 'video';
-														break;
-														case 'A':
-															type = 'audio';
-															break;
-															case 'I':
-																type = 'image';
-																break;
-															}
+            if (!type) {
+                document.getElementById('file-action').className = 'fade-out';
+            } else {
+                var lastMenu = document.querySelector('#file-action menu:last-of-type');
+                var buttons = lastMenu.querySelectorAll('button');
 
-															if (!type) {
-																document.getElementById('file-action').className = 'fade-out';
-															} else {
-																var lastMenu = document.querySelector('#file-action menu:last-of-type');
-																var buttons = lastMenu.querySelectorAll('button');
+                [].forEach.call(buttons, function (btn, index) {
+                    btn.dataset.fileformat = types[term][index];
+                    btn.textContent = btn.dataset.fileformat.split('/').pop();
+                });
 
-																[].forEach.call(buttons, function (btn, index) {
-																	btn.dataset.fileformat = types[term][index];
-																	btn.textContent = btn.dataset.fileformat.split('/').pop();
-																});
+                document.querySelector('#file-action header').textContent = _('select-' + type + '-format');
+                document.querySelector('#file-action menu:nth-of-type(even)').className = 'left-menu';
+                lastMenu.className = 'center-menu';
+            }
 
-																document.querySelector('#file-action header').textContent = _('select-' + type + '-format');
-																document.querySelector('#file-action menu:nth-of-type(even)').className = 'left-menu';
-																lastMenu.className = 'center-menu';
-															}
+        }
 
-														}
+        function showFolderList(foldername) {
+            selectedFolder = foldername;
 
-														function showFolderList(foldername) {
-															selectedFolder = foldername;
+            document.querySelector('#folder-action header').textContent = foldername;
+            document.getElementById('folder-action').className = 'fade-in';
+        }
 
-															document.querySelector('#folder-action header').textContent = foldername;
-															document.getElementById('folder-action').className = 'fade-in';
-														}
-
-														return {
-															'show': showList,
-															'types': showTypes,
-															'formats': showFormats,
-															'folder': showFolderList
-														};
-													})();
+        return {
+            'show': showList,
+            'types': showTypes,
+            'formats': showFormats,
+            'folder': showFolderList
+        };
+    })();
 
 
-													window.addEventListener('localized', function() {
-														window.config.app = _('file-manager');
+    window.addEventListener('localized', function() {
+        window.config.app = _('file-manager');
 
-														document.documentElement.lang = document.webL10n.getLanguage();
-														document.documentElement.dir = document.webL10n.getDirection();
+        document.documentElement.lang = document.webL10n.getLanguage();
+        document.documentElement.dir = document.webL10n.getDirection();
 
-														init();
-													}, false);
-												}(window, document);
+        init();
+    }, false);
+}(window, document);

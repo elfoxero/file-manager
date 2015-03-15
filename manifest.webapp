@@ -33,6 +33,11 @@
 			"disposition": "inline",
 			"returnValue": true,
 			"href": "/elements/folder.html"
+		},
+		"pick-folder": {
+			"disposition": "inline",
+			"returnValue": true,
+			"href": "/elements/folder.html"
 		}
 	},
 	"locales": {

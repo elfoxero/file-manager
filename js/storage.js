@@ -79,7 +79,7 @@ window.storage = (function () {
 
 	function loadFiles(inDevice) {
 		if (curStorage) {
-			if (!inDevice) {
+			if (!inDevice && config) {
 				config.toolbar = 'loading-files';
 			}
 
@@ -130,7 +130,7 @@ window.storage = (function () {
 
 						var container = (document.querySelector('.current') ? document.querySelector('.current') : document.querySelector('[data-position="current"]'));
 
-						config.toolbar = [container.querySelector('ul.files').childNodes.length, 'items'];
+						config && (config.toolbar = [container.querySelector('ul.files').childNodes.length, 'items']);
 					}
 				}
 			};

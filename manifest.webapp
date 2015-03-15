@@ -29,12 +29,12 @@
 			"returnValue": true,
 			"href": "/elements/text.html"
 		},
-		"filemanager@elfoxero:pick-folder": {
+		"pick-folder": {
 			"disposition": "inline",
 			"returnValue": true,
 			"href": "/elements/folder.html"
 		},
-		"pick-folder": {
+		"filemanager@elfoxero:pick-folder": {
 			"disposition": "inline",
 			"returnValue": true,
 			"href": "/elements/folder.html"
@@ -42,7 +42,10 @@
 	},
 	"locales": {
 		"ca": {
-			"name": "Els meus fitxers"
+			"name": "Gestió de fitxers"
+		},
+		"de": {
+			"name": "Dateimanager"
 		},
 		"es": {
 			"name": "Mis Archivos"
@@ -54,6 +57,9 @@
 			"name": "Mes Fichiers"
 		},
 		"it": {
+			"name": "File Manager"
+		},
+		"ja": {
 			"name": "File Manager"
 		},
 		"nl": {

@@ -1,0 +1,9 @@
+{
+    "tabSize": 4,
+    "language.fileExtensions": {
+        "webapp": "json"
+    },
+    "highlightMatches": {
+        "wordsOnly": true
+    }
+}

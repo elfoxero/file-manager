@@ -73,8 +73,10 @@ window.storage = (function () {
 			files.path = '';
 		}
 
-		document.querySelector('#index section[data-type="list"]').classList.add('devices');
-		document.body.dataset.devices = 'true';
+        if (document.querySelector('#index section[data-type="list"]')) {
+            document.querySelector('#index section[data-type="list"]').classList.add('devices');
+            document.body.dataset.devices = 'true';
+        }
 	}
 
 	function loadFiles(inDevice) {

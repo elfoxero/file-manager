@@ -42,7 +42,7 @@
 		"pick": {
 			"disposition": "inline",
 			"returnValue": true,
-			"href": "/pick.html"
+			"href": "/elements/pick.html"
 		}
 	},
 	"locales": {

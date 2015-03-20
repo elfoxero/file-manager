@@ -39,11 +39,11 @@
 			"returnValue": true,
 			"href": "/elements/folder.html"
 		},
-        "pick": {
-            "disposition": "inline",
-            "returnValue": true,
-            "href": "/pick.html"
-        }
+		"pick": {
+			"disposition": "inline",
+			"returnValue": true,
+			"href": "/pick.html"
+		}
 	},
 	"locales": {
 		"ca": {

@@ -1,5 +1,6 @@
 {
     "tabSize": 4,
+    "useTabChar": true,
     "language.fileExtensions": {
         "webapp": "json"
     },

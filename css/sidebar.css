@@ -116,7 +116,6 @@ section[data-type="sidebar"] > header .icon {
 section[data-type="sidebar"]:before {
     content: "";
     width: 1rem;
-    background: url(../images/shadow.png) left top repeat-y;
     height: 100%;
     position: absolute;
     top: 0;
@@ -159,7 +158,7 @@ section[data-type="sidebar"] > nav > ul > li {
 }
 
 section[data-type="sidebar"] > nav > ul > li:active {
-    background: #00ABCC;
+    background: #00caf2;
 }
 
 section[data-type="sidebar"] > nav > ul > li > a {

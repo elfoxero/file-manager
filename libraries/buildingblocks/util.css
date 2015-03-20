@@ -42,7 +42,7 @@ section[role="region"] > header.fixed:first-child {
 }
 
 .scrollable.header {
-  height: calc(100% - 5rem);
+  height: calc(100% - 9rem);
   top: 5rem;
 }
 

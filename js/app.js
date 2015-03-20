@@ -60,6 +60,12 @@
 		});
 	});
 
+	document.querySelector('#file-action button[data-action="A"]').addEventListener('click', function (event) {
+        files.call(function (curFile, curDir) {
+			openFileAs(curFile, curDir);
+		});
+	});
+
 	document.querySelector('#file-action button[data-action="W"]').addEventListener('click', function () {
 		files.call(function (curFile, curDir) {
 			var data = {
@@ -693,6 +699,10 @@
                     utils.actions.types();
                 }
         }
+    }
+
+    function openFileAs(curFile, curDir) {
+        utils.actions.types();
     }
 
     window.utils.actions = (function () {

@@ -1,0 +1,155 @@
+#index {
+  height: 100%;
+}
+[data-position="right"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+  z-index: 15;
+  z-index: 100; /* -> drawer */
+}
+/*section[role="region"][data-position="right"] {
+  position: absolute;
+}*/
+
+[data-position="right"].current {
+  animation: rightToCurrent 0.4s forwards;
+  -webkit-animation: rightToCurrent 0.4s forwards;
+}
+[data-position="right"].left-to-current {
+  animation: leftToCurrent 0.4s forwards;
+  -webkit-animation: leftToCurrent 0.4s forwards;
+}
+[data-position="right"].right {
+  animation: currentToRight 0.4s forwards;
+  -webkit-animation: currentToRight 0.4s forwards;
+}
+[data-position="current"].left {
+  animation: currentToLeft 0.4s forwards;
+  -webkit-animation: currentToLeft 0.4s forwards;
+}
+[data-position="right"].left {
+  animation: currentToLeft 0.4s forwards;
+  -webkit-animation: currentToLeft 0.4s forwards;
+}
+[data-position="current"].current {
+  animation: leftToCurrent 0.4s forwards;
+  -webkit-animation: leftToCurrent 0.4s forwards;
+}
+
+[data-position="back"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  opacity: 0;
+  /* z-index: 100; -> drawer */
+}
+[data-position="back"].fade-in {
+  z-index: 120;
+  animation: fadeIn 0.2s forwards;
+  -webkit-animation: fadeIn 0.2s forwards;
+}
+[data-position="back"].fade-out {
+  animation: fadeOut 0.2s forwards;
+  -webkit-animation: fadeOut 0.2s forwards;
+}
+
+[data-position="edit-mode"] {
+  position: absolute;
+  top: -5rem;
+  left: 0;
+  right: 0;
+  bottom: -7rem;
+  z-index: -1;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+[data-position="edit-mode"].edit {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 120;
+  opacity: 1;
+}
+
+/* Headers */
+#headers section[role="region"] {
+  margin-bottom: 1.5rem;
+}
+#headers section[role="region"]:not(#drawer) {
+  display: inline;
+}
+#headers article header:first-child {
+  margin-top: 1.5rem;
+}
+#headers section[role="region"] header h2 {
+  margin: 0 0 1.5rem 0;
+}
+
+/* Lists */
+/* to avoid double background effect on press */
+[data-type=list] li>a:active { 
+  background-color: transparent;
+}
+
+/* Drawer */
+/*section[role="region"]:not(#drawer) {
+  transition: none;
+  left: 0;
+  z-index: 0;
+  padding-left: 0;
+}*/
+section[data-type="sidebar"] + section[role="region"] > header:first-child > button, 
+section[data-type="sidebar"] + section[role="region"] > header:first-child > a {
+  background-position: 3.5rem center;
+}
+
+/* Switches */
+#switches label:last-child {
+  margin-left: 2rem;  
+}
+
+/* Scrolling */
+nav[data-type="scrollbar"] {
+  padding-top: 1rem;
+}
+nav[data-type="scrollbar"] p {
+  opacity: 1;
+}
+
+/* Seek bars */
+div[role="slider"] > label.icon {
+  background: no-repeat right top;
+  background-size: 3rem auto;
+}
+
+/* Tabs */
+#tabs .content {
+  padding: 0;
+}
+#tabs .content .content {
+  padding: 1.5rem 3rem;
+}
+
+/* Filters */
+[role="tablist"][data-type="filter"] {
+  margin-bottom: 2rem;
+}
+
+.bottom[role="tablist"][data-type="filter"] {
+  bottom: auto;
+}
+
+/* Device rotation */
+.landscape section[role="region"]#drawer > header:first-child {
+  /* Whatever needs to be changed on landscape */
+}

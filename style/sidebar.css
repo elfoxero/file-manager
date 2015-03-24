@@ -175,3 +175,6 @@ section[data-type="sidebar"] > nav > ul > li > a {
     white-space: nowrap;
     overflow: hidden;
 }
+section[data-type="sidebar"] > nav > ul > li > a:active {
+    color: #fff;
+}

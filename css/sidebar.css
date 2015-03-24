@@ -106,7 +106,6 @@ section[data-type="sidebar"] > header .icon {
     width: 3rem;
     height: 3rem;
     margin: 0 -1rem;
-    background: transparent no-repeat center center / 100% auto;
     font-size: 0;
     overflow: hidden;
     position: relative;
@@ -175,4 +174,7 @@ section[data-type="sidebar"] > nav > ul > li > a {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+}
+section[data-type="sidebar"] > nav > ul > li > a:active {
+    color: #fff;
 }

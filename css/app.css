@@ -140,7 +140,7 @@ section[role="region"] {
 }
 
 #about-us ul > li > aside.pack-start {
-	background-image: url(../images/avatar.png);
+	background-image: url(../img/avatar.png);
 	background-repeat: no-repeat;
 	background-position: center center;
 }

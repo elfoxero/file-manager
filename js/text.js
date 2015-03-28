@@ -35,6 +35,14 @@
 		document.querySelector('textarea').wrap = window.localStorage.wrap;
 	}
 
+	function setEncryptionIcon() {
+		if (password) {
+			document.getElementById('encryption').className = 'action-icon lock';
+		} else {
+			document.getElementById('encryption').className = 'action-icon unlock';
+		}
+	}
+
 	if (!('fontSize' in window.localStorage)) {
 		window.localStorage.fontSize = '2';
 		size = 2;
@@ -44,14 +52,6 @@
 
 	if (!('wrap' in window.localStorage)) {
 		window.localStorage.wrap = 'off';
-	}
-
-	function setEncryptionIcon() {
-		if (password) {
-			document.getElementById('encryption').className = 'action-icon lock';
-		} else {
-			document.getElementById('encryption').className = 'action-icon unlock';
-		}
 	}
 
 	window.navigator.mozSetMessageHandler('activity', function(request) {
@@ -67,16 +67,12 @@
 		document.querySelector('#name').appendChild(document.createTextNode(data.filename));
 
 		reader.onload = function (e) {
-			var plaintext = e.target.result;
+			document.querySelector('textarea').value = e.target.result;
 			// OpenSSL encrypted texts start with the base64 encoded string "Salted__"
-			if (plaintext.lastIndexOf('U2FsdGVkX1', 0) === 0) {
-				password = prompt(_('password')) || null;
-				if (password) {
-					plaintext = GibberishAES.dec(plaintext, password);
-				}
-				setEncryptionIcon();
+			if (e.target.result.lastIndexOf('U2FsdGVkX1', 0) === 0) {
+				document.querySelector('#password').className = 'fade-in';
+				document.querySelector('textarea').needsDec = true;
 			}
-			document.querySelector('textarea').value = plaintext;
 		};
 
 		reader.readAsText(data.blob);
@@ -107,11 +103,24 @@
 		setWrap();
 	};
 
+	document.querySelector('#password button').onclick = function (e) {
+		password = document.querySelector('input').value;
+		setEncryptionIcon();
+		textarea = document.querySelector('textarea');
+		if (password && textarea.needsDec === true) {
+			// Decoding will throw an exception when the user entered an
+			// incorrect password - thus the dialog won't be faded out.
+			textarea.value = GibberishAES.dec(textarea.value, password);
+		}
+		textarea.needsDec = false;
+		document.querySelector('#password').className = 'fade-out';
+	}
+
 	document.querySelector('#encryption').onclick = function (e) {
 		if (password) {
 			password = null;
 		} else {
-			password = prompt(_('password')) || '';
+			document.querySelector('#password').className = 'fade-in';
 		}
 		setEncryptionIcon();
 	}

@@ -38,6 +38,10 @@ IN THE SOFTWARE.
 	<link rel="stylesheet" href="../libraries/buildingblocks/cross_browser.css">
 
 	<link rel="stylesheet" href="../libraries/buildingblocks/extra.css">
+
+	<link rel="stylesheet" href="../libraries/buildingblocks/transitions.css" />
+	<link rel="stylesheet" href="../libraries/buildingblocks/style/confirm.css" />
+
 	<link rel="stylesheet" href="../css/text.css">
     
 	<!-- END OF STYLES -->
@@ -68,6 +72,19 @@ IN THE SOFTWARE.
 				</div>
 			</article>
 		</section>
+	</section>
+
+	<section id="password" data-position="back" class="fullscreen">
+		<form role="dialog" data-type="confirm">
+			<section>
+				<p>
+					<strong><span data-l10n-id="password">Password</span></strong><span><input type="password" /></span>
+				</p>
+			</section>
+			<menu>
+				<button type="button" data-l10n-id="ok">OK</button>
+			</menu>
+		</form>
 	</section>
     
 	<!-- START OF SCRIPTS -->

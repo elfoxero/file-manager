@@ -79,7 +79,7 @@
 				});
 			});
 		} else if (/zip/ .test(activityData.type)) {
-			// Include scripts for ZIP Viewer
+			addJs('../js/zip.js');
 		}
 	});
 	

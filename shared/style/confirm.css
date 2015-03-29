@@ -255,8 +255,6 @@ form[role="dialog"][data-type="confirm"] ul li ul {
 
 html[dir="rtl"] form[role="dialog"][data-type="confirm"] {
   text-align: right;
-<<<<<<< HEAD:shared/style/confirm.css
-=======
 }
 
 html[dir="rtl"] form[role="dialog"][data-type="confirm"]:before {
@@ -284,7 +282,6 @@ html[dir="rtl"] form[role="dialog"][data-type="confirm"] dl > dd {
 html[dir="rtl"] form[role="dialog"][data-type="confirm"] figure img {
   padding-left: 1.5rem;
   padding-right: inherit;
->>>>>>> 2.0:shared/style/confirm.css
 }
 
 html[dir="rtl"] form[role="dialog"][data-type="confirm"]:before {

@@ -23,7 +23,7 @@
 	"activities": {
 		"open": {
 			"filters": {
-				"type": ["text/plain", "text/javascript", "application/x-javascript", "text/xml", "text/css", "text/html", "application/x-web-app-manifest+json"]
+				"type": ["text/plain", "text/javascript", "application/x-javascript", "text/xml", "text/css", "text/html", "application/zip"]
 			},
 			"disposition": "inline",
 			"returnValue": true,

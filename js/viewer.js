@@ -27,7 +27,7 @@
 	window.activityData = null;
 
 	navigator.setMessageHandler = navigator.setMessageHandler || navigator.mozSetMessageHandler;
-	
+
 	var addJs = function (src, callback) {
 		var el = element('script', { src: src });
 		callback && (el.onload = callback);
@@ -38,11 +38,11 @@
 		var el = element('link', { rel: 'stylesheet', href: href });
 		document.querySelector('head').appendChild(el);
 	};
-	
+
 	window.$ = function (selector) {
 		return document.querySelector(selector);
 	};
-	
+
 	window.element = function (tag, attrs) {
 		var elem = document.createElement(tag);
 
@@ -65,15 +65,15 @@
 
 	navigator.setMessageHandler('activity', function(request) {
 		activity = request;
-		
+
 		window.activityData = activity.source.data;
 
 		$('#name').textContent = activityData.filename;
-		
+
 		if (/text/ .test(activityData.type) || /javascript/ .test(activityData.type)) {
-			addCss('../css/text.css');
-			
-			addJs('../libraries/gibberish-aes.js', function () {
+			addCss('../style/text.css');
+
+			addJs('../js/lib/gibberish-aes.js', function () {
 				addJs('../js/storage.js', function () {
 					addJs('../js/text.js');
 				});
@@ -82,7 +82,7 @@
 			addJs('../js/zip.js');
 		}
 	});
-	
+
 	$('#close').onclick = function (e) {
 		if (window.activity) {
 			activity.postResult({saved: false});

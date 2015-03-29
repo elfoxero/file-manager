@@ -23,37 +23,37 @@ IN THE SOFTWARE.
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-	<meta charset="utf-8" />
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no">
 	<title>File Manager</title>
 
-	<link rel="stylesheet" href="../libraries/buildingblocks/style/action_menu.css">
-	<link rel="stylesheet" href="../libraries/buildingblocks/style/confirm.css">
-	<link rel="stylesheet" href="../libraries/buildingblocks/style/headers.css">
-	<link rel="stylesheet" href="../libraries/buildingblocks/style/status.css">
-	<link rel="stylesheet" href="../libraries/buildingblocks/style/lists.css">
-	<link rel="stylesheet" href="../libraries/buildingblocks/style/scrolling.css">
-	<link rel="stylesheet" href="../libraries/buildingblocks/style/progress_activity.css">
-	<link rel="stylesheet" href="../libraries/buildingblocks/style/toolbars.css">
+	<link rel="stylesheet" href="../shared/style/action_menu.css">
+	<link rel="stylesheet" href="../shared/style/confirm.css">
+	<link rel="stylesheet" href="../shared/style/headers.css">
+	<link rel="stylesheet" href="../shared/style/status.css">
+	<link rel="stylesheet" href="../shared/style/lists.css">
+	<link rel="stylesheet" href="../shared/style/scrolling.css">
+	<link rel="stylesheet" href="../shared/style/progress_activity.css">
+	<link rel="stylesheet" href="../shared/style/toolbars.css">
 
-	<link rel="stylesheet" href="../libraries/buildingblocks/icons/styles/action_icons.css">
+	<link rel="stylesheet" href="../style/action_icons.css">
 
-	<link rel="stylesheet" href="../libraries/buildingblocks/transitions.css">
+	<link rel="stylesheet" href="../style/transitions.css">
 
-	<link rel="stylesheet" href="../libraries/buildingblocks/util.css">
-	<link rel="stylesheet" href="../libraries/buildingblocks/fonts.css">
+	<link rel="stylesheet" href="../style/util.css">
+	<link rel="stylesheet" href="../style/fonts.css">
 
-	<link rel="stylesheet" href="../libraries/buildingblocks/cross_browser.css">
+	<link rel="stylesheet" href="../style/cross_browser.css">
 
-	<link rel="stylesheet" href="../libraries/buildingblocks/extra.css">
+	<link rel="stylesheet" href="../style/extra.css">
 
-	<link rel="stylesheet" href="../css/icons.css">
-	<link rel="stylesheet" href="../css/util.css">
-	<link rel="stylesheet" href="../css/app.css">
-    
+	<link rel="stylesheet" href="../style/icons.css">
+	<link rel="stylesheet" href="../style/util.css">
+	<link rel="stylesheet" href="../style/app.css">
+
 	<!-- END OF STYLES -->
 
-	<link rel="resource" type="application/l10n" href="../locales/locales.ini" />
+	<link rel="resource" type="application/l10n" href="../locales/locales.ini">
 </head>
 <body>
 	<section role="region" id="drawer" class="skin-dark">
@@ -110,22 +110,22 @@ IN THE SOFTWARE.
 
 	<section id="loading" data-position="back" class="shown" data-mode="ring">
 		<div id="loading-container">
-			<img id="loading-image" src="../img/icon.png" alt="Logo" />
+			<img id="loading-image" src="../style/images/icon.png" alt="Logo">
 			<div id="loading-bar">
 				<progress id="loading-progress"></progress>
 			</div>
 			<div id="loading-message"></div>
 		</div>
 	</section>
-    
+
 	<!-- START OF SCRIPTS -->
 
-	<script type="text/javascript" defer src="../libraries/l10n.js"></script>
-	<script type="text/javascript" defer src="../libraries/buildingblocks/js/status.js"></script>
-	<script type="text/javascript" defer src="../js/config.js"></script>
-	<script type="text/javascript" defer src="../js/mime.js"></script>
-	<script type="text/javascript" defer src="../js/util.js"></script>
-	<script type="text/javascript" defer src="../js/files.js"></script>
-	<script type="text/javascript" defer src="../js/folder.js"></script>
+	<script defer src="../js/lib/l10n.js"></script>
+	<script defer src="../shared/js/status.js"></script>
+	<script defer src="../js/config.js"></script>
+	<script defer src="../js/mime.js"></script>
+	<script defer src="../js/util.js"></script>
+	<script defer src="../js/files.js"></script>
+	<script defer src="../js/folder.js"></script>
 </body>
 </html>

@@ -20,45 +20,21 @@
 *
 */
 
-;+function (window, document, undefined) {
-	var _ = window.document.webL10n.get;
-	var worker = new Worker('../js/zip_worker.js');
-		
-	function init() {
-		setup();
-		
-		load();
-	}
-	
-	function setup() {
-		var section = $('article > section');
-		
-		var ul = element('ul');
-		ul.id = 'files';
-		
-		section.appendChild(ul);
-	}
+importScripts('../libraries/jszip.min.js');
 
-	function load() {
-		var reader = new FileReader();
+onmessage = function (e) {	
+    var data = e.data;
+    
+    if (data.constructor.name === 'ArrayBuffer') {
+        var zip = new JSZip(data);
+		var entries = [];
 		
-		reader.onload = function (e) {
-			worker.postMessage(e.target.result, [e.target.result]);
-		};
-		
-		reader.readAsArrayBuffer(activityData.blob);
-	}
-	
-	worker.onmessage = function (e) {
-		var files = e.data;
-		
-		files.forEach(function (file) {
-			var li = element('li');
-			li.textContent = file;
-			$('#files').appendChild(li);
+		Object.keys(zip.files).forEach(function (name) {
+			entries.push(name);
 		});
-	};
-	
-	init();
+		
+		postMessage(entries);
+    }
 
-} (window, document, undefined);
+	close();
+};

@@ -20,7 +20,7 @@
 *
 */
 
-importScripts('../libraries/jszip.min.js');
+importScripts('../js/lib/jszip.min.js');
 
 onmessage = function (e) {	
     var data = e.data;

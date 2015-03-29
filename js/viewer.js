@@ -24,6 +24,8 @@
 	var _ = window.document.webL10n.get;
 
 	window.activity = null;
+	window.activityData = null;
+
 	navigator.setMessageHandler = navigator.setMessageHandler || navigator.mozSetMessageHandler;
 	
 	var addJs = function (src, callback) {
@@ -69,7 +71,13 @@
 		$('#name').textContent = activityData.filename;
 		
 		if (/text/ .test(activityData.type) || /javascript/ .test(activityData.type)) {
-			// Include scripts for Text Viewer
+			addCss('../css/text.css');
+			
+			addJs('../libraries/gibberish-aes.js', function () {
+				addJs('../js/storage.js', function () {
+					addJs('../js/text.js');
+				});
+			});
 		} else if (/zip/ .test(activityData.type)) {
 			// Include scripts for ZIP Viewer
 		}

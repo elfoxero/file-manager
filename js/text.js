@@ -23,6 +23,7 @@
 ;+function (window, document, undefined) {
 	var activity, size;
 	var file;
+	var password;
 	var _ = window.document.webL10n.get;
 
 	function setFontSize() {
@@ -32,6 +33,14 @@
 
 	function setWrap() {
 		document.querySelector('textarea').wrap = window.localStorage.wrap;
+	}
+
+	function setEncryptionIcon() {
+		if (password) {
+			document.getElementById('encryption').className = 'action-icon lock';
+		} else {
+			document.getElementById('encryption').className = 'action-icon unlock';
+		}
 	}
 
 	if (!('fontSize' in window.localStorage)) {
@@ -59,6 +68,11 @@
 
 		reader.onload = function (e) {
 			document.querySelector('textarea').value = e.target.result;
+			// OpenSSL encrypted texts start with the base64 encoded string "Salted__"
+			if (e.target.result.lastIndexOf('U2FsdGVkX1', 0) === 0) {
+				document.querySelector('#password').className = 'fade-in';
+				document.querySelector('textarea').needsDec = true;
+			}
 		};
 
 		reader.readAsText(data.blob);
@@ -89,6 +103,28 @@
 		setWrap();
 	};
 
+	document.querySelector('#password button').onclick = function (e) {
+		password = document.querySelector('input').value;
+		setEncryptionIcon();
+		textarea = document.querySelector('textarea');
+		if (password && textarea.needsDec === true) {
+			// Decoding will throw an exception when the user entered an
+			// incorrect password - thus the dialog won't be faded out.
+			textarea.value = GibberishAES.dec(textarea.value, password);
+		}
+		textarea.needsDec = false;
+		document.querySelector('#password').className = 'fade-out';
+	}
+
+	document.querySelector('#encryption').onclick = function (e) {
+		if (password) {
+			password = null;
+		} else {
+			document.querySelector('#password').className = 'fade-in';
+		}
+		setEncryptionIcon();
+	}
+
 	document.querySelector('#save').addEventListener('click', function () {
 		var parts = file.split('/');
 
@@ -101,7 +137,11 @@
 		}
 
 		storage.delete(file, function () {
-			var blob = new Blob([document.querySelector('textarea').value]);
+			var plaintext = document.querySelector('textarea').value;
+			if (password) {
+				plaintext = GibberishAES.enc(plaintext, password);
+			}
+			var blob = new Blob([plaintext]);
 
 			storage.create(blob, file, function () {
 				activity.postResult({'saved': true, 'file': file, 'blob': blob});

@@ -49,3 +49,8 @@ textarea {
 	tab-size: 4;
 	-moz-tab-size: 4;
 }
+
+input {
+	font-size: 2rem;
+	width: 100%;
+}

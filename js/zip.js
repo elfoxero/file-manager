@@ -27,16 +27,72 @@
 	function init() {
 		setup();
 		
+		window.config.activity = 'zip';
+		window.config.app = window.activityData.filename;
+		window.files.path = 'sdcard';
+		
 		load();
 	}
 	
 	function setup() {
-		var section = $('article > section');
+		var index = $('#index');
+		index.removeChild($('#drawer'));
 		
-		var ul = element('ul');
-		ul.id = 'files';
+		// #drawer
+		var section = element('section', { role: 'region', id: 'drawer', className: 'skin-dark' });
 		
-		section.appendChild(ul);
+		var header = element('header', { className: 'fixed' }, [
+			element('a', { id: 'back', className: 'folder', href: '#' }, [
+				element('span', { className: 'icon icon-back', text: 'back' })
+			]),
+			element('button', { id: 'close' }, [
+				element('span', { className: 'icon icon-close', text: 'close' })
+			]),
+			element('h1', { id: 'folder', text: ' ' })
+		]);
+		
+		var toolbar = element('div', { role: 'toolbar' }, [
+			element('ul', null, [
+				element('li', null, [
+					element('span', { className: 'toolbar-text' }, [
+						element('span', { id: 'footer-label', 'data-l10n-id': 'items', 'data-l10n-args': '{"n": "0"}', text: '0 items' })
+					])
+				])
+			]),
+			element('ul')
+		]);
+		
+		section.appendChild(header);
+		section.appendChild(toolbar);
+		document.body.insertBefore(section, index);
+		
+		index.appendChild(element('section', { role: 'region', className: 'skin-dark' }, [
+			element('article', { className: 'content scrollable scrollable-y header' }, [
+				element('section', { 'data-type': 'list' }, [
+					element('ul', { className: 'files' })
+				])
+			])
+		]));
+		
+		for (var i = 0; i < 2; i++) {
+			document.body.appendChild(element('section', { role: 'region', name: 'side', 'data-position': 'right', 'data-skin': 'dark' }, [
+				element('article', { className: 'content scrollable scrollable-y header' }, [
+					element('section', { 'data-type': 'list' }, [
+						element('ul', { className: 'files' })
+					])
+				])
+			]));
+		}
+		
+		// Events
+		$('#close').onclick = function (e) {
+			window.activity.postResult({saved: false});
+			window.activity = null;
+		};
+		
+        $('#back').onclick = function () {
+            window.files.go(-1);
+        };
 	}
 
 	function load() {
@@ -50,13 +106,9 @@
 	}
 	
 	worker.onmessage = function (e) {
-		var files = e.data;
-		
-		files.forEach(function (file) {
-			var li = element('li');
-			li.textContent = file;
-			$('#files').appendChild(li);
-		});
+		window.files.set(e.data);
+		window.files.show();
+		window.config.refreshToolbar();
 	};
 	
 	init();

@@ -30,7 +30,18 @@ onmessage = function (e) {
 		var entries = [];
 		
 		Object.keys(zip.files).forEach(function (name) {
-			entries.push(name);
+			if (!zip.files[name].dir) {
+				entries.push({
+					name: '/sdcard/' + name,
+					disabled: false,
+					blob: {
+						name: '/sdcard/' + name,
+						lastModifiedDate: zip.files[name].date,
+						size: zip.files[name].asArrayBuffer().byteLength,
+						type: ''
+					}
+				});
+			}
 		});
 		
 		postMessage(entries);

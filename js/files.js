@@ -450,6 +450,7 @@ var files = (function () {
     }
 
     function showFileList() {
+		fileList = fileList || document.querySelector('#index .files');
         fileList.innerHTML = '';
 
         if (curDir.length > 0 || window.config.isSimulator) {

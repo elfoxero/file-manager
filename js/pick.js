@@ -23,6 +23,7 @@
 ;+function (window, document, undefined) {
 	var activity;
 	var _ = window.document.webL10n.get;
+	var selectedFolder = '';
 	
 	window.navigator.mozSetMessageHandler('activity', function(request) {
 		activity = request;
@@ -32,14 +33,33 @@
 		if (option.name === 'pick') {
 			var data = option.data;
 			
-			document.querySelector('.content').textContent = JSON.stringify(data);
-			
-			document.querySelector('#close').onclick = document.querySelector('#done').onclick = function (e) {
-				window.close();
-			};
+			console.log('Recibido', data);
 		} else {
 			console.error('Not allowed');
 		}
-
 	});
-} (window, document, undefined);
+	
+
+	window.utils = window.utils || {};
+	window.Activity = window.Activity || window.MozActivity;
+	window.config.activity = 'pick';
+
+	function init() {
+		if (window.files.path.length > 0) {
+			window.storage.load(true);
+		} else {
+			window.utils.preload.complete();
+			window.storage.load(false);
+		}
+	}
+
+    window.addEventListener('localized', function() {
+        window.config.app = _('file-manager');
+
+        document.documentElement.lang = document.webL10n.getLanguage();
+        document.documentElement.dir = document.webL10n.getDirection();
+
+        init();
+    }, false);
+}(window, document);
+

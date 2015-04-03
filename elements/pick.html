@@ -28,9 +28,15 @@ IN THE SOFTWARE.
 	<title>File Picker</title>
 
 	<link rel="stylesheet" href="../shared/style/headers.css">
+	<link rel="stylesheet" href="../shared/style/status.css">
+	<link rel="stylesheet" href="../shared/style/lists.css">
+	<link rel="stylesheet" href="../shared/style/scrolling.css">
+	<link rel="stylesheet" href="../shared/style/progress_activity.css">
 	<link rel="stylesheet" href="../shared/style/toolbars.css">
 
 	<link rel="stylesheet" href="../style/action_icons.css">
+	
+	<link rel="stylesheet" href="../style/transitions.css">
 
 	<link rel="stylesheet" href="../style/util.css">
 	<link rel="stylesheet" href="../style/fonts.css">
@@ -38,29 +44,88 @@ IN THE SOFTWARE.
 	<link rel="stylesheet" href="../style/cross_browser.css">
 
 	<link rel="stylesheet" href="../style/extra.css">
+	
+	<link rel="stylesheet" href="../style/icons.css">
+	<link rel="stylesheet" href="../style/util.css">
+	<link rel="stylesheet" href="../style/app.css">
 
 	<!-- END OF STYLES -->
 
 	<link rel="prefetch" type="application/l10n" href="../locales/locales.ini">
 </head>
 <body>
+	<section role="region" id="drawer" class="skin-dark">
+		<header class="fixed">
+			<a id="back" class="folder" href="#">
+				<span class="icon icon-back">back</span>
+			</a>
+			<button id="close">
+				<span class="icon icon-close">close</span>
+			</button>
+			<menu type="toolbar">
+				<button name="done" data-l10n-id="done">Done</button>
+			</menu>
+			<h1 id="folder">&nbsp;</h1>
+		</header>
+
+		<div role="toolbar">
+			<ul>
+				<li>
+					<span class="toolbar-text">
+						<span id="footer-label" data-l10n-id="items" data-l10n-args='{"n": "0"}'>0 items</span>
+					</span>
+				</li>
+			</ul>
+			<ul></ul>
+		</div>
+	</section>
+
 	<section id="index" data-position="current" class="left-to-current">
-		<section id="drawer" role="region" class="skin-dark">
-			<header>
-				<button id="close"><span class="icon icon-close">close</span></button>
-				<menu type="toolbar"><button id="done" data-l10n-id="done">Done</button></menu>
-				<h1 id="name" data-l10n-id="pick-file">Pick a file</h1>
-			</header>
-			<article>
-				<section class="content">
+		<section role="region" class="skin-dark">
+			<article class="content scrollable scrollable-y header">
+				<section data-type="list">
+					<ul class="files"></ul>
 				</section>
 			</article>
 		</section>
 	</section>
 
+	<section role="region" name="side" data-position="right" data-skin="dark">
+		<article class="content scrollable scrollable-y header">
+			<section data-type="list">
+				<ul class="files"></ul>
+			</section>
+		</article>
+	</section>
+
+	<section role="region" name="side" data-position="right" data-skin="dark">
+		<article class="content scrollable scrollable-y header">
+			<section data-type="list">
+				<ul class="files"></ul>
+			</section>
+		</article>
+	</section>
+
+	<section id="loading" data-position="back" class="shown" data-mode="ring">
+		<div id="loading-container">
+			<img id="loading-image" src="../style/images/icon.png" alt="Logo">
+			<div id="loading-bar">
+				<progress id="loading-progress"></progress>
+			</div>
+			<div id="loading-message"></div>
+		</div>
+	</section>
+
 	<!-- START OF SCRIPTS -->
 
 	<script defer src="../js/lib/l10n.js"></script>
+	<script defer src="../shared/js/status.js"></script>
+	<script defer src="../js/config.js"></script>
+	<script defer src="../js/mime.js"></script>
+	<script defer src="../js/util.js"></script>
+	<script defer src="../js/files.js"></script>
+	<script defer src="../js/storage.js"></script>
+<!--	<script defer src="../js/app.js"></script>-->
 
 	<script defer src="../js/pick.js"></script>
 </body>

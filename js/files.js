@@ -586,7 +586,6 @@ var files = (function () {
                 divElem = document.createElement('div');
                 aElem = document.createElement('a');
                 p1Elem = document.createElement('p');
-                p2Elem = document.createElement('p');
 
                 asideElem.className = 'pack-start';
                 divElem.className = 'file-icon ' + utils.files.icon(filesFound[k].blob.type, filesFound[k].ext);
@@ -612,9 +611,13 @@ var files = (function () {
                 } (filesFound[k].name, filesFound[k].blob, filesFound[k].ext);
 
                 p1Elem.appendChild(document.createTextNode(filesFound[k].name));
-                p2Elem.appendChild(document.createTextNode(utils.files.size(filesFound[k].blob.size)));
                 aElem.appendChild(p1Elem);
-                aElem.appendChild(p2Elem);
+				
+				if (filesFound[k].blob.size >= 0) {
+                	p2Elem = document.createElement('p');
+					p2Elem.appendChild(document.createTextNode(utils.files.size(filesFound[k].blob.size)));
+                	aElem.appendChild(p2Elem);
+				}
 
                 liElem.appendChild(asideElem);
                 liElem.appendChild(aElem);

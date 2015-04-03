@@ -37,7 +37,7 @@ onmessage = function (e) {
 					blob: {
 						name: '/sdcard/' + name,
 						lastModifiedDate: zip.files[name].date,
-						size: zip.files[name].asArrayBuffer().byteLength,
+						size: -1,
 						type: ''
 					}
 				});

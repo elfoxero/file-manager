@@ -1,10 +1,11 @@
 {
-    "tabSize": 4,
-    "useTabChar": true,
-    "language.fileExtensions": {
-        "webapp": "json"
-    },
-    "highlightMatches": {
-        "wordsOnly": true
-    }
+  "tabSize": 2,
+  "spaceUnits": 2,
+  "useTabChar": false,
+  "language.fileExtensions": {
+    "webapp": "json"
+  },
+  "highlightMatches": {
+    "wordsOnly": true
+  }
 }

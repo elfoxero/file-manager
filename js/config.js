@@ -21,63 +21,63 @@
 */
 
 ;+function (window, document, undefined) {
-	var localStorage = window.localStorage;
-	localStorage.dateFormat = localStorage.dateFormat || 'dd/mm/yyyy hh:MM:ss TT';
+  var localStorage = window.localStorage;
+  localStorage.dateFormat = localStorage.dateFormat || 'dd/mm/yyyy hh:MM:ss TT';
 
-	function refreshToolbar() {
-		var container = (document.querySelector('.current') ? document.querySelector('.current') : document.querySelector('[data-position="current"]'));
-		window.config.toolbar = [container.querySelector('ul.files').childNodes.length, 'items'];
-	}
+  function refreshToolbar() {
+    var container = (document.querySelector('.current') ? document.querySelector('.current') : document.querySelector('[data-position="current"]'));
+    window.config.toolbar = [container.querySelector('ul.files').childNodes.length, 'items'];
+  }
 
-	var isSimulator = navigator.getDeviceStorages('sdcard').length === 1 && !navigator.getDeviceStorages('sdcard')[0].storageName.length;
+  var isSimulator = navigator.getDeviceStorages('sdcard').length === 1 && !navigator.getDeviceStorages('sdcard')[0].storageName.length;
 
-	window.config = (function () {
-		var titleText = '';
-		var appName = '';
+  window.config = (function () {
+    var titleText = '';
+    var appName = '';
 
-		return {
-			get app() {
-				return appName;
-			},
-			set app(newApp) {
-				appName = newApp;
-				this.title = newApp;
-			},
-			get title() {
-				return titleText;
-			},
-			set title(newTitle) {
-				titleText = newTitle;
-				document.getElementById('folder').textContent = newTitle;
-			},
-			set toolbar(value) {
-				if (typeof value === 'string') {
-					document.body.dataset.loading = 'true';
+    return {
+      get app() {
+        return appName;
+      },
+      set app(newApp) {
+        appName = newApp;
+        this.title = newApp;
+      },
+      get title() {
+        return titleText;
+      },
+      set title(newTitle) {
+        titleText = newTitle;
+        document.getElementById('folder').textContent = newTitle;
+      },
+      set toolbar(value) {
+        if (typeof value === 'string') {
+          document.body.dataset.loading = 'true';
 
-					document.getElementById('footer-label').textContent = _(value);
-				} else if (value.length === 2) {
-					document.body.dataset.loading = 'false';
+          document.getElementById('footer-label').textContent = _(value);
+        } else if (value.length === 2) {
+          document.body.dataset.loading = 'false';
 
-					document.getElementById('footer-label').textContent = _(value[1], {n: value[0]});
-				}
-			},
-			get isActivity() {
-				return this.activity.length > 0;
-			},
-			'activity': '',
-			'refreshToolbar': refreshToolbar,
-			'isSimulator': isSimulator,
-			'baseDir': function (dir, excludePre) {
-				if (isSimulator) {
-					if (dir.length) {
-						return dir + '/';
-					}
-				} else {
-					return (!excludePre ? '/' : '') + dir + '/';
-				}
+          document.getElementById('footer-label').textContent = _(value[1], {n: value[0]});
+        }
+      },
+      get isActivity() {
+        return this.activity.length > 0;
+      },
+      'activity': '',
+      'refreshToolbar': refreshToolbar,
+      'isSimulator': isSimulator,
+      'baseDir': function (dir, excludePre) {
+        if (isSimulator) {
+          if (dir.length) {
+            return dir + '/';
+          }
+        } else {
+          return (!excludePre ? '/' : '') + dir + '/';
+        }
 
-				return '';
-			}
-		};
-	})();
+        return '';
+      }
+    };
+  })();
 }(window, document);

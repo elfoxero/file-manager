@@ -51,9 +51,9 @@
   left: 0;
   border-top: solid 0.7rem;
   -moz-border-top-colors:
-    rgba(0, 0, 0, 0.5) rgba(0, 0, 0, 0.4) rgba(0, 0, 0, 0.3)
-    rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.1)
-    rgba(0, 0, 0, 0.05);
+  rgba(0, 0, 0, 0.5) rgba(0, 0, 0, 0.4) rgba(0, 0, 0, 0.3)
+  rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.1)
+  rgba(0, 0, 0, 0.05);
   z-index: 10;
 }
 
@@ -65,9 +65,9 @@
   left: 0;
   border-bottom: solid 0.7rem;
   -moz-border-bottom-colors:
-    rgba(0, 0, 0, 0.5) rgba(0, 0, 0, 0.4) rgba(0, 0, 0, 0.3)
-    rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.1)
-    rgba(0, 0, 0, 0.05);
+  rgba(0, 0, 0, 0.5) rgba(0, 0, 0, 0.4) rgba(0, 0, 0, 0.3)
+  rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.1)
+  rgba(0, 0, 0, 0.05);
   z-index: 10;
 }
 

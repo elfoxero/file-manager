@@ -21,36 +21,36 @@
 */
 
 .editor-container {
-	height: calc(100% - 9rem);
-	overflow: none;
-	padding: 0;
-	position: absolute;
-	top: 5rem;
-	width: 100%;
+  height: calc(100% - 9rem);
+  overflow: none;
+  padding: 0;
+  position: absolute;
+  top: 5rem;
+  width: 100%;
 }
 
 .editor {
-	height: 100%;
-	margin: 0;
-	overflow: none;
-	padding: 0;
-	position: relative;
+  height: 100%;
+  margin: 0;
+  overflow: none;
+  padding: 0;
+  position: relative;
 }
 
 textarea {
-	font-size: 2rem;
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	height: 100%;
-	width: 100%;
-	resize: none;
-	tab-size: 4;
-	-moz-tab-size: 4;
+  font-size: 2rem;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  resize: none;
+  tab-size: 4;
+  -moz-tab-size: 4;
 }
 
 input {
-	font-size: 2rem;
-	width: 100%;
+  font-size: 2rem;
+  width: 100%;
 }

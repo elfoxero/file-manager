@@ -19,28 +19,28 @@
 
 @keyframes taskCurrentToLeft {
   0%   { transform: scale(0.8) translateX(0);
-         z-index: 12; }
+     z-index: 12; }
   100% { transform: scale(0.6) translateX(-105%);
-         z-index: 10; }
+     z-index: 10; }
 }
 @-webkit-keyframes taskCurrentToLeft {
   0%   { -webkit-transform: scale(0.8) translateX(0);
-         z-index: 12; }
+     z-index: 12; }
   100% { -webkit-transform: scale(0.6) translateX(-105%);
-         z-index: 10; }
+     z-index: 10; }
 }
 
 @keyframes taskLeftOut {
   0%   { transform: scale(0.6) translateX(-105%); 
-         z-index: 10; }
+     z-index: 10; }
   100% { transform: scale(0.6) translateX(-133%); 
-         z-index: 8; }
+     z-index: 8; }
 }
 @-webkit-keyframes taskLeftOut {
   0%   { -webkit-transform: scale(0.6) translateX(-105%); 
-         z-index: 10; }
+     z-index: 10; }
   100% { -webkit-transform: scale(0.6) translateX(-133%); 
-         z-index: 8; }
+     z-index: 8; }
 }
 
 @keyframes taskRightZoomOut {
@@ -55,28 +55,28 @@
 
 @keyframes taskRightToCurrent {
   0%   { transform: scale(0.6) translateX(105%); 
-         z-index: 10; }
-  100% { transform: scale(0.8) translateX(0);    
-         z-index: 12; }
+     z-index: 10; }
+  100% { transform: scale(0.8) translateX(0);  
+     z-index: 12; }
 }
 @-webkit-keyframes taskRightToCurrent {
   0%   { -webkit-transform: scale(0.6) translateX(105%); 
-         z-index: 10; }
-  100% { -webkit-transform: scale(0.8) translateX(0);    
-         z-index: 12; }
+     z-index: 10; }
+  100% { -webkit-transform: scale(0.8) translateX(0);  
+     z-index: 12; }
 }
 
 @keyframes taskRightZoomIn {
   0%   { transform: scale(0.6) translateX(105%); 
-         z-index: 10; }
-  100% { transform: scale(1) translateX(0);    
-         z-index: 12; }
+     z-index: 10; }
+  100% { transform: scale(1) translateX(0);  
+     z-index: 12; }
 }
 @-webkit-keyframes taskRightZoomIn {
   0%   { -webkit-transform: scale(0.6) translateX(105%); 
-         z-index: 10; }
-  100% { -webkit-transform: scale(1) translateX(0);    
-         z-index: 12; }
+     z-index: 10; }
+  100% { -webkit-transform: scale(1) translateX(0);  
+     z-index: 12; }
 }
 
 @keyframes taskInFromLeft {
@@ -108,28 +108,28 @@
 
 @keyframes taskLeftToCurrent {
   0%   { transform: scale(0.6) translateX(-105%); 
-         z-index: 10; }
-  100% { transform: scale(0.8) translateX(0);    
-         z-index: 12; }
+     z-index: 10; }
+  100% { transform: scale(0.8) translateX(0);  
+     z-index: 12; }
 }
 @-webkit-keyframes taskLeftToCurrent {
   0%   { -webkit-transform: scale(0.6) translateX(-105%); 
-         z-index: 10; }
-  100% { -webkit-transform: scale(0.8) translateX(0);    
-         z-index: 12; }
+     z-index: 10; }
+  100% { -webkit-transform: scale(0.8) translateX(0);  
+     z-index: 12; }
 }
 
 @keyframes taskDelete {
-  0%   { transform: scale(0.8) translateY(0);     
-         z-index: 12; }
-  100% { transform: scale(0.8) translateY(-133%);    
-         z-index: 14; }
+  0%   { transform: scale(0.8) translateY(0);   
+     z-index: 12; }
+  100% { transform: scale(0.8) translateY(-133%);  
+     z-index: 14; }
 }
 @-webkit-keyframes taskDelete {
-  0%   { -webkit-transform: scale(0.8) translateY(0);     
-         z-index: 12; }
-  100% { -webkit-transform: scale(0.8) translateY(-133%);    
-         z-index: 14; }
+  0%   { -webkit-transform: scale(0.8) translateY(0);   
+     z-index: 12; }
+  100% { -webkit-transform: scale(0.8) translateY(-133%);  
+     z-index: 14; }
 }
 
 /* Overlay */
@@ -163,15 +163,15 @@
 /* Open/close apps */
 @keyframes openApp {
   0%   { transform: scale(0.1);
-       opacity: 0; }
+     opacity: 0; }
   100% { transform: scale(1.0);
-       opacity: 1; }
+     opacity: 1; }
 }
 @-webkit-keyframes openApp {
   0%   { -webkit-transform: scale(0.1);
-       opacity: 0; }
+     opacity: 0; }
   100% { -webkit-transform: scale(1.0);
-       opacity: 1; }
+     opacity: 1; }
 }
 
 @keyframes openAppIcons {
@@ -185,15 +185,15 @@
 
 @keyframes closeApp {
   0%   { transform: scale(1.0);
-       opacity: 1; }
+     opacity: 1; }
   100% { transform: scale(0.1);
-       opacity: 0; }
+     opacity: 0; }
 }
 @-webkit-keyframes closeApp {
   0%   { -webkit-transform: scale(1.0);
-       opacity: 1; }
+     opacity: 1; }
   100% { -webkit-transform: scale(0.1);
-       opacity: 0; }
+     opacity: 0; }
 }
 
 @keyframes closeAppIcons {
@@ -210,31 +210,31 @@
 @keyframes invokingApp {
   0%   { transform: scale(1.0); }
   50%  { transform: scale(0.8) translateX(0);
-         z-index: 12; }
+     z-index: 12; }
   100% { transform: scale(0.6) translateX(105%);
-         z-index: 10; }
+     z-index: 10; }
 }
 @-webkit-keyframes invokingApp {
   0%   { -webkit-transform: scale(1.0); }
   50%  { -webkit-transform: scale(0.8) translateX(0);
-         z-index: 12; }
+     z-index: 12; }
   100% { -webkit-transform: scale(0.6) translateX(105%);
-         z-index: 10; }
+     z-index: 10; }
 }
 
 @keyframes invokedApp {
   0%   { transform: scale(0.6) translateX(-133%); }
   50%  { transform: scale(0.6) translateX(-105%); 
-         z-index: 10; }
-  100% { transform: scale(1.0) translateX(0);    
-         z-index: 12; }
+     z-index: 10; }
+  100% { transform: scale(1.0) translateX(0);  
+     z-index: 12; }
 }
 @-webkit-keyframes invokedApp {
   0%   { -webkit-transform: scale(0.6) translateX(-133%); }
   50%  { -webkit-transform: scale(0.6) translateX(-105%); 
-         z-index: 10; }
-  100% { -webkit-transform: scale(1.0) translateX(0);    
-         z-index: 12; }
+     z-index: 10; }
+  100% { -webkit-transform: scale(1.0) translateX(0);  
+     z-index: 12; }
 }
 
 /* Go deeper */
@@ -331,80 +331,80 @@
 
 @keyframes callNameDown {
   0%   { transform: translateY(-10rem);
-       opacity: 0; }
+     opacity: 0; }
   100% { transform: translateY(0);
-       opacity: 1; }
+     opacity: 1; }
 }
 @-webkit-keyframes callNameDown {
   0%   { -webkit-transform: translateY(-10rem);
-       opacity: 0; }
+     opacity: 0; }
   100% { -webkit-transform: translateY(0);
-       opacity: 1; }
+     opacity: 1; }
 }
 
 @keyframes callNameUp {
   0%   { transform: translateY(0);
-       opacity: 1; }
+     opacity: 1; }
   100% { transform: translateY(-10rem);
-       opacity: 0; }
+     opacity: 0; }
 }
 @-webkit-keyframes callNameUp {
   0%   { -webkit-transform: translateY(0);
-       opacity: 1; }
+     opacity: 1; }
   100% { -webkit-transform: translateY(-10rem);
-       opacity: 0; }
+     opacity: 0; }
 }
 
 @keyframes callPadUp {
   0%   { transform: translateY(16.2rem);
-       opacity: 0; }
+     opacity: 0; }
   100% { transform: translateY(0);
-       opacity: 1; }
+     opacity: 1; }
 }
 @-webkit-keyframes callPadUp {
   0%   { -webkit-transform: translateY(16.2rem);
-       opacity: 0; }
+     opacity: 0; }
   100% { -webkit-transform: translateY(0);
-       opacity: 1; }
+     opacity: 1; }
 }
 
 @keyframes callPadDown {
   0%   { transform: translateY(0);
-       opacity: 1; }
+     opacity: 1; }
   100% { transform: translateY(16.2rem);
-       opacity: 0; }
+     opacity: 0; }
 }
 @-webkit-keyframes callPadDown {
   0%   { -webkit-transform: translateY(0);
-       opacity: 1; }
+     opacity: 1; }
   100% { -webkit-transform: translateY(16.2rem);
-       opacity: 0; }
+     opacity: 0; }
 }
 
 @keyframes callAnswerUp {
   0%   { transform: translateY(6.5rem);
-       opacity: 0; }
+     opacity: 0; }
   100% { transform: translateY(0);
-       opacity: 1; }
+     opacity: 1; }
 }
 @-webkit-keyframes callAnswerUp {
   0%   { -webkit-transform: translateY(6.5rem);
-       opacity: 0; }
+     opacity: 0; }
   100% { -webkit-transform: translateY(0);
-       opacity: 1; }
+     opacity: 1; }
 }
 
 @keyframes callAnswerDown {
   0%   { transform: translateY(0);
-       opacity: 1; }
+     opacity: 1; }
   100% { transform: translateY(6.5rem);
-       opacity: 0; }
+     opacity: 0; }
 }
 @-webkit-keyframes callAnswerDown {
   0%   { -webkit-transform: translateY(0);
-       opacity: 1; }
+     opacity: 1; }
   100% { -webkit-transform: translateY(6.5rem);
-       opacity: 0; }
+     opacity: 0; }
 }
 
 /* Generic */

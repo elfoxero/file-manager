@@ -166,86 +166,86 @@ ul, ol, li {
 */
 
 #loading {
-	background-color: rgba(255,255,255,0.95);
+  background-color: rgba(255,255,255,0.95);
 }
 
 #loading.shown {
-	opacity: 1;
-	z-index: 120;
+  opacity: 1;
+  z-index: 120;
 }
 
 #loading.fadeOut {
-	animation: fadeOutLoading 0.5s forwards;
-	z-index: 120;
+  animation: fadeOutLoading 0.5s forwards;
+  z-index: 120;
 }
 
 [data-mode="bar"] #loading-bar {
-	border: 1px solid rgb(0, 142, 171);
-	border-radius: 2rem;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	height: 1.6rem;
-	margin: auto;
-	max-width: 30rem;
-	opacity: 0;
-	overflow: hidden;
-	white-space: nowrap;
-	width: 60%;
+  border: 1px solid rgb(0, 142, 171);
+  border-radius: 2rem;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 1.6rem;
+  margin: auto;
+  max-width: 30rem;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 60%;
 }
 
 [data-mode="bar"] #loading-progress {
-	height: 100%;
+  height: 100%;
 }
 
 [data-mode="bar"] #loading-message {
-	display: none;
+  display: none;
 }
 
 #loading-bar.fade-in {
-	animation: fadeIn 0.5s forwards;
+  animation: fadeIn 0.5s forwards;
 }
 
 #loading-container {
-	margin-top: -8rem;
-	position: relative;
-	text-align: center;
-	top: 50%;
+  margin-top: -8rem;
+  position: relative;
+  text-align: center;
+  top: 50%;
 }
 
 #loading-container > img {
-	height: auto;
-	margin-bottom: 1.5rem;
-	width: 100px;
+  height: auto;
+  margin-bottom: 1.5rem;
+  width: 100px;
 }
 
 [data-loading="true"] section[role="region"] section:not(.devices) + .preloader {
-	display: block;
+  display: block;
 }
 
 [data-loading="true"] section[role="region"] > article > section:not(.devices) > ul > li {
-	display: none;
+  display: none;
 }
 
 [data-loading="true"] section[role="region"] > article > .devices > ul > li {
-	pointer-events: none;
+  pointer-events: none;
 }
 
 section[role="region"] .preloader {
-	display: none;
-	margin-top: -1.5rem;
-	position: relative;
-	text-align: center;
-	top: 50%;
+  display: none;
+  margin-top: -1.5rem;
+  position: relative;
+  text-align: center;
+  top: 50%;
 }
 
 [role="toolbar"] .toolbar-text {
-	font-size: 1.6rem;
-	line-height: 4rem;
-	padding-left: 2rem;
+  font-size: 1.6rem;
+  line-height: 4rem;
+  padding-left: 2rem;
 }
 
 @keyframes fadeOutLoading {
-	0%   { opacity: 1; }
-	50%  { opacity: 1; }
-	100% { opacity: 0; }
+  0%   { opacity: 1; }
+  50%  { opacity: 1; }
+  100% { opacity: 0; }
 }

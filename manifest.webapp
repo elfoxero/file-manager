@@ -1,78 +1,78 @@
 {
-	"name": "File Manager",
-	"description": "File Manager is an app to manage, copy, move, delete, share and rename files in the SD card. It also allows you to rename and delete folders, view PDF documents (requires Firefox OS 1.4 or greater), play multimedia files, create and edit plain text documents. Uses a variant of Building Blocks http://buildingfirefoxos.com/ and icons from Numix Circle Icon Theme https://github.com/numixproject/numix-icon-theme-circle",
-	"launch_path": "/index.html",
-	"icons": {
-		"60": "/style/icons/icon_60.png",
-		"64": "/style/icons/icon_64.png",
-		"128": "/style/icons/icon_128.png",
-		"512": "/style/icons/icon_512.png"
-	},
-	"version": "1.0-beta2",
-	"developer": {
-		"name": "Jhon Klever",
-		"url": "https://github.com/elfoxero"
-	},
-	"default_locale": "en",
-	"permissions": {
-		"device-storage:sdcard": {
-			"description": "To access files from the SD card",
-			"access": "readwrite"
-		}
-	},
-	"activities": {
-		"open": {
-			"filters": {
-				"type": ["text/plain", "text/javascript", "application/x-javascript", "text/xml", "text/css", "text/html", "application/zip"]
-			},
-			"disposition": "inline",
-			"returnValue": true,
-			"href": "/elements/viewer.html"
-		},
-		"pick-folder": {
-			"disposition": "inline",
-			"returnValue": true,
-			"href": "/elements/folder.html"
-		},
-		"filemanager@elfoxero:pick-folder": {
-			"disposition": "inline",
-			"returnValue": true,
-			"href": "/elements/folder.html"
-		},
-		"pick": {
-			"disposition": "inline",
-			"returnValue": true,
-			"href": "/elements/pick.html"
-		}
-	},
-	"locales": {
-		"ca": {
-			"name": "Gestió de fitxers"
-		},
-		"de": {
-			"name": "Dateimanager"
-		},
-		"es": {
-			"name": "Mis Archivos"
-		},
-		"eu": {
-			"name": "Nire fitxategiak"
-		},
-		"fr": {
-			"name": "Mes Fichiers"
-		},
-		"it": {
-			"name": "File Manager"
-		},
-		"ja": {
-			"name": "File Manager"
-		},
-		"nl": {
-			"name": "Bestandsbeheer"
-		},
-		"pt-BR": {
-			"name": "Meus Arquivos"
-		}
-	},
-	"type": "privileged"
+  "name": "File Manager",
+  "description": "File Manager for Firefox OS",
+  "launch_path": "/index.html",
+  "icons": {
+    "60": "/style/icons/icon_60.png",
+    "64": "/style/icons/icon_64.png",
+    "128": "/style/icons/icon_128.png",
+    "512": "/style/icons/icon_512.png"
+  },
+  "version": "1.0-beta2",
+  "developer": {
+    "name": "Jhon Klever",
+    "url": "https://github.com/elfoxero"
+  },
+  "default_locale": "en",
+  "permissions": {
+    "device-storage:sdcard": {
+      "description": "To access files from the SD card",
+      "access": "readwrite"
+    }
+  },
+  "activities": {
+    "open": {
+      "filters": {
+        "type": ["text/plain", "text/javascript", "application/x-javascript", "text/xml", "text/css", "text/html", "application/zip"]
+      },
+      "disposition": "inline",
+      "returnValue": true,
+      "href": "/elements/viewer.html"
+    },
+    "pick-folder": {
+      "disposition": "inline",
+      "returnValue": true,
+      "href": "/elements/folder.html"
+    },
+    "filemanager@elfoxero:pick-folder": {
+      "disposition": "inline",
+      "returnValue": true,
+      "href": "/elements/folder.html"
+    },
+    "pick": {
+      "disposition": "inline",
+      "returnValue": true,
+      "href": "/elements/pick.html"
+    }
+  },
+  "locales": {
+    "ca": {
+      "name": "Gestió de fitxers"
+    },
+    "de": {
+      "name": "Dateimanager"
+    },
+    "es": {
+      "name": "Mis Archivos"
+    },
+    "eu": {
+      "name": "Nire fitxategiak"
+    },
+    "fr": {
+      "name": "Mes Fichiers"
+    },
+    "it": {
+      "name": "File Manager"
+    },
+    "ja": {
+      "name": "File Manager"
+    },
+    "nl": {
+      "name": "Bestandsbeheer"
+    },
+    "pt-BR": {
+      "name": "Meus Arquivos"
+    }
+  },
+  "type": "privileged"
 }

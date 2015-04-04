@@ -21,108 +21,108 @@
 */
 
 ;+function (window, document, undefined) {
-	var _ = window.document.webL10n.get;
+  var _ = window.document.webL10n.get;
 
-	window.activity = null;
-	window.activityData = null;
+  window.activity = null;
+  window.activityData = null;
 
-	navigator.setMessageHandler = navigator.setMessageHandler || navigator.mozSetMessageHandler;
-	
-	// Helpers
+  navigator.setMessageHandler = navigator.setMessageHandler || navigator.mozSetMessageHandler;
+  
+  // Helpers
 
-	var addJs = function (src, callback) {
-		var el = element('script', { src: src });
-		callback && (el.onload = callback);
-		document.body.appendChild(el);
-	};
+  var addJs = function (src, callback) {
+    var el = element('script', { src: src });
+    callback && (el.onload = callback);
+    document.body.appendChild(el);
+  };
 
-	var addCss = function (href) {
-		var el = element('link', { rel: 'stylesheet', href: href });
-		document.querySelector('head').appendChild(el);
-	};
+  var addCss = function (href) {
+    var el = element('link', { rel: 'stylesheet', href: href });
+    document.querySelector('head').appendChild(el);
+  };
 
-	window.$ = function (selector) {
-		return document.querySelector(selector);
-	};
+  window.$ = function (selector) {
+    return document.querySelector(selector);
+  };
 
-	window.element = function (tag, attrs, nodes) {
-		var elem = document.createElement(tag);
+  window.element = function (tag, attrs, nodes) {
+    var elem = document.createElement(tag);
 
-		if (attrs) {
-			if (typeof attrs === 'string') {
-				elem.textContent = attrs;
-			} else if (typeof attrs === 'object') {
-				Object.keys(attrs).forEach(function (attr) {
-					if (attr.indexOf('data-') === 0) {
-						var attrParts = attr.split('-');
-						attrParts.splice(0, 1);
-						elem.dataset[attrParts.map(function (current, index) {
-							return (index === 0 ? current : current.charAt(0).toUpperCase() + current.slice(1));
-						}).join('')] = attrs[attr];
-					} else if (attr === 'text') {
-						elem.textContent = attrs[attr];
-					} else if (attr === 'className') {
-						elem.className = attrs[attr];
-					} else {
-						elem.setAttribute(attr, attrs[attr]);
-					}
-				});
-			}
-		}
-		
-		if (nodes) {
-			if (nodes.constructor.name === 'Array') {
-				nodes.forEach(function (node) {
-					elem.appendChild(node);
-				});
-			} else {
-				elem.appendChild(nodes);
-			}
-		}
+    if (attrs) {
+      if (typeof attrs === 'string') {
+        elem.textContent = attrs;
+      } else if (typeof attrs === 'object') {
+        Object.keys(attrs).forEach(function (attr) {
+          if (attr.indexOf('data-') === 0) {
+            var attrParts = attr.split('-');
+            attrParts.splice(0, 1);
+            elem.dataset[attrParts.map(function (current, index) {
+              return (index === 0 ? current : current.charAt(0).toUpperCase() + current.slice(1));
+            }).join('')] = attrs[attr];
+          } else if (attr === 'text') {
+            elem.textContent = attrs[attr];
+          } else if (attr === 'className') {
+            elem.className = attrs[attr];
+          } else {
+            elem.setAttribute(attr, attrs[attr]);
+          }
+        });
+      }
+    }
+    
+    if (nodes) {
+      if (nodes.constructor.name === 'Array') {
+        nodes.forEach(function (node) {
+          elem.appendChild(node);
+        });
+      } else {
+        elem.appendChild(nodes);
+      }
+    }
 
-		return elem;
-	};
+    return elem;
+  };
 
-	navigator.setMessageHandler('activity', function(request) {
-		activity = request;
+  navigator.setMessageHandler('activity', function(request) {
+    activity = request;
 
-		window.activityData = activity.source.data;
+    window.activityData = activity.source.data;
 
-		$('#name').textContent = activityData.filename;
+    $('#name').textContent = activityData.filename;
 
-		if (/text/ .test(activityData.type) || /javascript/ .test(activityData.type)) {
-			addCss('../style/text.css');
+    if (/text/ .test(activityData.type) || /javascript/ .test(activityData.type)) {
+      addCss('../style/text.css');
 
-			addJs('../js/lib/gibberish-aes.js', function () {
-				addJs('../js/storage.js', function () {
-					addJs('../js/text.js');
-				});
-			});
-		} else if (/zip/ .test(activityData.type)) {
-			addCss('../shared/style/lists.css');
-			addCss('../shared/style/scrolling.css');
-			addCss('../style/icons.css');
-			addCss('../style/util.css');
-			addCss('../style/app.css');
-			
-			addJs('../js/config.js', function () {
-				addJs('../js/mime.js', function () {
-					addJs('../js/util.js', function () {
-						addJs('../js/files.js', function () {
-							addJs('../js/zip.js', function () {
-				
-							});
-						});
-					});
-				});
-			});
-		}
-	});
+      addJs('../js/lib/gibberish-aes.js', function () {
+        addJs('../js/storage.js', function () {
+          addJs('../js/text.js');
+        });
+      });
+    } else if (/zip/ .test(activityData.type)) {
+      addCss('../shared/style/lists.css');
+      addCss('../shared/style/scrolling.css');
+      addCss('../style/icons.css');
+      addCss('../style/util.css');
+      addCss('../style/app.css');
+      
+      addJs('../js/config.js', function () {
+        addJs('../js/mime.js', function () {
+          addJs('../js/util.js', function () {
+            addJs('../js/files.js', function () {
+              addJs('../js/zip.js', function () {
+        
+              });
+            });
+          });
+        });
+      });
+    }
+  });
 
-	$('#close').onclick = function (e) {
-		if (window.activity) {
-			activity.postResult({saved: false});
-			activity = null;
-		}
-	};
+  $('#close').onclick = function (e) {
+    if (window.activity) {
+      activity.postResult({saved: false});
+      activity = null;
+    }
+  };
 } (window, document, undefined);

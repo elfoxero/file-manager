@@ -22,30 +22,30 @@
 
 importScripts('../js/lib/jszip.min.js');
 
-onmessage = function (e) {	
-    var data = e.data;
+onmessage = function (e) {  
+  var data = e.data;
+  
+  if (data.constructor.name === 'ArrayBuffer') {
+    var zip = new JSZip(data);
+    var entries = [];
     
-    if (data.constructor.name === 'ArrayBuffer') {
-        var zip = new JSZip(data);
-		var entries = [];
-		
-		Object.keys(zip.files).forEach(function (name) {
-			if (!zip.files[name].dir) {
-				entries.push({
-					name: '/sdcard/' + name,
-					disabled: false,
-					blob: {
-						name: '/sdcard/' + name,
-						lastModifiedDate: zip.files[name].date,
-						size: -1,
-						type: ''
-					}
-				});
-			}
-		});
-		
-		postMessage(entries);
-    }
+    Object.keys(zip.files).forEach(function (name) {
+      if (!zip.files[name].dir) {
+        entries.push({
+          name: '/sdcard/' + name,
+          disabled: false,
+          blob: {
+            name: '/sdcard/' + name,
+            lastModifiedDate: zip.files[name].date,
+            size: -1,
+            type: ''
+          }
+        });
+      }
+    });
+    
+    postMessage(entries);
+  }
 
-	close();
+  close();
 };

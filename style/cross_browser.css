@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------- */
 /* This CSS file will make your Firefox OS app using Building Blocks */
-/* compatible with: ie 9, Firefox 18, Chrome 24, Safari 5.1          */
-/* By Arnau March - @rnowm                                           */
+/* compatible with: ie 9, Firefox 18, Chrome 24, Safari 5.1      */
+/* By Arnau March - @rnowm                       */
 /* ----------------------------------------------------------------- */
 
 /* Action menu */
@@ -9,8 +9,8 @@ form[role="dialog"][data-type="action"],
 form[role="dialog"][data-type="object"],
 form[role="dialog"][data-type="confirm"] {
   /*background:
-    url(shared/style/action_menu/images/ui/pattern.png) repeat left top,
-    url(shared/style/action_menu/images/ui/gradient.png) no-repeat left top;*/
+  url(shared/style/action_menu/images/ui/pattern.png) repeat left top,
+  url(shared/style/action_menu/images/ui/gradient.png) no-repeat left top;*/
   background-size: auto, 100%;
 }
 

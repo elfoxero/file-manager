@@ -361,8 +361,8 @@ select:-moz-focusring {
   font-weight: 400;
   font-size: 1.7rem;
   /*
-    The select element uses the text color to determine the color of the outline.
-    We put a text shadow with needed offset and no blur, so that replaces the text.
+  The select element uses the text color to determine the color of the outline.
+  We put a text shadow with needed offset and no blur, so that replaces the text.
   */
   color: rgba(0,0,0,0);
   text-shadow: 1rem 0.5rem 0 #333;

@@ -23,66 +23,66 @@
 window.utils = window.utils || {};
 
 document.byId = function (query) {
-	return document.getElementById(query);
+  return document.getElementById(query);
 };
 
 window.utils.preload = (function(win, doc, undefined) {
-	function completePreload() {
-		var loadingProgress = doc.byId('loading-progress');
-		var loading = doc.byId('loading');
-		var self = win.utils.preload;
+  function completePreload() {
+    var loadingProgress = doc.byId('loading-progress');
+    var loading = doc.byId('loading');
+    var self = win.utils.preload;
 
-		loading.className = 'fadeOut';
+    loading.className = 'fadeOut';
 
-		loading.addEventListener('animationend', function _animationend() {
-			loading.className = '';
-			loading.removeEventListener('animationend', _animationend);
-		});
+    loading.addEventListener('animationend', function _animationend() {
+      loading.className = '';
+      loading.removeEventListener('animationend', _animationend);
+    });
 
-		if (typeof self.oncomplete === 'function') {
-			self.oncomplete.call(self);
-		}
-	}
+    if (typeof self.oncomplete === 'function') {
+      self.oncomplete.call(self);
+    }
+  }
 
-	function startPreload() {
-		var self = win.utils.preload;
+  function startPreload() {
+    var self = win.utils.preload;
 
-		doc.byId('loading-bar').className = 'fade-in';
+    doc.byId('loading-bar').className = 'fade-in';
 
-		if (typeof self.onstart === 'function') {
-			self.onstart.call(self);
-		}
-	}
+    if (typeof self.onstart === 'function') {
+      self.onstart.call(self);
+    }
+  }
 
-	return {
-		get max() {
-			return doc.byId('loading-progress').max;
-		},
-		set max(val) {
-			var loadingProgress = doc.byId('loading-progress');
-			var defaultMax = loadingProgress.max;
+  return {
+    get max() {
+      return doc.byId('loading-progress').max;
+    },
+    set max(val) {
+      var loadingProgress = doc.byId('loading-progress');
+      var defaultMax = loadingProgress.max;
 
-			loadingProgress.max = val;
+      loadingProgress.max = val;
 
-			if (defaultMax === 1) {
-				startPreload();
-			}
-		},
-		get value() {
-			return doc.byId('loading-progress').value;
-		},
-		set value(val) {
-			var loadingProgress = doc.byId('loading-progress');
+      if (defaultMax === 1) {
+        startPreload();
+      }
+    },
+    get value() {
+      return doc.byId('loading-progress').value;
+    },
+    set value(val) {
+      var loadingProgress = doc.byId('loading-progress');
 
-			loadingProgress.value = val;
+      loadingProgress.value = val;
 
-			if (loadingProgress.value === loadingProgress.max) {
-				completePreload();
-			}
-		},
-		'complete': completePreload,
-		'start': startPreload,
-		'oncomplete': null,
-		'onstart': null
-	};
+      if (loadingProgress.value === loadingProgress.max) {
+        completePreload();
+      }
+    },
+    'complete': completePreload,
+    'start': startPreload,
+    'oncomplete': null,
+    'onstart': null
+  };
 })(window, document);

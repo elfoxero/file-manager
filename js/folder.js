@@ -21,53 +21,53 @@
 */
 
 ;+function (win, doc, undefined) {
-	var _ = win.document.webL10n.get;
+  var _ = win.document.webL10n.get;
 
-	win.navigator.setMessageHandler = win.navigator.setMessageHandler || win.navigator.mozSetMessageHandler;
+  win.navigator.setMessageHandler = win.navigator.setMessageHandler || win.navigator.mozSetMessageHandler;
 
-	function init(data) {
-		win.config.app = _(data.action + '-to');
+  function init(data) {
+    win.config.app = _(data.action + '-to');
 
-		win.files.path = data.storage;
-		win.files.set(data.files);
-		win.files.show();
-		win.config.refreshToolbar();
-		win.utils.preload.complete();
-	}
+    win.files.path = data.storage;
+    win.files.set(data.files);
+    win.files.show();
+    win.config.refreshToolbar();
+    win.utils.preload.complete();
+  }
 
-	win.config.activity = 'folder';
+  win.config.activity = 'folder';
 
-	win.navigator.setMessageHandler('activity', function(request) {
-		var activity = request;
+  win.navigator.setMessageHandler('activity', function(request) {
+    var activity = request;
 
-		var option = activity.source;
-		var data = option.data;
-		var doneBtns = doc.getElementsByName('done');
+    var option = activity.source;
+    var data = option.data;
+    var doneBtns = doc.getElementsByName('done');
 
-		if ('files' in data) {
-			if (win.document.webL10n.getReadyState() !== 'complete') {
-				window.addEventListener('localized', function() {
-					init(data);
-				}, false);
-			} else {
-				init(data);
-			}
-		}
+    if ('files' in data) {
+      if (win.document.webL10n.getReadyState() !== 'complete') {
+        window.addEventListener('localized', function() {
+          init(data);
+        }, false);
+      } else {
+        init(data);
+      }
+    }
 
-		doc.querySelector('#close').onclick = function (e) {
-			activity.postError('Activity cancelled');
-			activity = null;
-		};
+    doc.querySelector('#close').onclick = function (e) {
+      activity.postError('Activity cancelled');
+      activity = null;
+    };
 
-		for (var i = 0; i < doneBtns.length; i++) {
-			doneBtns[i].addEventListener('click', function () {
-				win.files.call(function (curFile, curDir) {
-					activity.postResult({path: curDir});
-					activity = null;
-				});
-			});
-		}
-	});
+    for (var i = 0; i < doneBtns.length; i++) {
+      doneBtns[i].addEventListener('click', function () {
+        win.files.call(function (curFile, curDir) {
+          activity.postResult({path: curDir});
+          activity = null;
+        });
+      });
+    }
+  });
 
-	win.config.app = '';
+  win.config.app = '';
 }(window, document);

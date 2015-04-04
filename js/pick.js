@@ -21,45 +21,45 @@
 */
 
 ;+function (window, document, undefined) {
-	var activity;
-	var _ = window.document.webL10n.get;
-	var selectedFolder = '';
-	
-	window.navigator.mozSetMessageHandler('activity', function(request) {
-		activity = request;
+  var activity;
+  var _ = window.document.webL10n.get;
+  var selectedFolder = '';
+  
+  window.navigator.mozSetMessageHandler('activity', function(request) {
+    activity = request;
 
-		var option = activity.source;
-		
-		if (option.name === 'pick') {
-			var data = option.data;
-			
-			console.log('Recibido', data);
-		} else {
-			console.error('Not allowed');
-		}
-	});
-	
+    var option = activity.source;
+    
+    if (option.name === 'pick') {
+      var data = option.data;
+      
+      console.log('Recibido', data);
+    } else {
+      console.error('Not allowed');
+    }
+  });
+  
 
-	window.utils = window.utils || {};
-	window.Activity = window.Activity || window.MozActivity;
-	window.config.activity = 'pick';
+  window.utils = window.utils || {};
+  window.Activity = window.Activity || window.MozActivity;
+  window.config.activity = 'pick';
 
-	function init() {
-		if (window.files.path.length > 0) {
-			window.storage.load(true);
-		} else {
-			window.utils.preload.complete();
-			window.storage.load(false);
-		}
-	}
+  function init() {
+    if (window.files.path.length > 0) {
+      window.storage.load(true);
+    } else {
+      window.utils.preload.complete();
+      window.storage.load(false);
+    }
+  }
 
-    window.addEventListener('localized', function() {
-        window.config.app = _('file-manager');
+  window.addEventListener('localized', function() {
+    window.config.app = _('file-manager');
 
-        document.documentElement.lang = document.webL10n.getLanguage();
-        document.documentElement.dir = document.webL10n.getDirection();
+    document.documentElement.lang = document.webL10n.getLanguage();
+    document.documentElement.dir = document.webL10n.getDirection();
 
-        init();
-    }, false);
+    init();
+  }, false);
 }(window, document);
 

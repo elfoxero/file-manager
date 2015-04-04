@@ -22,103 +22,103 @@ utils.status = (function() {
    * Clears the callback in charge of hiding the component after timeout
    */
   function clearHideTimeout() {
-    if (timeoutID === null) {
-      return;
-    }
+  if (timeoutID === null) {
+    return;
+  }
 
-    window.clearTimeout(timeoutID);
-    timeoutID = null;
+  window.clearTimeout(timeoutID);
+  timeoutID = null;
   }
 
   /*
    * Shows the status component
    *
    * @param{Object} Message. It could be a string or a DOMFragment that
-   *                represents the normal and strong strings
+   *        represents the normal and strong strings
    *
    * @param{int} It defines the time that the status is displayed in ms. This
-   *             parameter is optional
+   *       parameter is optional
    *
    */
   function show(message, duration) {
-    clearHideTimeout();
-    content.innerHTML = '';
+  clearHideTimeout();
+  content.innerHTML = '';
 
-    if (typeof message === 'string') {
-      content.textContent = message;
-    } else {
-      try {
-        // Here we should have a DOMFragment
-        content.appendChild(message);
-      } catch(ex) {
-        console.error('DOMException: ' + ex.message);
-      }
+  if (typeof message === 'string') {
+    content.textContent = message;
+  } else {
+    try {
+    // Here we should have a DOMFragment
+    content.appendChild(message);
+    } catch(ex) {
+    console.error('DOMException: ' + ex.message);
     }
+  }
 
-    section.classList.remove('hidden');
-    section.classList.add('onviewport');
-    timeoutID = window.setTimeout(hide, duration || DISPLAYED_TIME);
+  section.classList.remove('hidden');
+  section.classList.add('onviewport');
+  timeoutID = window.setTimeout(hide, duration || DISPLAYED_TIME);
   }
 
   /*
    * This function is invoked when some animation is ended
    */
   function animationEnd(evt) {
-    var eventName = 'status-showed';
+  var eventName = 'status-showed';
 
-    if (evt.animationName === 'hide') {
-      clearHideTimeout();
-      section.classList.add('hidden');
-      eventName = 'status-hidden';
-    }
+  if (evt.animationName === 'hide') {
+    clearHideTimeout();
+    section.classList.add('hidden');
+    eventName = 'status-hidden';
+  }
 
-    window.dispatchEvent(new CustomEvent(eventName));
+  window.dispatchEvent(new CustomEvent(eventName));
   }
 
   /*
    * Hides the status component
    */
   function hide() {
-    section.classList.remove('onviewport');
+  section.classList.remove('onviewport');
   }
 
   /*
    * Releases memory
    */
   function destroy() {
-    section.removeEventListener('animationend', animationEnd);
-    document.body.removeChild(section);
-    clearHideTimeout();
-    section = content = null;
+  section.removeEventListener('animationend', animationEnd);
+  document.body.removeChild(section);
+  clearHideTimeout();
+  section = content = null;
   }
 
   /*function getPath() {
-    var path = document.querySelector('[src*="' + FILE_NAME + '.js"]').src;
-    return path.substring(0, path.lastIndexOf('/') + 1);
+  var path = document.querySelector('[src*="' + FILE_NAME + '.js"]').src;
+  return path.substring(0, path.lastIndexOf('/') + 1);
   }
 
   function addStylesheet() {
-    var link = document.createElement('link');
-    link.type = 'text/css';
-    link.rel = 'stylesheet';
-    link.href = getPath() + 'status-behavior.css';
-    document.head.appendChild(link);
+  var link = document.createElement('link');
+  link.type = 'text/css';
+  link.rel = 'stylesheet';
+  link.href = getPath() + 'status-behavior.css';
+  document.head.appendChild(link);
   }*/
 
   function build() {
-    section = document.createElement('section');
+  section = document.createElement('section');
 
-    //addStylesheet();
+  //addStylesheet();
 
-    section.setAttribute('role', 'status');
-    section.classList.add('hidden');
+  section.setAttribute('role', 'status');
+  section.classList.add('hidden');
 
-    content = document.createElement('p');
+  content = document.createElement('p');
 
-    section.appendChild(content);
-    document.body.appendChild(section);
+  section.appendChild(content);
+  document.body.appendChild(section);
 
-    section.addEventListener('animationend', animationEnd);
+  section.addEventListener('animationend', animationEnd);
   }
 
   /*
@@ -129,59 +129,59 @@ utils.status = (function() {
    * </section>
    */
   function initialize() {
-    if (section) {
-      return;
-    }
+  if (section) {
+    return;
+  }
 
-    build();
+  build();
   }
 
   // Initializing the library
   if (document.readyState === 'complete') {
-    initialize();
+  initialize();
   } else {
-    document.addEventListener('DOMContentLoaded', function loaded() {
-      document.removeEventListener('DOMContentLoaded', loaded);
-      initialize();
-    });
+  document.addEventListener('DOMContentLoaded', function loaded() {
+    document.removeEventListener('DOMContentLoaded', loaded);
+    initialize();
+  });
   }
 
   return {
-    /*
-     * The library is auto-initialized but it is for unit testing purposes
-     */
-    init: initialize,
+  /*
+   * The library is auto-initialized but it is for unit testing purposes
+   */
+  init: initialize,
 
-    /*
-     * Shows the status component
-     *
-     * @param{Object} Message. It could be a string or a DOMFragment that
-     *                represents the normal and strong strings
-     *
-     * @param{int} It defines the time that the status is displayed in ms
-     *
-     */
-    show: show,
+  /*
+   * Shows the status component
+   *
+   * @param{Object} Message. It could be a string or a DOMFragment that
+   *        represents the normal and strong strings
+   *
+   * @param{int} It defines the time that the status is displayed in ms
+   *
+   */
+  show: show,
 
-    /*
-     * Hides the status component
-     */
-    hide: hide,
+  /*
+   * Hides the status component
+   */
+  hide: hide,
 
-    /*
-     * Releases memory
-     */
-    destroy: destroy,
+  /*
+   * Releases memory
+   */
+  destroy: destroy,
 
-    /*
-     * Sets up the duration in milliseconds that a status is displayed
-     *
-     * @param{int} The time in milliseconds
-     *
-     */
-    setDuration: function setDuration(time) {
-      DISPLAYED_TIME = time || DISPLAYED_TIME;
-    }
+  /*
+   * Sets up the duration in milliseconds that a status is displayed
+   *
+   * @param{int} The time in milliseconds
+   *
+   */
+  setDuration: function setDuration(time) {
+    DISPLAYED_TIME = time || DISPLAYED_TIME;
+  }
   };
 
 })();

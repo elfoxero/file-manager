@@ -208,6 +208,11 @@ form[role="dialog"][data-type="confirm"] dl > dd {
   overflow: hidden;
 }
 
+form[role="dialog"][data-type="confirm"] dl > dd > div {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 form[role="dialog"][data-type="confirm"] figure {
   margin: 1.5rem;
   display: flex;
@@ -283,31 +288,3 @@ html[dir="rtl"] form[role="dialog"][data-type="confirm"] figure img {
   padding-left: 1.5rem;
   padding-right: inherit;
 }
-
-html[dir="rtl"] form[role="dialog"][data-type="confirm"]:before {
-  margin-left: auto;
-  margin-right: -0.1rem;
-}
-
-html[dir="rtl"] form[role="dialog"][data-type="confirm"] p img {
-  right: 2rem;
-  left: auto;
-}
-
-html[dir="rtl"] form[role="dialog"][data-type="confirm"] dl > dt {
-  float: right;
-  padding-left: inherit;
-  padding-right: 1.5rem;
-  text-align: right;
-}
-
-html[dir="rtl"] form[role="dialog"][data-type="confirm"] dl > dd {
-  padding-left: 1.5rem;
-  padding-right: inherit;
-}
-
-html[dir="rtl"] form[role="dialog"][data-type="confirm"] figure img {
-  padding-left: 1.5rem;
-  padding-right: inherit;
-}
-

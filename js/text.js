@@ -31,7 +31,7 @@
       window.localStorage.fontSize = '2';
       size = 2;
     } else {
-      size = parseInt(window.localStorage.fontSize);
+      size = parseFloat(window.localStorage.fontSize);
     }
 
     if ( !('wrap' in window.localStorage) ) {

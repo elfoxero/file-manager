@@ -80,7 +80,7 @@ For more information about Web Activities, please visit [https://developer.mozil
 
 **Resources**
 
-This project is open source under GPL license.
+This project is open source under GPL3+ license.
 Uses a variant of [Building Blocks](http://buildingfirefoxos.com/) library and icon theme from [Numix Circle](https://github.com/numixproject/numix-icon-theme-circle).
 
 [Available in Firefox Marketplace](https://marketplace.firefox.com/app/file-manager)

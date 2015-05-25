@@ -1,23 +1,18 @@
 /*
-* Copyright (c) 2013-2015 Jhon Klever, http://github.com/elfoxero
+* File Manager - A Firefox OS file manager app
+* Copyright (C) 2013-2015 Jhon Klever
 *
-* Permission is hereby granted, free of charge, to any person obtaining a copy
-* of this software and associated documentation files (the "Software"), to
-* deal in the Software without restriction, including without limitation the
-* rights to use, copy, modify, merge, publish and distribute, subject to the
-* following conditions:
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
 *
-* The above copyright notice and this permission notice shall be included in
-* all copies or substantial portions of the Software.
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
 *
-* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-* FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-* IN THE SOFTWARE.
-*
+* https://github.com/elfoxero/file-manager/blob/master/LICENSE
 */
 
 ;+function (window, document, undefined) {
@@ -47,41 +42,41 @@
   function setup() {
     // Structure
     $('article').className = 'editor-container';
-    
+
     var section = $('article > section');
     section.classList.add('editor');
     section.appendChild(element('textarea'));
-    
+
     var toolbar = $('[role="toolbar"]');
 
     var ul = element('ul');
     var li = element('li');
     var btn = element('button', { className: 'action-icon calendar-agendaview', id: 'adjust' });
-    
+
     li.appendChild(btn);
     ul.appendChild(li);
 
     li = element('li');
     btn = element('button', { className: 'action-icon unlock', id: 'encryption' });
-    
+
     li.appendChild(btn);
     ul.appendChild(li);
 
     toolbar.appendChild(ul);
-    
+
     ul = element('ul');
     li = element('li');
     btn = element('button', { className: 'action-icon new', id: 'more' });
-    
+
     li.appendChild(btn);
     ul.appendChild(li);
-    
+
     li = element('li');
     btn = element('button', { className: 'action-icon minus', id: 'less' });
-    
+
     li.appendChild(btn);
     ul.appendChild(li);
-    
+
     toolbar.appendChild(ul);
 
     $('section[data-position="back"]').id = 'password';
@@ -100,7 +95,7 @@
     $('#password menu').appendChild(element('button', _('ok') || 'Ok'));
 
     // Events
-    
+
     $('#more').onclick = function (e) {
       size = Math.min(size + 0.5, 8);
       setFontSize();
@@ -146,7 +141,7 @@
     }
 
     $('#save').parentElement.className = 'shown';
-    
+
     $('#save').onclick = function (e) {
       var parts = file.split('/');
 

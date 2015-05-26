@@ -17,7 +17,7 @@
 
 -->
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
 <head>
   <meta charset="utf-8">
   <meta name="theme-color" content="#ff7d14">
@@ -53,7 +53,8 @@
 
   <!-- END OF STYLES -->
 
-  <link rel="resource" type="application/l10n" href="locales/locales.ini">
+  <script defer src="js/lib/l10n.js"></script>
+  <link rel="ressource" type="application/l10n" href="locales/locales.ini">
 </head>
 <body>
   <section data-type="sidebar">
@@ -210,6 +211,9 @@
       <button id="about-us-close">
         <span class="icon icon-close">close</span>
       </button>
+      <a id="license" href="LICENSE" target="_new">
+        <span>License</span>
+      </a>
       <h1 id="folder" data-l10n-id="about-us">About us</h1>
     </header>
 
@@ -249,7 +253,6 @@
 
   <!-- START OF SCRIPTS -->
 
-  <script defer src="js/lib/l10n.js"></script>
   <script defer src="js/lib/date.format.js"></script>
   <script defer src="shared/js/status.js"></script>
   <script defer src="js/config.js"></script>

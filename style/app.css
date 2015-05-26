@@ -151,6 +151,10 @@ section[role="region"] {
   transition: transform .2s ease-in;
 }
 
+#license {
+  float: right;
+}
+
 section[role="region"].hide-to-bottom {
   animation: hide .3s forwards;
   -webkit-animation: hide .3s forwards;

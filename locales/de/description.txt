@@ -22,7 +22,7 @@ Wenn Sie selbst eine Anwendung entwickelt haben, die mit Dateien auf der SD-Kart
 
 Ressourcen:
 
-Diese Anwendung ist Open Source und steht under der GPL.
+Diese Anwendung ist Open Source und steht under der GPL3+ Lizenz.
 Verwendet eine Variante der Bibliothek Building Blocks und das Icon Theme von Numix Circle.
 
 Diese Anwendung wurde auf einem ZTE Open mit Firefox OS 1.1 sowie Simulatoren für Firefox OS 1.3, 1.4 und 2.0 getestet.

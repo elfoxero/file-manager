@@ -27,7 +27,7 @@ Se avete sviluppato un app che interagisce con file nella SD card, File Magager 
 
 Risorse:
 
-Questa app è open source sotto licenza GPL.
+Questa app è open source sotto licenza GPL3+.
 
 Utilizza una variante della libreria Building Blocks e il tema di icone di Numix Circle.
 

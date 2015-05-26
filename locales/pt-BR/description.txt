@@ -21,7 +21,7 @@ Se você desenvolveu um aplicativo que interage com arquivos no cartão SD, o Ge
 
 Recursos:
 
-Este aplicativo é aberto sob licença GPL.
+Este aplicativo é aberto sob licença GPL3+.
 Usa uma variante da biblioteca Building Blocks e tema de ícones de Numix Circle.
 
 Este aplicativo foi testado no ZTE Open, com Firefox OS 1.1, e em simuladores de Firefox OS 1.3, 1.4 e 2.0.

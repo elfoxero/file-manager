@@ -96,7 +96,7 @@ p[role="status"] span {
   background: none;
 }
 
-/* Animations */
+/* Animations */
 @keyframes rotate {
   from { transform: rotate(1deg); }
   to   { transform: rotate(360deg); }

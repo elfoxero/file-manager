@@ -1,3 +1,4 @@
+
 /* ----------------------------------
 * Drawer
 * ---------------------------------- */
@@ -28,6 +29,7 @@ section[role="region"]:target > header:first-child > a:last-of-type {
   display: none;
 }
 
+
 /* Sidebar */
 section[data-type="sidebar"] {
   position: absolute;
@@ -37,7 +39,6 @@ section[data-type="sidebar"] {
   top: 0;
   left: 0;
   overflow: hidden;
-  z-index: 0;
 }
 
 /* Sidebar header */
@@ -127,13 +128,12 @@ section[data-type="sidebar"] > header button:first-letter {
 section[data-type="sidebar"] > header .icon {
   display: inline-block;
   width: 3rem;
-  height: 3rem;
+  height: 4.9rem;
   margin: 0 -1rem;
   background: transparent no-repeat center center / 100% auto;
   font-size: 0;
   overflow: hidden;
   position: relative;
-  height: 4.9rem;
 }
 
 section[data-type="sidebar"]:after {
@@ -199,4 +199,57 @@ section[data-type="sidebar"] > nav > ul > li > a {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+}
+
+/* RTL View */
+
+html[dir="rtl"] section[role="region"]:target {
+  transform: translateX(-80%);
+}
+
+/* Sidebar */
+html[dir="rtl"] section[data-type="sidebar"] {
+  left: auto;
+  right: 0;
+}
+
+/* Sidebar header */
+html[dir="rtl"] section[data-type="sidebar"] > header {
+  background-position: right bottom;
+}
+
+html[dir="rtl"] section[data-type="sidebar"] > header:after {
+  background-position: right top;
+}
+
+html[dir="rtl"] section[data-type="sidebar"] > header h1 {
+  text-align: right;
+  margin: 0 3rem 0 0;
+}
+
+/* Generic set of actions in toolbar */
+html[dir="rtl"] section[data-type="sidebar"] > header menu[type="toolbar"] {
+  float: left;
+}
+
+html[dir="rtl"] section[data-type="sidebar"] > header menu[type="toolbar"] a,
+html[dir="rtl"] section[data-type="sidebar"] > header menu[type="toolbar"] button {
+  float: left;
+}
+
+html[dir="rtl"] section[data-type="sidebar"] > header menu[type="toolbar"] a:last-child,
+html[dir="rtl"] section[data-type="sidebar"] > header menu[type="toolbar"] button:last-child {
+  background-position: right center;
+}
+
+html[dir="rtl"] section[data-type="sidebar"]:after {
+  background-image: url(drawer/images/ui/shadow_rtl.png);
+  background-position: left top;
+  left: 0;
+  right: auto;
+}
+html[dir="rtl"] section[data-type="sidebar"] > nav > h2 {
+  background-position: right top;
+  padding-left: 0.8rem;
+  padding-right: unset;
 }

@@ -22,7 +22,7 @@ SD txartelarekin interakziorik dituen aplikazioren bat garatu baduzu, File Manag
 
 Baliabideak:
 
-GPLv3+ lizentziapean dagoen kode irekiko aplikazio bat da.
+GPL-3.0+ lizentziapean dagoen kode irekiko aplikazio bat da.
 Building Blocks liburutegiaren moldaketa bat eta Numix Circle ikono paketea erabiltzen ditu.
 
 Aplikazio hau Firefox OS 1.1 duen ZTE Open gailu batean eta Firefox OS 1.3, 1.4 eta 2.0 dituen simulatzailean probatu da.

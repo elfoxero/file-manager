@@ -26,7 +26,7 @@ Als u een app hebt ontwikkeld die een wisselwerking met bestanden op de SD-kaart
 
 Bronnen:
 
-Deze app is open source onder een GPLv3+ licentie.
+Deze app is open source onder een GPL-3.0+ licentie.
 Gebruikt een variant van de Building Blocks-bibliotheek en het pictogramthema van Numix Circle.
 
 Deze app is getest op een ZTE Open-apparaat met Firefox OS 1.1 en simulatoren voor Firefox OS 1.3, 1.4 en 2.0.

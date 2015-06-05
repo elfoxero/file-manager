@@ -22,7 +22,7 @@ Si has desarrollado una aplicación que interactúa con los archivos de la tarje
 
 Recursos:
 
-Esta aplicación es de código abierto bajo licencia GPLv3+.
+Esta aplicación es de código abierto bajo licencia GPL-3.0+.
 Usa una variante de la biblioteca Building Blocks y el paquete de iconos de Numix Circle.
 
 Esta aplicación fue probada en un dispositivo ZTE Open con Firefox OS 1.1 y simuladores para Firefox OS 1.3, 1.4 y 2.0.

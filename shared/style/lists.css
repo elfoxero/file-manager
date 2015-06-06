@@ -1,6 +1,7 @@
 /* ----------------------------------
  * Lists
  * ---------------------------------- */
+
 [data-type="list"] {
   font-weight: 400;
   padding: 0 1.5rem;
@@ -19,29 +20,28 @@
 
 /* Title divisors */
 [data-type="list"] header {
-  padding: 0 1.5rem;
+  border-bottom: 0.1rem solid #ff4E00;
+  padding: 0.5rem 1rem;
   margin: 0;
   font-size: 1.6rem;
-  height: 3rem;
-  line-height: 4rem;
+  line-height: 1.8rem;
   font-weight: normal;
-  color: #ff4e00;
+  color: #ff4E00;
   text-transform: uppercase;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 /* List items */
 [data-type="list"] li {
   width: 100%;
   height: 6rem;
-  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  transition: transform 0.3s ease, padding 0.3s ease;
   border-bottom: solid 0.1rem #e7e7e7;
-  color: #333;
+  color: #000;
   margin: 0;
   display: block;
   position: relative;
+  z-index: 1;
 }
 
 [data-type="list"] li:last-child {
@@ -49,13 +49,9 @@
 }
 
 /* Pressed State */
-li a:active {
-  background-color: transparent; /* remove default color for active state */
-}
-
 [data-type="list"] li > a {
   text-decoration: none;
-  color: #333;
+  color: #000;
   display: block;
   height: 6rem;
   position: relative;
@@ -63,81 +59,70 @@ li a:active {
   outline: none;
 }
 
-[data-type="list"].active li:after,
 [data-type="list"] li > a:after {
   content: "";
+  background-color: #b1f1ff;
+  opacity: 0;
   pointer-events: none;
   position: absolute;
-  left: -1.5rem;
+  left: 0;
   top: 0;
-  right: -1.5rem;
+  right: 0;
   bottom: 0;
+  z-index: 0;
 }
 
-[data-type="list"].active li:active:after,
 [data-type="list"] li > a:active:after {
-  background-color: rgba(0,213,255,0.3);
+  opacity: 0.6;
+  /* Only transition on 'press', not on 'release' */
+  transition: opacity 0.2s ease;
 }
 
 /* Disabled */
-[data-type="list"] li[aria-disabled="true"] {
+[data-type="list"] li[aria-disabled="true"], [data-type="list"] li[data-disabled="true"] {
   pointer-events: none;
-  opacity: 0.2;
-  border-color: #888;
+  opacity: 0.6;
+  /*border-color: #888;*/
 }
 
 /* Graphic content */
 [data-type="list"] aside {
   float: left;
-  margin: 0;
-  -moz-margin-end: 0.5rem;
+  margin: 0 0.5rem 0 0;
   height: 100%;
   position: relative;
+  z-index: 2;
 }
 
 [data-type="list"] li > a aside,
 [data-type="list"] li > a aside.icon {
   background-color: transparent;
+  z-index: -1;
 }
 
 [data-type="list"] aside.pack-end {
   float: right;
-  margin: 0;
-  -moz-margin-start: 0.5rem;
-  text-align: end;
+  margin: 0 0 0 0.5rem;
+  text-align: right;
 }
 
 [data-type="list"] aside.icon {
   width: 3rem;
   height: 6rem;
   background: #fff no-repeat left center / 100% auto;
-  font-size: 0;
+  font: 0/0 a;
   display: block;
   overflow: hidden;
 }
 
-[data-type="list"] aside span[data-type=img],
 [data-type="list"] aside img {
   display: block;
   overflow: hidden;
-  width: 5rem;
-  height: 5rem;
-  border-radius: 2.5rem;
-  margin-top: 0.5rem;
-  box-sizing: border-box;
+  width: 6rem;
+  height: 6rem;
   background: transparent center center / cover;
   position: relative;
-}
-
-[data-type="list"] [data-icon] {
-  font-size: 0;
-}
-
-[data-type="list"] [data-icon]:before {
-  line-height: 6rem;
-  text-align: center;
-  width: 3rem;
-  color: #333;
+  z-index: 1;
 }
 
 /* Text content */
@@ -148,7 +133,7 @@ li a:active {
   border: none;
   display: block;
   margin: 0;
-  color: #858585;
+  color: #5b5b5b;
   font-size: 1.5rem;
   line-height: 2rem;
 }
@@ -156,7 +141,7 @@ li a:active {
 [data-type="list"] li p:first-of-type {
   font-size: 1.8rem;
   line-height: 2.2rem;
-  color: #333;
+  color: #000;
   padding: 1rem 0 0;
 }
 
@@ -171,7 +156,7 @@ li a:active {
 }
 
 [data-type="list"] li p time {
-  -moz-margin-end: 0.3rem;
+  margin-right: 0.3rem;
   text-transform: uppercase;
 }
 
@@ -183,60 +168,33 @@ li a:active {
   position: absolute;
   top: -0.1rem;
   bottom: 0;
-  /* Intentionally adding a conflict between right/left here: this will be
-   * resolved differently whether we're in LTR or RTL mode. */
-  right: -4rem;
+  right: 0;
   left: -4rem;
-  width: calc(100% + 4rem);
+  z-index: 1;
+  width: auto;
   height: auto;
+  border-top: solid 0.1rem #e7e7e7;
 }
 
-[data-type="list"] li > .pack-checkbox input ~ span:after,
-[data-type="list"] li > .pack-radio input ~ span:after,
-[data-type="list"] li > .pack-switch input ~ span:after {
-  /* because width is set in switches.css, the conflict between left/right will
-   * be resolved in favor of "left" in LTR and "right" in RTL */
+[data-type="list"] li > .pack-checkbox input + span,
+[data-type="list"] li > .pack-radio input + span,
+[data-type="list"] li > .pack-switch input + span {
   left: 0;
-  right: 0;
-  -moz-margin-start: 0;
+  margin-left: 0;
 }
 
 /* Edit mode */
 [data-type="list"] [data-type="edit"] li {
-  -moz-padding-start: 4rem;
+  transform: translateX(4rem);
+  padding-left: 0;
 }
 
 [data-type="list"] [data-type="edit"] li > .pack-checkbox,
 [data-type="list"] [data-type="edit"] li > .pack-radio,
 [data-type="list"] [data-type="edit"] li > .pack-switch {
   pointer-events: auto;
-  left: 0;
-  right: 0;
 }
 
-[data-type="list"] [data-type="edit"] li > a {
-  pointer-events: none;
-}
-
-[data-type="list"] [data-type="edit"] li > a:active:after,
-[data-type="list"] [data-type="edit"] li > a:hover:after {
+[data-type="list"] [data-type="edit"] li > a:active:after {
   display: none;
-}
-
-[data-type="list"] [data-type="edit"] aside.pack-end {
-  display: none;
-}
-
-/* Themes */
-.skin-comms [data-type="list"] header {
-  color: #4997a7;
-}
-
-/* RTL View */
-html[dir="rtl"] [data-type="list"] aside {
-  float: right;
-}
-
-html[dir="rtl"] [data-type="list"] aside.pack-end {
-  float: left;
 }

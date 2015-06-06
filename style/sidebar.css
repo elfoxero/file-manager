@@ -1,29 +1,24 @@
 /*
-* Copyright (c) 2013-2015 Jhon Klever, http://github.com/elfoxero
+* File Manager - A Firefox OS file manager app
+* Copyright (C) 2013-2015 Jhon Klever
 *
-* Permission is hereby granted, free of charge, to any person obtaining a copy
-* of this software and associated documentation files (the "Software"), to
-* deal in the Software without restriction, including without limitation the
-* rights to use, copy, modify, merge, publish and distribute, subject to the
-* following conditions:
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
 *
-* The above copyright notice and this permission notice shall be included in
-* all copies or substantial portions of the Software.
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
 *
-* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-* FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-* IN THE SOFTWARE.
-*
+* https://github.com/elfoxero/file-manager/blob/master/LICENSE
 */
 
 section[data-type="sidebar"] {
   position: absolute;
   width: 80%;
-  background: #e5e5e5;
+  background: #EEE;
   height: 100%;
   top: 0;
   left: 20%;
@@ -76,7 +71,7 @@ section[data-type="sidebar"] > header menu[type="toolbar"] button {
 
 section[data-type="sidebar"] > header menu[type="toolbar"] a:last-child,
 section[data-type="sidebar"] > header menu[type="toolbar"] button:last-child {
-  background: #e5e5e5;
+  background: #EEE;
 }
 
 section[data-type="sidebar"] > header menu[type="toolbar"] {
@@ -134,7 +129,7 @@ section[data-type="sidebar"] > nav > h2 {
   line-height: 3.3rem;
   text-indent: 3rem;
   color: #5f5f5f;
-  background: #e5e5e5;
+  background: #EEE;
   border-bottom: 0.1rem solid #dfdfdf;
   margin: 0;
   padding-right: 0.8rem;
@@ -155,7 +150,6 @@ section[data-type="sidebar"] > nav > ul > li {
   list-style: none;
   transition: background 0.2s ease;
 }
-
 section[data-type="sidebar"] > nav > ul > li:active {
   background: #00caf2;
 }
@@ -164,7 +158,7 @@ section[data-type="sidebar"] > nav > ul > li > a {
   text-decoration: none;
   color: #5f5f5f;
   font-size: 1.6rem;
-  line-height: 4.35rem;
+  line-height: 4.5rem;
   border-bottom: 0.1rem solid #dfdfdf;
   text-indent: 3rem;
   padding-right: 0.8rem;
@@ -178,4 +172,22 @@ section[data-type="sidebar"] > nav > ul > li > a {
 }
 section[data-type="sidebar"] > nav > ul > li > a:active {
   color: #fff;
+}
+
+section[data-type="sidebar"] #settings {
+  position: absolute;
+  bottom: 0;
+  height: 4.5rem;
+  border-top: 1px solid #EEE;
+  border-radius: 0px;
+  width: 100%;
+  background: url("images/settings_icon.png") no-repeat 50% 50% / 3rem auto;
+  background-color: #FFF;
+  border: medium none;
+  text-align: center;
+  font-size: 0px;
+}
+section[data-type="sidebar"] #settings:active {
+  background-image: url("images/settings_icon_press.png");
+  background-color: #00caf2;
 }

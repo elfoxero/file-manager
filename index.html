@@ -1,27 +1,23 @@
 <!--
 
- Copyright (c) 2013-2015 Jhon Klever, http://github.com/elfoxero
+ File Manager - A Firefox OS file manager app
+ Copyright (C) 2013-2015 Jhon Klever
 
- Permission is hereby granted, free of charge, to any person obtaining a copy
- of this software and associated documentation files (the "Software"), to
- deal in the Software without restriction, including without limitation the
- rights to use, copy, modify, merge, publish and distribute, subject to the
- following conditions:
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
 
- The above copyright notice and this permission notice shall be included in
- all copies or substantial portions of the Software.
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
 
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
- FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
- IN THE SOFTWARE.
+ https://github.com/elfoxero/file-manager/blob/master/LICENSE
 
 -->
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
 <head>
   <meta charset="utf-8">
   <meta name="theme-color" content="#ff7d14">
@@ -52,12 +48,13 @@
   <link rel="stylesheet" href="style/icons.css">
   <link rel="stylesheet" href="style/util.css">
   <link rel="stylesheet" href="style/app.css">
-  
+
   <link rel="icon" type="image/png" href="style/icons/icon_64.png">
 
   <!-- END OF STYLES -->
 
-  <link rel="resource" type="application/l10n" href="locales/locales.ini">
+  <script defer src="js/lib/l10n.js"></script>
+  <link rel="ressource" type="application/l10n" href="locales/locales.ini">
 </head>
 <body>
   <section data-type="sidebar">
@@ -79,6 +76,7 @@
         <li><a href="#" id="about-us-btn" data-l10n-id="about-us">About us</a></li>
       </ul>
     </nav>
+    <button id="settings"><span>Settings</span></button>
   </section>
 
   <section role="region" id="drawer">
@@ -93,15 +91,13 @@
       <h1 id="folder"></h1>
     </header>
     <div role="toolbar">
-      <ul>
+      <li><button class="action-icon email-sync" id="refresh">refresh</button></li>
       <li>
+      <ul>
         <span class="toolbar-text">
           <span id="footer-label" data-l10n-id="items" data-l10n-args='{"n": "0"}'>0 items</span>
         </span>
       </li>
-      </ul>
-      <ul>
-      <li><button class="action-icon email-sync" id="refresh">refresh</button></li>
       </ul>
     </div>
   </section>
@@ -214,6 +210,9 @@
       <button id="about-us-close">
         <span class="icon icon-close">close</span>
       </button>
+      <a id="license" href="LICENSE" target=" ">
+        <span data-l10n-id="license">License</span>
+      </a>
       <h1 id="folder" data-l10n-id="about-us">About us</h1>
     </header>
 
@@ -253,7 +252,6 @@
 
   <!-- START OF SCRIPTS -->
 
-  <script defer src="js/lib/l10n.js"></script>
   <script defer src="js/lib/date.format.js"></script>
   <script defer src="shared/js/status.js"></script>
   <script defer src="js/config.js"></script>

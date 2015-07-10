@@ -23,7 +23,7 @@ Si vous avez développer une application qui interagit avec les fichier de la ca
 
 Ressources:
 
-Cette aplication est sous licence Open source GPL.
+Cette aplication est sous licence Open source GPL-3.0+.
 Utilisation d'une variation de Building Blocks library et du pack d'icones theme de Numix Circle.
 
 Cette application a été testé sur un ZTE open avec firefox 1.1 et des simulateurs pour Firefox OS 1.3, 1.4 et 2.0.

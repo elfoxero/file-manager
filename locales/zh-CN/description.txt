@@ -22,7 +22,7 @@ If you have developed an app that interacts with files in SD card, File Manager 
 
 Resources:
 
-This app is open source under GPL license.
+This app is open source under GPL-3.0+ license.
 Uses a variant of Building Blocks library and icon theme from Numix Circle.
 
 This app was tested on ZTE Open device with Firefox OS 1.1 and simulators for Firefox OS 1.3, 1.4 and 2.0.

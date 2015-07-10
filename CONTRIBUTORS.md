@@ -1,6 +1,6 @@
 **Developers**
 
-* [JulR43](https://github.com/JulR43)
+*[ Julien Reichardt](https://github.com/j8r)
 * [Ignaz Forster](https://github.com/laenion)
 * [Spanti Nicola](https://github.com/RyDroid)
 

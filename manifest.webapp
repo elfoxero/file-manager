@@ -75,6 +75,9 @@
     },
     "pt-BR": {
       "name": "Meus Arquivos"
+    },
+    "uk": {
+      "name": "File Manager"
     }
   },
   "type": "privileged"

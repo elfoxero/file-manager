@@ -1,12 +1,13 @@
 **Developers**
 
-* [ Julien Reichardt](https://github.com/j8r)
+* [Julien Reichardt](https://github.com/j8r)
 * [Ignaz Forster](https://github.com/laenion)
 * [Spanti Nicola](https://github.com/RyDroid)
 
 **Translators**
 
 * [Kamil Trusiak](https://github.com/kamil7x)
+* [Artem Polivanchuk](https://github.com/stenox)
 * [Adolfo Jayme Barrientos](http://pad.lv/~fitojb)
 * [Asier Arizkuren](https://github.com/aarizkuren)
 * [Arnaud Durand](http://mathix.org/linux/)

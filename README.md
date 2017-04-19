@@ -1,3 +1,5 @@
+#add 2
+#add by waynehu
 # File Manager
 
 File Manager is an app for Firefox OS to explore and manage files from SD card.
